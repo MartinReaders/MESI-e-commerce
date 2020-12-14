@@ -14,8 +14,9 @@ public class Panier {
     @OneToMany(mappedBy = "panier")
     private Set<LienPanierProduit> produits;
 
-//    @ManyToOne
-//    private Utilisateur utilisateur;
+    @ManyToOne
+    @JoinColumn(name = "idUtilisateur")
+    private Utilisateur utilisateur;
 
 
     public Long getId() {

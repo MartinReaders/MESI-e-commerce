@@ -16,11 +16,11 @@ public class LienPanierProduit {
     private Integer quantite;
 
     @ManyToOne
-    @Column(name = "idPanier")
+    @JoinColumn(name = "idPanier")
     private Panier panier;
 
     @ManyToOne
-    @Column(name = "idProduit")
+    @JoinColumn(name = "idProduit")
     private Produit produit;
 
     public Long getId() {
