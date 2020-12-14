@@ -16,8 +16,6 @@ public class Commande {
 
 
 
-    @Column(name = "idPanier")
-    private Long panier;
 
 
 
@@ -47,13 +45,6 @@ public class Commande {
     }
 
 
-    public Long getPanier() {
-        return panier;
-    }
-
-    public void setPanier(Long panier) {
-        this.panier = panier;
-    }
 
     public Utilisateur getUtilisateur() {
         return utilisateur;
@@ -85,7 +76,7 @@ public class Commande {
         if (o == null || getClass() != o.getClass()) return false;
         Commande commande = (Commande) o;
         return idCommande.equals(commande.idCommande) &&
-                panier.equals(commande.panier) &&
+
                 utilisateur.equals(commande.utilisateur) &&
                 date.equals(commande.date) &&
                 prixTotal.equals(commande.prixTotal);
@@ -93,23 +84,21 @@ public class Commande {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCommande, panier, utilisateur, date, prixTotal);
+        return Objects.hash(idCommande, utilisateur, date, prixTotal);
     }
 
     @Override
     public String toString() {
         return "Commande{" +
                 "idCommande=" + idCommande +
-                ", panier=" + panier +
                 ", utilisateur=" + utilisateur +
                 ", date=" + date +
                 ", prixTotal=" + prixTotal +
                 '}';
     }
 
-    public Commande(Long idCommande, Panier panier, Utilisateur utilisateur, LocalDate date, Double prixTotal) {
+    public Commande(Long idCommande, Utilisateur utilisateur, LocalDate date, Double prixTotal) {
         this.idCommande = idCommande;
-        this.panier = panier;
         this.utilisateur = utilisateur;
         this.date = date;
         this.prixTotal = prixTotal;
