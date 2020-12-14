@@ -17,7 +17,7 @@ public class Commande {
 
 
     @Column(name = "idPanier")
-    private Panier panier;
+    private Long panier;
 
 
 
@@ -46,11 +46,12 @@ public class Commande {
         this.idCommande = idCommande;
     }
 
-    public Panier getPanier() {
+
+    public Long getPanier() {
         return panier;
     }
 
-    public void setPanier(Panier panier) {
+    public void setPanier(Long panier) {
         this.panier = panier;
     }
 
