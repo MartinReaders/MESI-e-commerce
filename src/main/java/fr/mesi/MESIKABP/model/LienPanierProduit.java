@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "panier__produit")
+@Table(name = "produit_panier")
 public class LienPanierProduit {
 
     @Id
