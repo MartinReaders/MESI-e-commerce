@@ -20,7 +20,6 @@ public class Utilisateur {
     private String password;
 
 
-
     @Column(name = "grade")
     private Integer grade;
 
