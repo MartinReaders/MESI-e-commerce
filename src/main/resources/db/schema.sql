@@ -3,18 +3,32 @@ CREATE TABLE utilisateur (
   username VARCHAR(30) NOT NULL,
   password VARCHAR(30) NOT NULL,
   grade INT(5),
+  nom VARCHAR(30),
+  prenom VARCHAR(30),
+  email VARCHAR(50),
+  telephone INT(10),
+  dateNaissance Date,
+  adresse1 VARCHAR(200),
+  adresse2 VARCHAR(200),
+  codePostale INT(10),
+  ville VARCHAR(100),
+  pays VARCHAR(30),
   PRIMARY KEY(idUtilisateur)
 );
 
 CREATE TABLE produit (
   idProduit INT(10) AUTO_INCREMENT,
-  code INT(10) NOT NULL,
+  code VARCHAR(30) NOT NULL,
   marque VARCHAR(30) NOT NULL,
   modele VARCHAR(50)NOT NULL,
   prix INT(10) NOT NULL,
   image VARCHAR(100),
   quantite INT(10),
   type VARCHAR(30),
+  couleur VARCHAR(30),
+  couleurMarque VARCHAR(30),
+  description VARCHAR(5000),
+  rgb BOOLEAN,
   PRIMARY KEY (idProduit)
 );
 
