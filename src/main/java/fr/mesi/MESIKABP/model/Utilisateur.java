@@ -27,10 +27,6 @@ public class Utilisateur implements UserDetails {
     @Column(name = "grade")
     private Integer grade;
 
-    private UserRole userRole = UserRole.USER;
-
-
-
     public Utilisateur(){
 
     }
