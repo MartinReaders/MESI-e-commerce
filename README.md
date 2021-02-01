@@ -2,10 +2,10 @@
 MESI Project
 
 ## Presentation
-- Gestion de projet : Trello
-- Back - Java SPRING - Thymeleaf
-- Front - HTML CSS Boostrap JS
-- Gestion sauvegarde : GitHub
+- Project management : Trello
+- Back : Java SPRING - Thymeleaf
+- Front : HTML CSS Boostrap JS
+- Backup management : GitHub
 - SGBD : MySQL
 
 ## Development server
