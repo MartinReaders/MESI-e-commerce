@@ -1,10 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
+    <link type="text/css" rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <meta charset="UTF-8">
-    <title>Panier</title>
+    <title>Projet MESI - Page Panier</title>
 </head>
 <body>
-    <h1>Panier</h1>
+
+<header>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="/produit" style="display: inline-flex;">
+            <img src="/static/images/logo_shoe2.png" class="d-inline-block align-top ml-5 mr-5" style="width: 100px;" alt="Logo-Projet-MESI">
+            <h1 class="display-4 ml-3" style="font-family: system-ui;">Projet MESI</h1>
+        </a>
+    </nav>
+</header>
+
+
+
+<div class="d-flex align-items-center justify-content-end mr-5">
+    <img src="/static/images/user-regular.svg" style="width: 25px; height: 25px;"> Hey, usernameDynamic
+    <div class="ml-3 mr-5">
+        <a href="/panier"><div class="ml-3 text-danger"><img src="/static/images/shopping-cart-solid.svg" style="width: 25px; height: 25px;"> nbArticleDynamic Article(s)</div></a>
+    </div>
+    <div class="ml-5">
+        <a href="/deconnexion"><button type="button" class="btn btn-danger">déconnexion</button></a>
+    </div>
+</div>
+
+
+
+
+
+<div id="test" class="container-fluid big-container" style="background-color:#f0f0f0;">
+    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+        <div class="row rowNoGutters" style="justify-content: center;">
+            <div class="col-lg-12">
+                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                    <h6 class="text-danger title5 pt-5"><strong>listPanier|length Article(s)</strong></h6>
+                    <h2 class="titleSection">Votre panier</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5" style="justify-content: center;">
+            <div class="col-lg-7">
+                <div class="row d-flex align-items-center animate__animated animate__flipInX" style="animation-name: zoomIn;">
+                    <div class="col-3">
+                        <img src="/static/images/produits/produit.image">
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <p><strong>produit.code</strong></p> produit.marque
+                            </div>
+                            <div class="col-6">
+                                produit.modele
+                            </div>
+                            <div class="col-3">
+                                produit.prix €
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <form action="/delPanier" method="post">
+                            <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
+                            <button type="submit" value="produit" class="btn btn-outline-danger">Retirer du panier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="col-12">
+
+        <div class="row mt-5"></div>
+
+        <div class="row mt-5" style="justify-content: center;">
+            <div class="col-lg-7">
+                <div class="row d-flex align-items-center animate__animated animate__flipInX" style="animation-name: zoomIn;">
+                    <div class="col-3">
+                        <img src="/static/images/produits/produit.image">
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <p><strong>produit.code</strong></p> produit.marque
+                            </div>
+                            <div class="col-6">
+                                produit.modele
+                            </div>
+                            <div class="col-3">
+                                produit.prix €
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <form action="/delPanier" method="post">
+                            <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
+                            <button type="submit" value="produit" class="btn btn-outline-danger">Retirer du panier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="col-12">
+
+        <div class="row mt-5"></div>
+
+        <div class="row mt-5" style="justify-content: center;">
+            <div class="col-lg-7">
+                <div class="row d-flex align-items-center animate__animated animate__flipInX" style="animation-name: zoomIn;">
+                    <div class="col-3">
+                        <img src="/static/images/produits/produit.image">
+                    </div>
+                    <div class="col-6">
+                        <div class="d-lfex flex-row">
+                            <div class="col-3 p-2">
+                                <p><strong>produit.code</strong></p> produit.marque
+                            </div>
+                            <div class="col-6 p-2">
+                                produit.modele
+                            </div>
+                            <div class="col-3 p-2">
+                                produit.prix €
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <form action="/delPanier" method="post">
+                            <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
+                            <button type="submit" value="produit" class="btn btn-outline-danger">Retirer du panier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="col-12">
+
+        <div class="row mt-5"></div>
+
+        <div class="row mt-5" style="justify-content: center;">
+            <div class="col-lg-7">
+                <div class="row d-flex align-items-center animate__animated animate__flipInX" style="animation-name: zoomIn;">
+                    <div class="col-3">
+                        <img src="/static/images/produits/produit.image">
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <p><strong>produit.code</strong></p> produit.marque
+                            </div>
+                            <div class="col-6">
+                                produit.modele
+                            </div>
+                            <div class="col-3">
+                                produit.prix €
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <form action="/delPanier" method="post">
+                            <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
+                            <button type="submit" value="produit" class="btn btn-outline-danger">Retirer du panier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="col-12">
+
+        <div class="row mt-5"></div>
+
+        <div class="row mt-5" style="justify-content: center;">
+            <div class="col-lg-4 ">
+                <div class="row d-flex align-items-center" style="font-weight: bold">
+                    <div class="col-3">
+                        listPanier|length articles
+                    </div>
+                    <div class="col-6">
+                        Total ttc :  listPanier|sum(attribute='prix')  €
+                    </div>
+                    <div class="col-3">
+                        <form action="/addCommande" method="post">
+                            <button type="submit" value="produit" class="btn btn-success">Valider commande</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="bg-light">
+    <div class="container">
+        <div class="row rowNoGutters mt-5" style="justify-content: center;">
+            <div class="col-md-3">
+                <div class="d-flex flex-column animate__animated animate__backInLeft">
+                    <div class="p-2 font-weight-bold mb-3">Nous contacter</div>
+                    <div class="p-2">Appelez-nous : 01 02 03 04 05</div>
+                    <div class="p-2">(du lundi au vendredi - de 10h à 19h)</div>
+                    <div class="p-2">Écrivez-nous : kabp@kabp.kabp</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="d-flex flex-column animate__animated animate__backInLeft">
+                    <div class="p-2 font-weight-bold mb-3">En savoir plus</div>
+                    <div class="p-2">Concept</div>
+                    <div class="p-2">Mentions Légales</div>
+                    <div class="p-2">CGU</div>
+                    <div class="p-2">CGV</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="d-flex flex-column animate__animated animate__backInRight">
+                    <div class="p-2 font-weight-bold mb-3">Trouvez votre produit</div>
+                    <div class="p-2">Recherche</div>
+                    <div class="p-2">Nouveautés</div>
+                    <div class="p-2">A venir</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="d-flex flex-column animate__animated animate__backInRight">
+                    <div class="p-2 font-weight-bold mb-3">Langues</div>
+                    <div class="p-2">Français</div>
+                    <div class="p-2">Anglais</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="col-10 mt-3 mb-3">
+
+        <div class="row mb-3" style="justify-content: left;">
+            <p>Copyright © Pierre Pocheron, Dylan Antoniotti, Martin Khapherian, Manahel BOUCHKARA | Projet MESI - IPI 2020-2021</p>
+        </div>
+    </div>
+
+    <!--<div class="container">
+            <div class="row" style="justify-content: center;">
+                <div class="col-lg-4">
+                    <div class="d-flex justify-content-between">
+                        <a href="/connexion"><button type="button" class="btn btn-primary">Connexion</button></a>
+                        <a href="/produit"><button type="button" class="btn btn-warning">Produit</button></a>
+                        <a href="/panier"><button type="button" class="btn btn-danger">Panier</button></a>
+                    </div>
+                </div>
+            </div>
+       </div>-->
+
+
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
