@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityExistsException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,12 +31,18 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login")
-    public void userConnection(ModelMap model, @RequestBody Utilisateur utilisateur) {
+    public String userConnection(final ModelMap model, @RequestBody Utilisateur utilisateur) {
+        List<String> errors = new ArrayList<>();
         if(authService.isCredentialsUserAreCorrect(utilisateur)) {
             //Mot de passe et login sont correctes
             //rediriger vers /home
+            return "home";
         } else {
-
+            System.out.println("Erreur");
+            errors.add("Le mot de passe ou le login est incorrect !");
+            model.put("errors", errors);
+            model.put("login", utilisateur.getLogin());
+            return "login";
         }
     }
 
@@ -60,7 +67,7 @@ public class AuthController {
     //-----------------------------------REGISTER---------------------------------------------------------------------//
     @GetMapping(value = "/register")
     public String getRegisterPage() {
-        return "Register";
+        return "register";
     }
 
     /*
@@ -69,14 +76,17 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
-    public void userRegister(ModelMap model, @RequestBody Utilisateur utilisateurRegister) {
+    public String userRegister(final ModelMap model, @RequestBody Utilisateur utilisateurRegister) {
         List<String> errors = new ArrayList<>();
-        if(!authService.isAccountExist(utilisateurRegister)) {
-            //L'adresse email n'est pas utilisée alors on peut continuer dans le process
+        try {
+            //On tente d'enregistrer l'utilisateur
             authService.registerUser(utilisateurRegister);
-        } else {
-            //A mettre dans une constante ou faire une chaine a formatter
-            errors.add("L'adresse email est déjà utilisée !");
+        } catch(EntityExistsException e) {
+            //On ajoute l'erreur de l'exception a la liste
+            errors.add(e.getMessage());
+            model.put("errors", errors);
+            return "register";
         }
+        return "login"; //Création de compte réussie
     }
 }
