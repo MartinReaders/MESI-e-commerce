@@ -2,6 +2,7 @@ package fr.mesi.MESIKABP.controller;
 
 import fr.mesi.MESIKABP.model.Utilisateur;
 import fr.mesi.MESIKABP.service.AuthService;
+import fr.mesi.MESIKABP.service.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,7 +43,7 @@ public class AuthController {
             errors.add("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
             model.put("login", utilisateur.getLogin());
-            return "login";
+            return "Connexion";
         }
     }
 
