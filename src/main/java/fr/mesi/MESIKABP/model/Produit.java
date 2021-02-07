@@ -169,7 +169,7 @@ public class Produit {
         this.rgb = rgb;
     }
 
-    // Methodes
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {
