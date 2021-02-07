@@ -1,6 +1,6 @@
 CREATE TABLE utilisateur (
   idUtilisateur INT(10) AUTO_INCREMENT,
-  username VARCHAR(30) NOT NULL,
+  login VARCHAR(30) NOT NULL,
   password VARCHAR(30) NOT NULL,
   grade INT(5),
   nom VARCHAR(30),

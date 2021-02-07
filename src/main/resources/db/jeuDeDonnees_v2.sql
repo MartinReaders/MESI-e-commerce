@@ -1,4 +1,4 @@
-INSERT INTO utilisateur (username, password, grade) VALUES
+INSERT INTO utilisateur (login, password, grade) VALUES
 ('Pierre','POCHERON',1),
 ('Dylan','ANTONIOTTI',1),
 ('Martin','KHAPHERIAN',1),
