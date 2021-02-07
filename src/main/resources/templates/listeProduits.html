@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link type="text/css" rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -35,6 +35,7 @@
 
 
 
+
 <!-- Container contenant tout les produits -->
 <div id="test" class="container-fluid big-container" style="background-color:#f0f0f0;">
     <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
@@ -47,86 +48,24 @@
                 </div>
             </div>
         </div>
-        <!-- Affichages de tous les produits dans une ligne -->
-        <div class="row rowNoGutters mt-5" style="text-align: -webkit-center;">
-            <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <img src="/static/images/produits/{{produit.image}}">
-                <div class="divbutton text-center m-4 p-5">
-                    <p><strong>produit.modeleDynamic - produit.colorisDynamic </strong></p>
-                    <p>produit.marqueDynamic</p>
-                    <p style="color: #878786;">produit.prixDynamic €</p>
-                    <form action="/addPanier" method="post">
-                        <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
-                        <button type="submit" value="produit" class="btn btn-primary">Ajouter au panier</button>
-                    </form>
-                </div>
-            </div>
 
+        <div th:each="product : ${productList}">
+            <!-- Affichages de tous les produits dans une ligne -->
             <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <img src="/static/images/produits/{{produit.image}}">
+                <img th:src="'/static/images/produits/' + ${product.image}'">
                 <div class="divbutton text-center m-4 p-5">
-                    <p><strong>produit.modeleDynamic - produit.colorisDynamic </strong></p>
-                    <p>produit.marqueDynamic</p>
-                    <p style="color: #878786;">produit.prixDynamic €</p>
+                    <span><strong><p th:text="${product.modele} + ' - '"></p><p th:text="${product.couleur}"></p></strong></span>
+                    <p th:text="${product.marque}"></p>
+                    <p style="color: #878786;" th:text="${product.prix}"> €</p>
+                    <!-- Retravailler cette partie une fois la vue fonctionnelle -->
                     <form action="/addPanier" method="post">
-                        <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
-                        <button type="submit" value="produit" class="btn btn-primary">Ajouter au panier</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <img src="/static/images/produits/{{produit.image}}">
-                <div class="divbutton text-center m-4 p-5">
-                    <p><strong>produit.modeleDynamic - produit.colorisDynamic </strong></p>
-                    <p>produit.marqueDynamic</p>
-                    <p style="color: #878786;">produit.prixDynamic €</p>
-                    <form action="/addPanier" method="post">
-                        <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
-                        <button type="submit" value="produit" class="btn btn-primary">Ajouter au panier</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <img src="/static/images/produits/{{produit.image}}">
-                <div class="divbutton text-center m-4 p-5">
-                    <p><strong>produit.modeleDynamic - produit.colorisDynamic </strong></p>
-                    <p>produit.marqueDynamic</p>
-                    <p style="color: #878786;">produit.prixDynamic €</p>
-                    <form action="/addPanier" method="post">
-                        <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
-                        <button type="submit" value="produit" class="btn btn-primary">Ajouter au panier</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <img src="/static/images/produits/{{produit.image}}">
-                <div class="divbutton text-center m-4 p-5">
-                    <p><strong>produit.modeleDynamic - produit.colorisDynamic </strong></p>
-                    <p>produit.marqueDynamic</p>
-                    <p style="color: #878786;">produit.prixDynamic €</p>
-                    <form action="/addPanier" method="post">
-                        <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
-                        <button type="submit" value="produit" class="btn btn-primary">Ajouter au panier</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <img src="/static/images/produits/{{produit.image}}">
-                <div class="divbutton text-center m-4 p-5">
-                    <p><strong>produit.modeleDynamic - produit.colorisDynamic </strong></p>
-                    <p>produit.marqueDynamic</p>
-                    <p style="color: #878786;">produit.prixDynamic €</p>
-                    <form action="/addPanier" method="post">
-                        <input type="text" id="produitCode" style="display:none;" name="produitCode" value="produit.code">
+                        <input type="text" id="produitCode" style="display:none;" name="produitCode" th:value="product.code">
                         <button type="submit" value="produit" class="btn btn-primary">Ajouter au panier</button>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
