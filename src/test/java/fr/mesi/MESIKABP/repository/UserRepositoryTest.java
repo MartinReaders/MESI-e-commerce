@@ -1,4 +1,4 @@
-package fr.mesi.MESIKABP;
+package fr.mesi.MESIKABP.repository;
 
 import fr.mesi.MESIKABP.model.Utilisateur;
 import fr.mesi.MESIKABP.repository.UserRepository;
@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -26,26 +25,25 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldFindUserSuccess() {
-        String login = "test@test.ipilyon.net";
-        final Utilisateur user = new Utilisateur(null, login, "test", 1);
+        final Utilisateur user = new Utilisateur();
+        user.setLogin("test@test.ipilyon.net");
         entityManager.persist(user);
         entityManager.flush();
 
-        Optional<Utilisateur> userFound = userRepository.findByLogin(login);
+        Optional<Utilisateur> userFound = userRepository.findByLogin(user.getLogin());
 
         assertThat(userFound).isNotEmpty(); //Ne doit pas être vide
-        assertThat(userFound.get().getLogin()).isEqualTo(login); //Doit être égale a la valeur attendue
+        assertThat(userFound.get().getLogin()).isEqualTo(user.getLogin()); //Doit être égale a la valeur attendue
     }
 
     @Test
     public void shouldFindUserNotSuccess() {
-        String goodLogin = "test@test.ipilyon.net";
-        String badLogin = "test@teste.ipilyon.net";
-        final Utilisateur user = new Utilisateur(null, goodLogin, "test", 1);
+        final Utilisateur user = new Utilisateur();
+        user.setLogin("test@test.ipilyon.net");
         entityManager.persist(user);
         entityManager.flush();
 
-        Optional<Utilisateur> userFound = userRepository.findByLogin(badLogin);
+        Optional<Utilisateur> userFound = userRepository.findByLogin("test@teste.ipilyon.net");
 
         assertThat(userFound).isEmpty(); //Doit être vide
     }

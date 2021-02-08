@@ -53,6 +53,7 @@ public class Produit {
     // Constructor
 
     public Produit() {
+
     }
 
     public Produit(Long id, String code, String marque, String modele, Double prix, String image, Integer quantite, Integer type, String couleur, String couleurMarque, String description, Boolean rgb, Set<LienPanierProduit> paniers) {
