@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.repository;
 
-import fr.mesi.mesikabp.model.Utilisateur;
+import fr.mesi.mesikabp.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +24,12 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldFindUserSuccess() {
-        final Utilisateur user = new Utilisateur();
+        final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         entityManager.persist(user);
         entityManager.flush();
 
-        Optional<Utilisateur> userFound = userRepository.findByLogin(user.getLogin());
+        Optional<User> userFound = userRepository.findByLogin(user.getLogin());
 
         assertThat(userFound).isNotEmpty(); //Ne doit pas être vide
         assertThat(userFound.get().getLogin()).isEqualTo(user.getLogin()); //Doit être égale a la valeur attendue
@@ -37,12 +37,12 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldFindUserNotSuccess() {
-        final Utilisateur user = new Utilisateur();
+        final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         entityManager.persist(user);
         entityManager.flush();
 
-        Optional<Utilisateur> userFound = userRepository.findByLogin("test@teste.ipilyon.net");
+        Optional<User> userFound = userRepository.findByLogin("test@teste.ipilyon.net");
 
         assertThat(userFound).isEmpty(); //Doit être vide
     }

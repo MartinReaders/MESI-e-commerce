@@ -1,11 +1,11 @@
 package fr.mesi.mesikabp.service;
 
-import fr.mesi.mesikabp.model.Utilisateur;
+import fr.mesi.mesikabp.model.User;
 
 import javax.persistence.EntityExistsException;
 
 public interface AuthService {
-    boolean isAccountExist(Utilisateur utilisateur);
-    void registerUser(Utilisateur utilisateur) throws EntityExistsException;
-    boolean isCredentialsUserAreCorrect(Utilisateur utilisateur);
+    boolean isAccountExist(User user);
+    void registerUser(User user) throws EntityExistsException;
+    boolean isCredentialsUserAreCorrect(User user);
 }

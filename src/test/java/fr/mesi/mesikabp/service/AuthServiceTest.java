@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.service;
 
-import fr.mesi.mesikabp.model.Utilisateur;
+import fr.mesi.mesikabp.model.User;
 import fr.mesi.mesikabp.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +29,7 @@ public class AuthServiceTest {
      */
     @Test
     void shouldUserSaved() {
-        final Utilisateur user = new Utilisateur();
+        final User user = new User();
         user.setLogin("test@test.ipilyon.net");
 
         Mockito.when(userRepository.findByLogin(user.getLogin())).thenReturn(Optional.empty());
@@ -37,7 +37,7 @@ public class AuthServiceTest {
 
         authService.registerUser(user);
 
-        Mockito.verify(userRepository, Mockito.times(1)).save(Mockito.any(Utilisateur.class));
+        Mockito.verify(userRepository, Mockito.times(1)).save(Mockito.any(User.class));
     }
 
     /*
@@ -45,7 +45,7 @@ public class AuthServiceTest {
      */
     @Test
     void shouldAccountExist() {
-        final Utilisateur user = new Utilisateur();
+        final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         Mockito.when(userRepository.findByLogin(user.getLogin())).thenReturn(Optional.of(user));
 
@@ -56,7 +56,7 @@ public class AuthServiceTest {
 
     @Test
     void shouldCredentialsAreCorrect() {
-        final Utilisateur user = new Utilisateur(null, "test@test.ipilyon.net", "IPIadmin", 1);
+        final User user = new User(null, "test@test.ipilyon.net", "IPIadmin", 1);
         user.setPassword("IPIadmin");
         Mockito.when(userRepository.findByLogin(user.getLogin())).thenReturn(Optional.of(user));
 
@@ -67,10 +67,10 @@ public class AuthServiceTest {
 
     @Test
     void shouldCredentialsArentCorrect() {
-        final Utilisateur user = new Utilisateur();
+        final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         user.setPassword("IPIadmin");
-        final Utilisateur fakeUser = new Utilisateur();
+        final User fakeUser = new User();
         fakeUser.setLogin("test@test.ipilyon.net");
         fakeUser.setPassword("IPIADMIN");
 
@@ -81,7 +81,7 @@ public class AuthServiceTest {
 
     @Test
     void shouldCredentialsArentCorrectBecauseAccountDoesntExist() {
-        final Utilisateur user = new Utilisateur();
+        final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         user.setPassword("IPIadmin");
 

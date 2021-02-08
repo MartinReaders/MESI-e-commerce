@@ -1,19 +1,19 @@
-CREATE TABLE utilisateur (
-  idUtilisateur INT(10) AUTO_INCREMENT,
+CREATE TABLE user (
+  idUser INT(10) AUTO_INCREMENT,
   login VARCHAR(30) NOT NULL,
   password VARCHAR(30) NOT NULL,
   grade INT(5),
-  nom VARCHAR(30),
-  prenom VARCHAR(30),
+  lastName VARCHAR(30),
+  firstName VARCHAR(30),
   email VARCHAR(50),
-  telephone INT(10),
-  dateNaissance Date,
+  phone INT(10),
+  dateBirth Date,
   adresse1 VARCHAR(200),
   adresse2 VARCHAR(200),
-  codePostale INT(10),
-  ville VARCHAR(100),
-  pays VARCHAR(30),
-  PRIMARY KEY(idUtilisateur)
+  zipCode INT(10),
+  city VARCHAR(100),
+  country VARCHAR(30),
+  PRIMARY KEY(idUser)
 );
 
 CREATE TABLE product (
@@ -32,30 +32,30 @@ CREATE TABLE product (
   PRIMARY KEY (idProduct)
 );
 
-CREATE TABLE panier (
-  idPanier INT(10) AUTO_INCREMENT,
-  idUtilisateur INT(10) NOT NULL,
+CREATE TABLE basket (
+  idBasket INT(10) AUTO_INCREMENT,
+  idUser INT(10) NOT NULL,
   createdPanier DATE,
-  PRIMARY KEY (idPanier),
-  FOREIGN KEY (idUtilisateur) REFERENCES utilisateur (idUtilisateur)
+  PRIMARY KEY (idBasket),
+  FOREIGN KEY (idUser) REFERENCES user (idUser)
 );
 
 CREATE TABLE produit_panier (
-  idProduitPanier INT(10) AUTO_INCREMENT,
-  idProduit INT(10) NOT NULL,
-  idPanier INT(10) NOT NULL,
-  quantite INT(10),
+  idProductBasket INT(10) AUTO_INCREMENT,
+  idProduct INT(10) NOT NULL,
+  idBasket INT(10) NOT NULL,
+  quantity INT(10),
   PRIMARY KEY (idProduitPanier),
-  FOREIGN KEY (idProduit) REFERENCES product (idProduit),
-  FOREIGN KEY (idPanier) REFERENCES panier (idPanier)
+  FOREIGN KEY (idProduct) REFERENCES product (idProduct),
+  FOREIGN KEY (idBasket) REFERENCES basket (idBasket)
 );
 
-CREATE TABLE commande (
-  idCommande INT(10) AUTO_INCREMENT,
-  idUtilisateur INT(10) NOT NULL,
-  idPanier INT(10) NOT NULL,
-  dateCommande DATE,
-  prixTotal INT(15) NOT NULL,
-  PRIMARY KEY (idCommande),
-  FOREIGN KEY (idUtilisateur) REFERENCES utilisateur (idUtilisateur)
+CREATE TABLE order (
+  idOrder INT(10) AUTO_INCREMENT,
+  idUser INT(10) NOT NULL,
+  idCard INT(10) NOT NULL,
+  date DATE,
+  totalPrice INT(15) NOT NULL,
+  PRIMARY KEY (idOrder),
+  FOREIGN KEY (idUser) REFERENCES user (idUser)
 );

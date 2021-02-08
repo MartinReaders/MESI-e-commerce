@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.controller;
 
-import fr.mesi.mesikabp.model.Utilisateur;
+import fr.mesi.mesikabp.model.User;
 import fr.mesi.mesikabp.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +31,9 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login")
-    public String userConnection(final ModelMap model, @RequestBody Utilisateur utilisateur) {
+    public String userConnection(final ModelMap model, @RequestBody User user) {
         List<String> errors = new ArrayList<>();
-        if(authService.isCredentialsUserAreCorrect(utilisateur)) {
+        if(authService.isCredentialsUserAreCorrect(user)) {
             //Mot de passe et login sont correctes
             //rediriger vers /home
             return "home";
@@ -41,7 +41,7 @@ public class AuthController {
             System.out.println("Erreur");
             errors.add("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
-            model.put("login", utilisateur.getLogin());
+            model.put("login", user.getLogin());
             return "authentification";
         }
     }
@@ -76,11 +76,11 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
-    public String userRegister(final ModelMap model, @RequestBody Utilisateur utilisateurRegister) {
+    public String userRegister(final ModelMap model, @RequestBody User userRegister) {
         List<String> errors = new ArrayList<>();
         try {
             //On tente d'enregistrer l'utilisateur
-            authService.registerUser(utilisateurRegister);
+            authService.registerUser(userRegister);
         } catch(EntityExistsException e) {
             //On ajoute l'erreur de l'exception a la liste
             errors.add(e.getMessage());

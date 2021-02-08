@@ -4,23 +4,23 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "produit_panier")
+@Table(name = "product_basket")
 public class LinkBasketProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idProduitPanier")
+    @Column(name = "idProductBasket")
     private Long id;
 
-    @Column(name = "quantite")
-    private Integer quantite;
+    @Column(name = "quantity")
+    private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "idPanier")
-    private Panier panier;
+    @JoinColumn(name = "idBasket")
+    private Basket basket;
 
     @ManyToOne
-    @JoinColumn(name = "idProduit")
+    @JoinColumn(name = "idProduct")
     private Product product;
 
     public Long getId() {
@@ -31,27 +31,27 @@ public class LinkBasketProduct {
         this.id = id;
     }
 
-    public Integer getQuantite() {
-        return quantite;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuantite(Integer quantite) {
-        this.quantite = quantite;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public Panier getPanier() {
-        return panier;
+    public Basket getBasket() {
+        return basket;
     }
 
-    public void setPanier(Panier panier) {
-        this.panier = panier;
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 
-    public Product getProduit() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduit(Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
@@ -61,23 +61,23 @@ public class LinkBasketProduct {
         if (o == null || getClass() != o.getClass()) return false;
         LinkBasketProduct that = (LinkBasketProduct) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(quantite, that.quantite) &&
-                Objects.equals(panier, that.panier) &&
+                Objects.equals(quantity, that.quantity) &&
+                Objects.equals(basket, that.basket) &&
                 Objects.equals(product, that.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantite, panier, product);
+        return Objects.hash(id, quantity, basket, product);
     }
 
     @Override
     public String toString() {
-        return "LienPanierProduit{" +
+        return "LienBasketProduct{" +
                 "id=" + id +
-                ", quantite=" + quantite +
-                ", panier=" + panier +
-                ", produit=" + product +
+                ", quantity=" + quantity +
+                ", basket=" + basket +
+                ", product=" + product +
                 '}';
     }
 }

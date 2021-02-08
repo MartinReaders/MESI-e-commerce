@@ -1,4 +1,4 @@
-INSERT INTO utilisateur (login, password, grade) VALUES
+INSERT INTO user (login, password, grade) VALUES
 ('Pierre','POCHERON',1),
 ('Dylan','ANTONIOTTI',1),
 ('Martin','KHAPHERIAN',1),
@@ -36,7 +36,7 @@ INSERT INTO product (code, brand, model, price, image, quantity, type, color, co
 ('CLA-RAZ','Razer','Blackwidow V3 PRO',254,'Razer/Blackwidow_V3_PRO.jpg',11,'clavier','noir','vert','Conçu spécifiquement pour le jeu, le Razer BlackWidow V3 Pro dispose de 3 modes de connexion pour une polyvalence inégalée. Pouvant se connecter via RF 2,4 GHz, Bluetooth 5.0 ou en mode filaire, il vous fait vivre une incroyable expérience de jeu grâce notamment à ses switches Razer Green.',TRUE),
 ('CLA-RAZ','Razer','Blackwidow V3',159,'Razer/Blackwidow_V3.jpg',7,'clavier','noir','vert','Conçu spécifiquement pour le jeu, le Razer BlackWidow V3 est un clavier compact armé de switches Razer Green afin de vous offrir une exécution précise avec une sensation tactile. Prenez ainsi facilement le dessus sur vos adversaires lors de duels.',TRUE),
 ('CLA-RAZ','Razer','Huntsman Elite',239,'Razer/Huntsman_Elite.jpg',8,'clavier','noir','vert','Le clavier pour gamer Razer Huntsman Elite est équipé des meilleurs composants que vous pouvez trouver dans un clavier. Ne laissez plus jamais un adversaire prendre le dessus grâce aux touches opto-mécaniques Razer.',TRUE),
-('CLA-RAZ','Razer','Huntsman',164,'Razer/Huntsman.jpg',6,'clavier','noir','vert','Ne laissez plus jamais un adversaire s''échapper avec le Razer Huntsman. Ce clavier gamer révolutionnera votre façon de jouer grâce aux touches opto-mécaniques Razer. Ces dernières disposent d''un capteur de lumière optique intégré qui actionne instantanément la commande de la touche.',TRUE),
+('CLA-RAZ','Razer','Huntsman',164,'Razer/Huntsman.jpg',6,'clavier','noir','vert','Ne laissez plus jamais un adversaire s''échapper avec le Razer Huntsman. Ce clavier gamer révolutionnera votre façon de jouer grâce aux touches opto-mécaniques Razer. Ces dernières disposent d''un capteur de lumière optique intégré qui actionne instantanément la order de la touche.',TRUE),
 
 ('CLA-DUC','Ducky Channel','One 2 Mini',119,'Ducky_Channel/One_2_Mini.jpg',5,'clavier','noir','jaune','60% plus compact que la version classique, le Ducky Channel One 2 Mini RGB dispose de tous les avantages d''une clavier traditionnel le tout dans un format réduit. Ce clavier gamer vous promet la victoire et vous offre notamment une prise en main idéale pour cela.',TRUE),
 ('CLA-DUC','Ducky Channel','Mecha Mini (Cherry MX RGB Black)',159,'Ducky_Channel/Mecha_Mini_Cherry_Black.jpg',5,'clavier','noir','jaune','Conçu pour vous offrir la meilleure expérience en termes de durabilité et de frappe, le Ducky Channel Mecha Mini ne laisse personne indifférent. Ce clavier gamer vous met dans les conditions idéales pour décrocher de nombreuses victoires et vous offre notamment une prise en main idéale pour cela.',TRUE),
@@ -138,7 +138,7 @@ INSERT INTO product (code, brand, model, price, image, quantity, type, color, co
 ('ENC-LOG','Logitech','Z625',199,'logitech/Z625.jpg',12,'enceinte','noir','bleu','Le système 2.1 Logitech Z625 Powerful THX Sound product un son grandiose d''une puissance de 200 watts (130 watts RMS pour le caisson de graves et 2 x 35 watts RMS pour les satellites), certifié THX. Profitez d''un son qui rendra votre musique, vos films et vos jeux encore plus vivants.',FALSE),
 ('ENC-LOG','Logitech','Z407',89,'logitech/Z407.jpg',6,'enceinte','noir','bleu','Avec l''ensemble Logitech Z407, profitez d''un son immersif et réaliste. En effet, avec une puissance de 40W RMS associée à un traitement numérique du signal (DSP), vous obtenez des aigus cristallins et des graves puissants pour une immersion totale.',FALSE),
 ('ENC-LOG','Logitech','Z333',67,'logitech/Z333.jpg',7,'enceinte','noir','bleu','Avec ses 40 watts RMS, le système Logitech Multimedia Speakers Z333 offre un son puissant, immersif, net, clair et équilibré. Le caisson de basses situé à l''avant dispose d''un transducteur de 5" pour une réponse des basses profonde.',FALSE),
-('ENC-LOG','Logitech','Z906',349,'logitech/Z906.jpg',1,'enceinte','noir','bleu','Avec une puissance de diffusion de 500 watts (RMS), ce système 5.1 certifié THX product un son de qualité cinéma. Profitez d''un contrôle total sur votre système multimédia grâce à ses entrées numériques et analogiques, un pupitre de commande facile à lire et empilable et une télécommande sans fil.',FALSE),
+('ENC-LOG','Logitech','Z906',349,'logitech/Z906.jpg',1,'enceinte','noir','bleu','Avec une puissance de diffusion de 500 watts (RMS), ce système 5.1 certifié THX product un son de qualité cinéma. Profitez d''un contrôle total sur votre système multimédia grâce à ses entrées numériques et analogiques, un pupitre de order facile à lire et empilable et une télécommande sans fil.',FALSE),
 
 ('ENC-RAZ','Razer','Nommo',199,'Razer/Nommo.jpg',2,'enceinte','noir','vert','Avec la Razer Nommo, immergez-vous complètement dans votre expérience vidéoludique grâce à de haut-parleurs conçus pour obtenir une extrême clarté et une gamme complète de sons. Ce kit 2.0 vous emmène dans une nouvelle dimension qui efface la limite entre la fiction et la réalité.',FALSE),
 ('ENC-RAZ','Razer','Nommo Chroma',179,'Razer/Nommo_Chroma.jpg',6,'enceinte','noir','vert','Avec la Razer Nommo Chroma, immergez-vous complètement dans votre expérience vidéoludique grâce à de haut-parleurs conçus pour obtenir une extrême clarté et une gamme complète de sons. Ce kit 2.0 vous emmène dans une nouvelle dimension qui efface la limite entre la fiction et la réalité.',TRUE),
@@ -175,13 +175,13 @@ INSERT INTO product (code, brand, model, price, image, quantity, type, color, co
 ('TAP-DUC','Ducky Channel','Flipper Extra R',29,'Ducky_Channel/Flipper_Extra_R.jpg',16,'tapis de souris','noir','jaune','Le Ducky Channel Flipper Extra R est conçu pour satisfaire les hautes exigences des véritables gamers. Grâce à sa surface finement texturée, ce tapis de souris offre confort et précision.',FALSE);
 
 
-INSERT INTO panier (idUtilisateur, createdPanier) VALUES
+INSERT INTO basket (idUser, createdPanier) VALUES
 (1,'2020/12/17'),
 (2,'2020/12/16'),
 (3,'2020/12/15'),
 (4,'2020/12/14');
 
-INSERT INTO produit_panier (idProduit, idPanier, quantite) VALUES
+INSERT INTO produit_panier (idProduct, idBasket, quantity) VALUES
 (1,1,2),
 (1,2,1),
 (2,2,1),
@@ -192,7 +192,7 @@ INSERT INTO produit_panier (idProduit, idPanier, quantite) VALUES
 (4,4,1),
 (5,4,1);
 
-INSERT INTO commande (idUtilisateur, idPanier, dateCommande, prixTotal) VALUES
+INSERT INTO order (idUser, idBasket, date, totalPrice) VALUES
 (1,1,'2020/12/17',400),
 (2,2,'2020/12/17',500),
 (3,3,'2020/12/17',600),

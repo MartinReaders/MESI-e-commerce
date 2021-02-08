@@ -5,19 +5,19 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "panier")
-public class Panier {
+@Table(name = "basket")
+public class Basket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "panier")
-    private Set<LinkBasketProduct> produits;
+    @OneToMany(mappedBy = "basket")
+    private Set<LinkBasketProduct> products;
 
     @ManyToOne
-    @JoinColumn(name = "idUtilisateur")
-    private Utilisateur utilisateur;
+    @JoinColumn(name = "idUser")
+    private User user;
 
 
     public Long getId() {
@@ -28,33 +28,33 @@ public class Panier {
         this.id = id;
     }
 
-    public Set<LinkBasketProduct> getProduits() {
-        return produits;
+    public Set<LinkBasketProduct> getProducts() {
+        return products;
     }
 
-    public void setProduits(Set<LinkBasketProduct> produits) {
-        this.produits = produits;
+    public void setProducts(Set<LinkBasketProduct> products) {
+        this.products = products;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Panier panier = (Panier) o;
-        return Objects.equals(id, panier.id) &&
-                Objects.equals(produits, panier.produits);
+        Basket basket = (Basket) o;
+        return Objects.equals(id, basket.id) &&
+                Objects.equals(products, basket.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, produits);
+        return Objects.hash(id, products);
     }
 
     @Override
     public String toString() {
-        return "Panier{" +
+        return "Basket{" +
                 "id=" + id +
-                ", produits=" + produits +
+                ", products=" + products +
                 '}';
     }
 }
