@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "produit_panier")
-public class LienPanierProduit {
+public class LinkBasketProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class LienPanierProduit {
 
     @ManyToOne
     @JoinColumn(name = "idProduit")
-    private Produit produit;
+    private Product product;
 
     public Long getId() {
         return id;
@@ -47,28 +47,28 @@ public class LienPanierProduit {
         this.panier = panier;
     }
 
-    public Produit getProduit() {
-        return produit;
+    public Product getProduit() {
+        return product;
     }
 
-    public void setProduit(Produit produit) {
-        this.produit = produit;
+    public void setProduit(Product product) {
+        this.product = product;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LienPanierProduit that = (LienPanierProduit) o;
+        LinkBasketProduct that = (LinkBasketProduct) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(quantite, that.quantite) &&
                 Objects.equals(panier, that.panier) &&
-                Objects.equals(produit, that.produit);
+                Objects.equals(product, that.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantite, panier, produit);
+        return Objects.hash(id, quantite, panier, product);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class LienPanierProduit {
                 "id=" + id +
                 ", quantite=" + quantite +
                 ", panier=" + panier +
-                ", produit=" + produit +
+                ", produit=" + product +
                 '}';
     }
 }

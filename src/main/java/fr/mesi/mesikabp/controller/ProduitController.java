@@ -1,7 +1,7 @@
 package fr.mesi.mesikabp.controller;
 
 
-import fr.mesi.mesikabp.model.Produit;
+import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class ProduitController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String getProduitParId(@PathVariable Long id, final ModelMap model){
-        Optional<Produit> produitOptional = produitRepository.findById(id);
+        Optional<Product> produitOptional = produitRepository.findById(id);
         if(produitOptional.isEmpty()){
             throw new EntityNotFoundException("Produit " + id + " n'a pas ete trouve ! ");
         }

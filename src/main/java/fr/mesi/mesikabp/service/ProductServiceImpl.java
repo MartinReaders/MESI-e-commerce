@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.service;
 
-import fr.mesi.mesikabp.model.Produit;
+import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,19 +18,19 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public void createProduct(Produit produit) throws EntityExistsException {
-        if(productRepository.findByCode(produit.getCode()).isPresent()) {
+    public void createProduct(Product product) throws EntityExistsException {
+        if(productRepository.findByCode(product.getCode()).isPresent()) {
             //Le produit existe déjà alors on lève une exception pour gérér l'erreur plus haut
             throw new EntityExistsException("Le code pour ce produit existe déjà !"); //TODO Constante
         } else {
             //On enregistre le nouveau produit
-            productRepository.save(produit);
+            productRepository.save(product);
         }
     }
 
     @Override
-    public Produit getProductById(Long idProduct) throws EntityNotFoundException {
-        Optional<Produit> productOpt = productRepository.findById(idProduct);
+    public Product getProductById(Long idProduct) throws EntityNotFoundException {
+        Optional<Product> productOpt = productRepository.findById(idProduct);
         if(productOpt.isPresent()) {
             //Le produit existe on le retourne
             return productOpt.get();
@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Produit> getProductByFilter(Integer page, Integer size) throws IllegalArgumentException {
+    public Page<Product> getProductByFilter(Integer page, Integer size) throws IllegalArgumentException {
         if(page < 0) {
             throw new IllegalArgumentException("Impossible d'accéder a une page négative !"); //TODO Constante
         }

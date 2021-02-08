@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.repository;
 
-import fr.mesi.mesikabp.model.Produit;
+import fr.mesi.mesikabp.model.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,24 +24,24 @@ public class ProductRepositoryTest {
 
     @Test
     void shouldFindProductCodeSuccess() {
-        final Produit product = new Produit();
+        final Product product = new Product();
         product.setCode("G603");
         entityManager.persist(product);
         entityManager.flush();
 
-        Optional<Produit> productOpt = productRepository.findByCode(product.getCode());
+        Optional<Product> productOpt = productRepository.findByCode(product.getCode());
         assertThat(productOpt).isNotEmpty();
         assertThat(productOpt.get().getCode()).isEqualTo(product.getCode());
     }
 
     @Test
     void shouldFindProductCodeNotSuccess() {
-        final Produit product = new Produit();
+        final Product product = new Product();
         product.setCode("G603");
         entityManager.persist(product);
         entityManager.flush();
 
-        Optional<Produit> productOpt = productRepository.findByCode("G605");
+        Optional<Product> productOpt = productRepository.findByCode("G605");
         assertThat(productOpt).isEmpty();
     }
 }

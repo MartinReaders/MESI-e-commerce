@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.service;
 
-import fr.mesi.mesikabp.model.Produit;
+import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +32,7 @@ public class ProductServiceTest {
 
     @Test
     void shouldCreateProductSuccess() {
-        final Produit product = new Produit();
+        final Product product = new Product();
         product.setCode("G603");
 
         Mockito.when(productRepository.findByCode(product.getCode())).thenReturn(Optional.empty());
@@ -41,12 +41,12 @@ public class ProductServiceTest {
 
         productService.createProduct(product);
 
-        Mockito.verify(productRepository, Mockito.times(1)).save(Mockito.any(Produit.class));
+        Mockito.verify(productRepository, Mockito.times(1)).save(Mockito.any(Product.class));
     }
 
     @Test
     void shouldCreateProductThrownEntityExistException() {
-        final Produit product = new Produit();
+        final Product product = new Product();
         product.setCode("G603");
         Mockito.when(productRepository.findByCode(product.getCode())).thenReturn(Optional.of(product));
 
@@ -57,7 +57,7 @@ public class ProductServiceTest {
 
     @Test
     void shouldGetProductByIdSuccess() {
-        final Produit product = new Produit();
+        final Product product = new Product();
 
         Mockito.when(productRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(product));
 
@@ -77,18 +77,18 @@ public class ProductServiceTest {
 
     @Test
     void shouldGetProductByFilterSuccess() {
-        List<Produit> productList = new ArrayList<>();
-        productList.add(new Produit());
-        productList.add(new Produit());
-        productList.add(new Produit());
-        productList.add(new Produit());
-        productList.add(new Produit());
+        List<Product> productList = new ArrayList<>();
+        productList.add(new Product());
+        productList.add(new Product());
+        productList.add(new Product());
+        productList.add(new Product());
+        productList.add(new Product());
 
-        Page<Produit> productPage = new PageImpl<>(productList);
+        Page<Product> productPage = new PageImpl<>(productList);
 
         Mockito.when(productRepository.findAll(PageRequest.of(1, 5))).thenReturn(productPage);
 
-        Page<Produit> page = productService.getProductByFilter(1, 5);
+        Page<Product> page = productService.getProductByFilter(1, 5);
         assertThat(page).hasSize(5);
     }
 

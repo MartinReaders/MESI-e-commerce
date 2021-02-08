@@ -27,7 +27,7 @@ public class AuthController {
     //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
     public String getConnectionPage() {
-        return "Connexion";
+        return "connection";
     }
 
     @PostMapping(value = "/login")
@@ -42,7 +42,7 @@ public class AuthController {
             errors.add("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
             model.put("login", utilisateur.getLogin());
-            return "Connexion";
+            return "connection";
         }
     }
 

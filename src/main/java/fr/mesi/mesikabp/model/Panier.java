@@ -13,7 +13,7 @@ public class Panier {
     private Long id;
 
     @OneToMany(mappedBy = "panier")
-    private Set<LienPanierProduit> produits;
+    private Set<LinkBasketProduct> produits;
 
     @ManyToOne
     @JoinColumn(name = "idUtilisateur")
@@ -28,11 +28,11 @@ public class Panier {
         this.id = id;
     }
 
-    public Set<LienPanierProduit> getProduits() {
+    public Set<LinkBasketProduct> getProduits() {
         return produits;
     }
 
-    public void setProduits(Set<LienPanierProduit> produits) {
+    public void setProduits(Set<LinkBasketProduct> produits) {
         this.produits = produits;
     }
 

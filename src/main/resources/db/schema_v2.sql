@@ -16,20 +16,20 @@ CREATE TABLE utilisateur (
   PRIMARY KEY(idUtilisateur)
 );
 
-CREATE TABLE produit (
-  idProduit INT(10) AUTO_INCREMENT,
+CREATE TABLE product (
+  idProduct INT(10) AUTO_INCREMENT,
   code VARCHAR(30) NOT NULL,
-  marque VARCHAR(30) NOT NULL,
-  modele VARCHAR(100)NOT NULL,
-  prix INT(10) NOT NULL,
+  brand VARCHAR(30) NOT NULL,
+  model VARCHAR(100)NOT NULL,
+  price INT(10) NOT NULL,
   image VARCHAR(150),
-  quantite INT(10),
+  quantity INT(10),
   type VARCHAR(30),
-  couleur VARCHAR(30),
-  couleurMarque VARCHAR(30),
+  color VARCHAR(30),
+  colorBrand VARCHAR(30),
   description VARCHAR(5000),
   rgb BOOLEAN,
-  PRIMARY KEY (idProduit)
+  PRIMARY KEY (idProduct)
 );
 
 CREATE TABLE panier (
@@ -46,7 +46,7 @@ CREATE TABLE produit_panier (
   idPanier INT(10) NOT NULL,
   quantite INT(10),
   PRIMARY KEY (idProduitPanier),
-  FOREIGN KEY (idProduit) REFERENCES produit (idProduit),
+  FOREIGN KEY (idProduit) REFERENCES product (idProduit),
   FOREIGN KEY (idPanier) REFERENCES panier (idPanier)
 );
 
