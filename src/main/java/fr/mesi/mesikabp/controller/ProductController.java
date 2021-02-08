@@ -1,6 +1,6 @@
 package fr.mesi.mesikabp.controller;
 
-import fr.mesi.mesikabp.model.Produit;
+import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +26,12 @@ public class ProductController {
         try {
             model.put("productList", productService.getProductByFilter(page, size));
             //Si tout se passe bien on retourne le template avec ses données
-            return "listeProduits";
+            return "productList";
         } catch(IllegalArgumentException illegalArgumentException) {
             errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
             //Une erreur est survenue
-            return "listeProduits";
+            return "productList";
         }
     }
 
@@ -39,19 +39,19 @@ public class ProductController {
     public String getProductPageById(final ModelMap model, @PathVariable Long idProduct) {
         List<String> errors = new ArrayList<>();
         try {
-            Produit produit = productService.getProductById(idProduct);
-            model.put("product", produit);
-            return "detailProduit";
+            Product product = productService.getProductById(idProduct);
+            model.put("product", product);
+            return "productDetail";
         } catch(EntityNotFoundException entityNotFoundException) {
             //L'article n'existe pas
             errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
-            return "404";
+            return "error404";
         }
     }
 
     @PostMapping
-    public RedirectView createProduct(@RequestBody Produit product) {
+    public RedirectView createProduct(@RequestBody Product product) {
         try {
             createProduct(product);
             //Le produit a été crée alors on redirige vers sa page
