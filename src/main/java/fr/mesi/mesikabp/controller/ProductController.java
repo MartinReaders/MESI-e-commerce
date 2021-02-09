@@ -1,6 +1,8 @@
 package fr.mesi.mesikabp.controller;
 
+import fr.mesi.mesikabp.dto.ProductDto;
 import fr.mesi.mesikabp.model.Product;
+import fr.mesi.mesikabp.service.ModelMapService;
 import fr.mesi.mesikabp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+
+    @Autowired
+    private ModelMapService modelMapService;
 
     @Autowired
     private ProductService productService;
@@ -39,11 +44,12 @@ public class ProductController {
     public String getProductPageById(final ModelMap model, @PathVariable Long idProduct) {
         List<String> errors = new ArrayList<>();
         try {
-            Product product = productService.getProductById(idProduct);
-            model.put("product", product);
+            //Get product by id and transform DAO to DTO
+            ProductDto productDto = modelMapService.convertToDto(productService.getProductById(idProduct));
+            model.put("product", productDto);
             return "productDetail";
         } catch(EntityNotFoundException entityNotFoundException) {
-            //L'article n'existe pas
+            //Product doesn't exist
             errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
             return "error404";
@@ -51,11 +57,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public RedirectView createProduct(@RequestBody Product product) {
+    public RedirectView createProduct(@RequestBody ProductDto productDto) {
+        Product productDao = modelMapService.convertToDao(productDto);
         try {
-            createProduct(product);
+            productService.createProduct(productDao);
             //Le produit a été crée alors on redirige vers sa page
-            return new RedirectView("/product/"+product.getCode());
+            return new RedirectView("/product/"+productDto.getCode());
         } catch(EntityExistsException entityExistsException) {
             //Le code produit existe déjà alors on redirige vers la liste d'article TODO a voir pour rajouter les erreurs a la page
             return new RedirectView("/product");

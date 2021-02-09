@@ -1,7 +1,9 @@
 package fr.mesi.mesikabp.controller;
 
+import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.User;
 import fr.mesi.mesikabp.service.AuthService;
+import fr.mesi.mesikabp.service.ModelMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +26,9 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private ModelMapService modelMapService;
+
     //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
     public String getConnectionPage() {
@@ -31,17 +36,18 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login")
-    public String userConnection(final ModelMap model, @RequestBody User user) {
+    public String userConnection(final ModelMap model, @RequestBody UserDto userDto) {
+        //Liste des erreurs a passé au template
         List<String> errors = new ArrayList<>();
-        if(authService.isCredentialsUserAreCorrect(user)) {
+        User userDao = modelMapService.convertToDao(userDto);
+        if(authService.isCredentialsUserAreCorrect(userDao)) {
             //Mot de passe et login sont correctes
             //rediriger vers /home
             return "home";
         } else {
-            System.out.println("Erreur");
             errors.add("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
-            model.put("login", user.getLogin());
+            model.put("login", userDto.getLogin());
             return "authentification";
         }
     }
@@ -76,11 +82,12 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
-    public String userRegister(final ModelMap model, @RequestBody User userRegister) {
+    public String userRegister(final ModelMap model, @RequestBody UserDto userDto) {
         List<String> errors = new ArrayList<>();
+        User userDao = modelMapService.convertToDao(userDto);
         try {
             //On tente d'enregistrer l'utilisateur
-            authService.registerUser(userRegister);
+            authService.registerUser(userDao);
         } catch(EntityExistsException e) {
             //On ajoute l'erreur de l'exception a la liste
             errors.add(e.getMessage());
@@ -89,4 +96,6 @@ public class AuthController {
         }
         return "login"; //Création de compte réussie
     }
+
+
 }

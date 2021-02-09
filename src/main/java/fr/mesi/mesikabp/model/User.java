@@ -1,22 +1,19 @@
 package fr.mesi.mesikabp.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
 
 @Entity
-public class User implements UserDetails {
+public class User {
 
     // Column of Utilisateur
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUser")
+
     private Long id;
 
     @Column(name = "login")
@@ -40,7 +37,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column(name = "phone")
-    private Integer phone;
+    private String phone;
 
     @Column(name = "dateBirth")
     private Date dateBirth;
@@ -52,7 +49,7 @@ public class User implements UserDetails {
     private String address2;
 
     @Column(name = "zipCode")
-    private Integer zipCode;
+    private String zipCode;
 
     @Column(name = "city")
     private String city;
@@ -65,14 +62,10 @@ public class User implements UserDetails {
     public User(){
 
     }
-    public User(Long id, String login, String password, Integer grade) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.grade = grade;
-    }
 
-    public User(Long id, String login, String password, Integer grade, String lastName, String firstName, String email, Integer phone, Date dateBirth, String address1, String address2, Integer zipCode, String city, String country) {
+    public User(Long id, String login, String password, Integer grade, String lastName, String firstName,
+                String email, String phone, Date dateBirth, String address1, String address2, String zipCode,
+                String city, String country) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -107,38 +100,8 @@ public class User implements UserDetails {
         this.login = login;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
     }
 
     public void setPassword(String password) {
@@ -177,11 +140,11 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -209,11 +172,11 @@ public class User implements UserDetails {
         this.address2 = address2;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Integer zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
