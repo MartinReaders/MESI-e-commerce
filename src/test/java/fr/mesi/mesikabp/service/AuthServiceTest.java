@@ -56,7 +56,7 @@ public class AuthServiceTest {
 
     @Test
     void shouldCredentialsAreCorrect() {
-        final User user = new User(null, "test@test.ipilyon.net", "IPIadmin", 1);
+        final User user = new User();
         user.setPassword("IPIadmin");
         Mockito.when(userRepository.findByLogin(user.getLogin())).thenReturn(Optional.of(user));
 
