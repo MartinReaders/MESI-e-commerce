@@ -1,6 +1,7 @@
 package fr.mesi.mesikabp.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -40,7 +41,7 @@ public class User {
     private String phone;
 
     @Column(name = "dateBirth")
-    private Date dateBirth;
+    private LocalDate dateBirth;
 
     @Column(name = "address1")
     private String address1;
@@ -64,7 +65,7 @@ public class User {
     }
 
     public User(Long id, String login, String password, Integer grade, String lastName, String firstName,
-                String email, String phone, Date dateBirth, String address1, String address2, String zipCode,
+                String email, String phone, LocalDate dateBirth, String address1, String address2, String zipCode,
                 String city, String country) {
         this.id = id;
         this.login = login;
@@ -148,11 +149,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Date getDateBirth() {
+    public LocalDate getDateBirth() {
         return dateBirth;
     }
 
-    public void setDateBirth(Date dateBirth) {
+    public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
     }
 

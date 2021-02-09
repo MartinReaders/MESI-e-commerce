@@ -19,7 +19,7 @@ public class UserDto {
 
     private String email;
 
-    private String tel;
+    private String phone;
 
     private LocalDate birthday;
 
@@ -35,7 +35,7 @@ public class UserDto {
     }
 
     public UserDto(Long id, String login, String password, Integer grade, String firstName, String lastName,
-                   String email, String tel, LocalDate birthday, String address, String zipCode, String city,
+                   String email, String phone, LocalDate birthday, String address, String zipCode, String city,
                    String country) {
         this.id = id;
         this.login = login;
@@ -44,7 +44,7 @@ public class UserDto {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.tel = tel;
+        this.phone = phone;
         this.birthday = birthday;
         this.address = address;
         this.zipCode = zipCode;
@@ -108,12 +108,12 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getTel() {
-        return tel;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public LocalDate getBirthday() {
@@ -168,7 +168,7 @@ public class UserDto {
                 Objects.equals(firstName, userDto.firstName) &&
                 Objects.equals(lastName, userDto.lastName) &&
                 Objects.equals(email, userDto.email) &&
-                Objects.equals(tel, userDto.tel) &&
+                Objects.equals(phone, userDto.phone) &&
                 Objects.equals(birthday, userDto.birthday) &&
                 Objects.equals(address, userDto.address) &&
                 Objects.equals(zipCode, userDto.zipCode) &&
@@ -178,7 +178,7 @@ public class UserDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, grade, firstName, lastName, email, tel, birthday, address, zipCode, city, country);
+        return Objects.hash(id, login, password, grade, firstName, lastName, email, phone, birthday, address, zipCode, city, country);
     }
 
     @Override
@@ -191,7 +191,7 @@ public class UserDto {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", tel='" + tel + '\'' +
+                ", phone='" + phone + '\'' +
                 ", birthday=" + birthday +
                 ", address='" + address + '\'' +
                 ", zipCode='" + zipCode + '\'' +
