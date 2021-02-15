@@ -1,207 +1,273 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <link type="text/css" rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
-    <meta charset="UTF-8">
-    <title>Projet MESI - Page Panier</title>
-</head>
-<body>
+    <head th:replace="fragments/header :: head"></head>
 
-<header>
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <a class="navbar-brand" href="/product" style="display: inline-flex;">
-            <img src="/static/images/logo_shoe2.png" class="d-inline-block align-top ml-5 mr-5" style="width: 100px;" alt="Logo-Projet-MESI">
-            <h1 class="display-4 ml-3" style="font-family: system-ui;">Projet MESI</h1>
-        </a>
-    </nav>
-</header>
+    <body>
+        <header th:replace="fragments/header :: header"></header>
 
-
-
-<div class="d-flex align-items-center justify-content-end mr-5">
-    <img src="/static/images/user-regular.svg" style="width: 25px; height: 25px;"> Hey, usernameDynamic
-    <div class="ml-3 mr-5">
-        <a href="/basket"><div class="ml-3 text-danger"><img src="/static/images/shopping-cart-solid.svg" style="width: 25px; height: 25px;"> nbArticleDynamic Article(s)</div></a>
-    </div>
-    <div class="ml-5">
-        <a href="/deconnexion"><button type="button" class="btn btn-danger">déconnexion</button></a>
-    </div>
-</div>
-
-
-
-
-
-<div id="" class="container-fluid big-container" style="background-color:#522DF8">
-    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
-        <div class="row rowNoGutters" style="justify-content: center;">
-            <div class="col-lg-12">
-                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                    <h2 class="titleSection">Page Accueil</h2>
-                    <p>
-                        Ammené à disparaitre
-                        Code couleur sympa (https://color.adobe.com/fr/create/color-wheel)
-                        #522DF8
-                        #2736D9
-                        #3778F0
-                        #2794D9
-                        #2DDFF8
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="" class="container-fluid big-container" style="background-color:#2736D9">
-    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
-        <div class="row rowNoGutters" style="justify-content: center;">
-            <div class="col-lg-12">
-                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                    <h2 class="titleSection">Conteneur Carousel JS</h2>
-                    <p>
-                        ---- SPRINT 1 ----
-
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="" class="container-fluid big-container" style="background-color:#3778F0">
-    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
-        <div class="row rowNoGutters" style="justify-content: center;">
-            <div class="col-lg-12">
-                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                    <h2 class="titleSection">Conteneur Filtre interactif + Simuler setup de reve</h2>
-                    <p>
-                        ---- SPRINT 1 ----
-                        Exemple d'idées :
-                        Ouvre dans la meme fenetre un conteneur avec un "camembert cliquable"
-                        Exemple : 5 partie avec 5 couleur (bleu, vert, jaune, rouge, argent)
-                        On over -> fait apparaire la marque correspondant (logitech -> bleu....)
-
-                        ---- SPRINT 2 ----
-                        Exemple d'idées :
-                        Page coupé en 2 partie, a gauche le choix des diférents produits et a droite le resultat simulé en direct
-                        Exemple : l'user choisi un casque, quand il appuie sur le bouton ajouter, celui-ci atteri sur la partie de droite et se pose sur un bureau par exemple
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="" class="container-fluid big-container" style="background-color:#2794D9">
-    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
-        <div class="row rowNoGutters" style="justify-content: center;">
-            <div class="col-lg-12">
-                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                    <h2 class="titleSection">Conteneur Produits a venir</h2>
-                    <p>
-                        ---- SPRINT 2 ----
-                        Liste déroulante (carousel par exemple) permettant aux utilisateurs de voter pour les articles qui arrivent prochainement
-                        Le system de votre peux s'inspirer de Dealabs !
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="" class="container-fluid big-container" style="background-color:#2DDFF8">
-    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
-        <div class="row rowNoGutters" style="justify-content: center;">
-            <div class="col-lg-12">
-                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                    <h2 class="titleSection">Conteneur Statistiques site</h2>
-                    <p>
-                        ---- SPRINT 1 ou 2 ----
-                        Exemple d'infos a afficher :
-                        Nombre de client
-                        Nombre de commandes
-                        Produits vendus
-                        Nb total Produits dans les stocks
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<footer class="bg-light">
-    <div class="container text-center">
-        <div class="row rowNoGutters mt-5" style="justify-content: center;">
-            <div class="col-lg-3">
-                <div class="d-flex flex-column">
-                    <div class="p-2 font-weight-bold mb-3">Nous contacter</div>
-                    <div class="p-2">Appelez-nous : 01 02 03 04 05</div>
-                    <div class="p-2">(du lundi au vendredi - de 10h à 19h)</div>
-                    <div class="p-2">Écrivez-nous : kabp@kabp.kabp</div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-flex flex-column">
-                    <div class="p-2 font-weight-bold mb-3">En savoir plus</div>
-                    <div class="p-2">Concept</div>
-                    <div class="p-2">Mentions Légales</div>
-                    <div class="p-2">CGU</div>
-                    <div class="p-2">CGV</div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-flex flex-column">
-                    <div class="p-2 font-weight-bold mb-3">Trouvez votre product</div>
-                    <div class="p-2">Recherche</div>
-                    <div class="p-2">Nouveautés</div>
-                    <div class="p-2">A venir</div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="d-flex flex-column">
-                    <div class="p-2 font-weight-bold mb-3">Langues</div>
-                    <div class="p-2">Français</div>
-                    <div class="p-2">Anglais</div>
-                </div>
-            </div>
-        </div>
-
-        <hr class="col-10 mt-3 mb-3">
-
-        <div class="row mb-3" style="justify-content: left;">
-            <p>Copyright © Pierre Pocheron, Dylan Antoniotti, Martin Khapherian, Manahel BOUCHKARA
-                Projet MESI - IPI 2020-2021</p>
-        </div>
-    </div>
-
-    <!--<div class="container">
-            <div class="row" style="justify-content: center;">
-                <div class="col-lg-4">
-                    <div class="d-flex justify-content-between">
-                        <a href="/connexion"><button type="button" class="btn btn-primary">Connexion</button></a>
-                        <a href="/product"><button type="button" class="btn btn-warning">Produit</button></a>
-                        <a href="/basket"><button type="button" class="btn btn-danger">Panier</button></a>
+        <div id="xxx" class="container-fluid big-container" style="background-color:#522DF8">
+            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row rowNoGutters" style="justify-content: center;">
+                    <div class="col-lg-12">
+                        <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                            <h2 class="titleSection">Page Accueil</h2>
+                            <p>
+                                Ammené à disparaitreCode couleur sympa (https://color.adobe.com/fr/create/color-wheel)#522DF8#2736D9#3778F0#2794D9#2DDFF8
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-       </div>-->
-
-
-</footer>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+        </div>
+        <div id="" class="container-fluid big-container" style="background-color:#2736D9">
+            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row rowNoGutters" style="justify-content: center;">
+                    <div class="col-lg-12">
+                        <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                            <h2 class="titleSection">Conteneur Carousel JS</h2>
+                            <p>
+                                ---- SPRINT 1 ----
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="" class="container-fluid big-container" style="background-color:#3778F0">
+            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row rowNoGutters" style="justify-content: center;">
+                    <div class="col-lg-12">
+                        <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                            <h2 class="titleSection">Conteneur Filtre interactif + Simuler setup de reve</h2>
+                            <p>
+                                ---- SPRINT 1 ----Exemple d'idées : Ouvre dans la meme fenetre un conteneur avec un "camembert cliquable"Exemple : 5 partie avec 5 couleur (bleu, vert, jaune, rouge, argent)On over ->
+                                 fait apparaire la marque correspondant (logitech ->
+                                 bleu....)---- SPRINT 2 ----Exemple d'idées : Page coupé en 2 partie, a gauche le choix des diférents produits et a droite le resultat simulé en directExemple : l'utilisateur choisi un casque, quand il appuie sur le bouton ajouter, celui-ci atteri sur la partie de droite et se pose sur un bureau par exemple
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="" class="container-fluid big-container" style="background-color:#2794D9">
+            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row rowNoGutters" style="justify-content: center;">
+                    <div class="col-lg-12">
+                        <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                            <h2 class="titleSection">Conteneur Produits a venir</h2>
+                            <p>
+                                ---- SPRINT 2 ----Liste déroulante (carousel par exemple) permettant aux utilisateurs de voter pour les articles qui arrivent prochainementLe system de votre peux s'inspirer de Dealabs !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="" class="container-fluid big-container" style="background-color:#2DDFF8">
+            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row rowNoGutters" style="justify-content: center;">
+                    <div class="col-lg-12">
+                        <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                            <h2 class="titleSection">Conteneur Statistiques site</h2>
+                            <p>
+                                ---- SPRINT 1 ou 2 ----Exemple d'infos a afficher : Nombre de clientNombre de commandesProduits vendusNb total Produits dans les stocks
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="" class="container big-container" style="background-color:#522DF8">
+            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row sliderPopulaire">
+                    <div class="col-md-12">
+                        <div class="product">
+                            <h2> un Produit</h2>
+                            <p> une phrase </p>
+                            <a href="#">View produit</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="product">
+                            <h2> un Produit</h2>
+                            <p> une phrase </p>
+                            <a href="#">View produit</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="product">
+                            <h2> un Produit</h2>
+                            <p> une phrase </p>
+                            <a href="#">View produit</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="product">
+                            <h2> un Produit</h2>
+                            <p> une phrase </p>
+                            <a href="#">View produit</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="product">
+                            <h2> un Produit</h2>
+                            <p> une phrase </p>
+                            <a href="#">View produit</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="product">
+                            <h2> un Produit</h2>
+                            <p> une phrase </p>
+                            <a href="#">View produit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+     
+        
+      
+        <footer class="bg-light">
+            <div class="container">
+                <div class="row rowNoGutters mt-5">
+                    <div class="col-12"></div>
+                    <div class="col-sm-3">
+                        <div class="d-flex flex-column">
+                            <div class="p-2 font-weight-bold mb-3">
+                                Nous contacter
+                            </div>
+                            <div class="p-2">
+                                Appelez-nous : 01 02 03 04 05
+                            </div>
+                            <div class="p-2">
+                                (du lundi au vendredi - de 10h à 19h)
+                            </div>
+                            <div class="p-2">
+                                Écrivez-nous : kabp@kabp.kabp
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="d-flex flex-column">
+                            <div class="p-2 font-weight-bold mb-3">
+                                En savoir plus
+                            </div>
+                            <div class="p-2">
+                                Concept
+                            </div>
+                            <div class="p-2">
+                                Mentions Légales
+                            </div>
+                            <div class="p-2">
+                                CGU
+                            </div>
+                            <div class="p-2">
+                                CGV
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="d-flex flex-column">
+                            <div class="p-2 font-weight-bold mb-3">
+                                Trouvez votre produit
+                            </div>
+                            <div class="p-2">
+                                Recherche
+                            </div>
+                            <div class="p-2">
+                                Nouveautés
+                            </div>
+                            <div class="p-2">
+                                A venir
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="d-flex flex-column">
+                            <div class="p-2 font-weight-bold mb-3">
+                                Langues
+                            </div>
+                            <div class="p-2">
+                                Français
+                            </div>
+                            <div class="p-2">
+                                Anglais
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="col-10 mt-3 mb-3">
+                <div class="row mb-3" style="justify-content: left;">
+                    <p>
+                        Copyright © Pierre Pocheron, Dylan Antoniotti, Martin Khapherian, Manahel BOUCHKARAProjet MESI - IPI 2020-2021
+                    </p>
+                </div>
+            </div>
+            <!--
+            <div class="container">
+                <div class="row" style="justify-content: center;">
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-between">
+                            <a href="/connexion"><button type="button" class="btn btn-primary">Connexion</button></a>
+                            <a href="/produit"><button type="button" class="btn btn-warning">Produit</button></a>
+                            <a href="/panier"><button type="button" class="btn btn-danger">Panier</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.sliderPopulaire').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+    });
+  </script>
+    
+    </body>
 </html>
