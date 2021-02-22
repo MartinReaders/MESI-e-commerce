@@ -83,6 +83,8 @@ public class User {
         this.country = country;
     }
 
+
+
     // Getter & Setter
 
     public Long getId() {
@@ -245,4 +247,5 @@ public class User {
                 ", country='" + country + '\'' +
                 '}';
     }
+
 }

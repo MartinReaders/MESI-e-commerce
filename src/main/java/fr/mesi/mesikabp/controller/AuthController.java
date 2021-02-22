@@ -6,11 +6,14 @@ import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.EntityExistsException;
 import javax.servlet.http.Cookie;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 public class AuthController {
@@ -31,26 +35,37 @@ public class AuthController {
 
     //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
-    public String getConnectionPage() {
-        return "authentification";
+    public String getConnectionPage(Model model) {
+        User user = new User();
+        model.addAttribute("user",user);
+       return "authentification";
     }
 
-    @PostMapping(value = "/login")
-    public String userConnection(final ModelMap model, @RequestBody UserDto userDto) {
-        //Liste des erreurs a passé au template
-        List<String> errors = new ArrayList<>();
-        User userDao = modelMapService.convertToDao(userDto);
-        if(authService.isCredentialsUserAreCorrect(userDao)) {
-            //Mot de passe et login sont correctes
-            //rediriger vers /home
-            return "home";
-        } else {
-            errors.add("Le mot de passe ou le login est incorrect !");
-            model.put("errors", errors);
-            model.put("login", userDto.getLogin());
-            return "authentification";
-        }
+
+
+
+    @PostMapping("/authentif")
+    public String postForm(@ModelAttribute("userForm") User user) {
+        return "home";
     }
+
+
+//    @PostMapping(value = "/login")
+//    public String userConnection(final ModelMap model, @RequestBody UserDto userDto) {
+//        //Liste des erreurs a passé au template
+//        List<String> errors = new ArrayList<>();
+//        User userDao = modelMapService.convertToDao(userDto);
+//        if(authService.isCredentialsUserAreCorrect(userDao)) {
+//            //Mot de passe et login sont correctes
+//            //rediriger vers /home
+//            return "home";
+//        } else {
+//            errors.add("Le mot de passe ou le login est incorrect !");
+//            model.put("errors", errors);
+//            model.put("login", userDto.getLogin());
+//            return "authentification";
+//        }
+//    }
 
     //-----------------------------------LOGOUT-----------------------------------------------------------------------//
     @GetMapping(value = "/logout")
