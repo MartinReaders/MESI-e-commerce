@@ -28,7 +28,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/", "/home").permitAll()
-                    .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .loginPage("/login")
