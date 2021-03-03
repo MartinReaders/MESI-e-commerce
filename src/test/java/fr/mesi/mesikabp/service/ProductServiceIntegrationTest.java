@@ -1,0 +1,71 @@
+package fr.mesi.mesikabp.service;
+
+import fr.mesi.mesikabp.model.Product;
+import fr.mesi.mesikabp.repository.ProductRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+@SpringBootTest
+public class ProductServiceIntegrationTest {
+
+    @Autowired
+    private ProductServiceImpl productService;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Test
+    void shouldCreateProductSuccess() {
+        Product product = new Product();
+        product.setCode("TEST");
+
+        productService.createProduct(product);
+
+        Optional<Product> productOptional = productRepository.findByCode("TEST");
+
+        assertThat(productOptional.isPresent()).isTrue();
+    }
+
+    @Test
+    void shouldCreateProductThrownEntityExistsException() {
+        Product product = new Product();
+        product.setCode("TEST");
+
+        productService.createProduct(product);
+
+        assertThatThrownBy(() -> productService.createProduct(product))
+                .isInstanceOf(EntityExistsException.class)
+                .hasMessageContaining("Le code pour ce produit existe déjà !");
+    }
+
+    @Test
+    void shouldGetProductByIdSuccess() {
+        Product product = new Product();
+
+        productRepository.save(product); //Premier produit donc a toujours le premier identifiant
+
+        product = productService.getProductById(1L);
+
+        assertThat(product).isNotNull();
+    }
+
+    @Test
+    void shouldGetProductByIdThrownEntityNotFoundException() {
+        Product product = new Product();
+
+        productRepository.save(product); //Premier produit donc a toujours le premier identifiant
+
+        assertThatThrownBy(() -> productService.getProductById(2L))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining("Le produit demandé n'existe pas !");
+    }
+}
