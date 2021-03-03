@@ -2,6 +2,8 @@ package fr.mesi.mesikabp.service;
 
 import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.repository.ProductRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +24,12 @@ public class ProductServiceIntegrationTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @BeforeEach
+    @AfterEach
+    void purgeBdd(){
+        productRepository.deleteAll();
+    }
 
     @Test
     void shouldCreateProductSuccess() {
@@ -51,9 +59,9 @@ public class ProductServiceIntegrationTest {
     void shouldGetProductByIdSuccess() {
         Product product = new Product();
 
-        productRepository.save(product); //Premier produit donc a toujours le premier identifiant
+        product = productRepository.save(product); //Premier produit donc a toujours le premier identifiant
 
-        product = productService.getProductById(1L);
+        product = productService.getProductById(product.getId());
 
         assertThat(product).isNotNull();
     }
@@ -62,9 +70,9 @@ public class ProductServiceIntegrationTest {
     void shouldGetProductByIdThrownEntityNotFoundException() {
         Product product = new Product();
 
-        productRepository.save(product); //Premier produit donc a toujours le premier identifiant
+        product = productRepository.save(product); //Premier produit donc a toujours le premier identifiant
 
-        assertThatThrownBy(() -> productService.getProductById(2L))
+        assertThatThrownBy(() -> productService.getProductById(100L))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessageContaining("Le produit demandé n'existe pas !");
     }
