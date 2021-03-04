@@ -4,7 +4,98 @@
     <body>
         <header th:replace="fragments/header :: header"></header>
 
-        <h1>Page Profil</h1>
+        <!-- |||||  Container - Commandes  |||||-->
+        <div id="containerCommandes" class="container-fluid big-container" style="background-color:#E7E3FD">
+            <div class="container" style="padding-top: 30px; padding-bottom: 56px;">
+                <div class="row rowNoGutters" style="justify-content: center;">
+                    <div class="col-lg-12">
+                        <div class="row  mt-5 " style="margin-bottom: 60px">
+                            <div class="col-md-3 col-sm-12" style="background-color:#D7E3FD">
+                                <div class="row my-3" style="background-color:#B7E3FD; text-align: center;">
+                                    <div class="col-12">
+                                        <span>Image.utilisateur</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" style="background-color:#B7E3FD; text-align: center;">
+                                    <div class="col-12">
+                                        <span>User.nom + User.prenom</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-5" style="background-color:#B7E3FD; text-align: center;">
+                                    <div class="col-12">
+                                        <a href=""><button type="button" class="btn btn-outline-danger btn-sm">Déconnexion</button></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style=" padding: 0 5px 0 5px;background-color: #E7E3FD;"></div>
+                            <div class="col-md-8 col-sm-12"style="background-color:#C7E3FD">
+                                <div class="row mb-4" style="background-color:#B7E3FD; text-align: center;">
+                                    <div class="col-12">
+                                        <span style="font-size: xxx-large;font-weight: bolder;">3</span>
+                                        <br>
+                                        <span>Commandes</span>
+                                    </div>
+                                </div>
+                                <!-- Si l'utilisateur a des commandes afficher -->
+                                <!-- Pour chaque commande : -->
+                                <div class="row mb-2" style="background-color:#A7E3FD; align-items: center;">
+                                    <div class="col-1">
+                                        <span>#1</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>N°XXXXXXXXX</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>12 €</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>01/01/1234</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href=""><button type="button" class="btn btn-outline-primary">Détails ></button></a>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" style="background-color:#A7E3FD; align-items: center;">
+                                    <div class="col-1">
+                                        <span>#2</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>N°XXXXXXXXX</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>300 €</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>01/01/1234</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href=""><button type="button" class="btn btn-outline-primary">Détails ></button></a>
+                                    </div>
+                                </div>
+                                <div class="row mb-2" style="background-color:#A7E3FD; align-items: center;">
+                                    <div class="col-1">
+                                        <span>#3</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>N°XXXXXXXXX</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>1485 €</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>01/01/1234</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href=""><button type="button" class="btn btn-outline-primary">Détails ></button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer th:replace="fragments/footer :: footer"></footer>
     </body>
