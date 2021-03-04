@@ -109,11 +109,11 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getQuantite() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantite(Integer quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -186,7 +186,7 @@ public class Product {
                 Objects.equals(getModele(), product.getModele()) &&
                 Objects.equals(getPrix(), product.getPrix()) &&
                 Objects.equals(getImage(), product.getImage()) &&
-                Objects.equals(getQuantite(), product.getQuantite()) &&
+                Objects.equals(getQuantity(), product.getQuantity()) &&
                 Objects.equals(getType(), product.getType()) &&
                 Objects.equals(getCouleur(), product.getCouleur()) &&
                 Objects.equals(getCouleurMarque(), product.getCouleurMarque()) &&
@@ -197,7 +197,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCode(), getMarque(), getModele(), getPrix(), getImage(), getQuantite(), getType(), getCouleur(), getCouleurMarque(), getDescription(), getRgb(), baskets);
+        return Objects.hash(getId(), getCode(), getMarque(), getModele(), getPrix(), getImage(), getQuantity(), getType(), getCouleur(), getCouleurMarque(), getDescription(), getRgb(), baskets);
     }
 
     @Override

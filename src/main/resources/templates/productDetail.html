@@ -11,32 +11,25 @@
                 <div class="row rowNoGutters animate__animated animate__fadeIn" style="justify-content: center;">
                     <div class="col-md-6" style="background-color:#2736D9;">
                         <div class="text-center">
+                            <img th:src="'/img/' + ${product.image}">
                             <h6 class="pt-5"><strong>Produit.Image</strong></h6>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
-                            <h2 class="titleSection">x</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6" style="background-color:#3778F0;">
 
-                        <h6 class="text-danger title5 pt-5" style="animation-name: fadeIn;"><strong>Produit.Marque</strong></h6>
-                        <h2 class="titleSection font-weight-bold">Produit.modele</h2>
+                        <h6 class="text-danger title5 pt-5" style="animation-name: fadeIn;"><strong><span th:text="${product.brand}"></span></strong></h6>
+                        <h2 class="titleSection font-weight-bold"><span th:text="${product.model}"></span></h2>
 
                         <hr class="col-10">
 
-                        <h4 class="font-weight-light">Produit.Prix</h4>
+                        <h4 class="font-weight-light"><span th:text="${product.price}"></span></h4>
 
                         <div class="col-lg-8 mb-5" style="background-color:#2794D9;">
 
                             if Produit.stock != 0
                             <div class="col-lg-6 text-succes mt-3" style="background-color:#2DDFF8;">
-                                Produit.stock disponible
+                                <span th:text="${product.quantity} + disponible"></span>
                             </div>
                             else
                             <div class="col-lg-6 text-succes mt-3" style="background-color:#522DF8;">
@@ -55,14 +48,7 @@
 
                             <hr class="col-10">
 
-                            <span>Produit.description
-                                xxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxx
-                                </span>
+                            <span th:text="${product.description}"></span>
                         </div>
                     </div>
                 </div>
