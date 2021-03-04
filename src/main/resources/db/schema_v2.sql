@@ -35,27 +35,27 @@ CREATE TABLE product (
 CREATE TABLE basket (
   idBasket INT(10) AUTO_INCREMENT,
   idUser INT(10) NOT NULL,
-  createdPanier DATE,
+  createdBasket DATE,
   PRIMARY KEY (idBasket),
   FOREIGN KEY (idUser) REFERENCES user (idUser)
 );
 
-CREATE TABLE produit_panier (
+CREATE TABLE product_basket (
   idProductBasket INT(10) AUTO_INCREMENT,
   idProduct INT(10) NOT NULL,
   idBasket INT(10) NOT NULL,
   quantity INT(10),
-  PRIMARY KEY (idProduitPanier),
+  PRIMARY KEY (idProductBasket),
   FOREIGN KEY (idProduct) REFERENCES product (idProduct),
   FOREIGN KEY (idBasket) REFERENCES basket (idBasket)
 );
 
-CREATE TABLE order (
-  idOrder INT(10) AUTO_INCREMENT,
+CREATE TABLE allOrder (
+  idBasket INT(10) AUTO_INCREMENT,
   idUser INT(10) NOT NULL,
   idCard INT(10) NOT NULL,
   date DATE,
   totalPrice INT(15) NOT NULL,
-  PRIMARY KEY (idOrder),
+  PRIMARY KEY (idBasket),
   FOREIGN KEY (idUser) REFERENCES user (idUser)
 );

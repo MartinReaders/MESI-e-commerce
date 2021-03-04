@@ -175,13 +175,13 @@ INSERT INTO product (code, brand, model, price, image, quantity, type, color, co
 ('TAP-DUC','Ducky Channel','Flipper Extra R',29,'Ducky_Channel/Flipper_Extra_R.jpg',16,'tapis de souris','noir','jaune','Le Ducky Channel Flipper Extra R est conçu pour satisfaire les hautes exigences des véritables gamers. Grâce à sa surface finement texturée, ce tapis de souris offre confort et précision.',FALSE);
 
 
-INSERT INTO basket (idUser, createdPanier) VALUES
+INSERT INTO basket (idUser, createdBasket) VALUES
 (1,'2020/12/17'),
 (2,'2020/12/16'),
 (3,'2020/12/15'),
 (4,'2020/12/14');
 
-INSERT INTO produit_panier (idProduct, idBasket, quantity) VALUES
+INSERT INTO product_basket (idProduct, idBasket, quantity) VALUES
 (1,1,2),
 (1,2,1),
 (2,2,1),
@@ -192,7 +192,7 @@ INSERT INTO produit_panier (idProduct, idBasket, quantity) VALUES
 (4,4,1),
 (5,4,1);
 
-INSERT INTO order (idUser, idBasket, date, totalPrice) VALUES
+INSERT INTO allOrder (idUser, idBasket, date, totalPrice) VALUES
 (1,1,'2020/12/17',400),
 (2,2,'2020/12/17',500),
 (3,3,'2020/12/17',600),
