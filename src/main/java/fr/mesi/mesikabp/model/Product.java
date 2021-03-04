@@ -36,7 +36,7 @@ public class Product {
     private Integer quantity;
 
     @Column(name = "type")
-    private Integer type;
+    private String type;
 
     @Column(name = "color")
     private String color;
@@ -59,7 +59,7 @@ public class Product {
 
     }
 
-    public Product(Long id, String code, String brand, String model, Double price, String image, Integer quantity, Integer type, String color, String colorBrand, String description, Boolean rgb, Set<LinkBasketProduct> baskets) {
+    public Product(Long id, String code, String brand, String model, Double price, String image, Integer quantity, String type, String color, String colorBrand, String description, Boolean rgb, Set<LinkBasketProduct> baskets) {
         this.id = id;
         this.code = code;
         this.brand = brand;
@@ -117,11 +117,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
