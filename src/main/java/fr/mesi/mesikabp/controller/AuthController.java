@@ -33,6 +33,11 @@ public class AuthController {
     @Autowired
     private ModelMapService modelMapService;
 
+    @GetMapping(value = "/home")
+    public String getHomePage(final ModelMap model) {
+        return "home";
+    }
+
     //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
     public String getConnectionPage(Model model) {
@@ -50,22 +55,22 @@ public class AuthController {
     }
 
 
-//    @PostMapping(value = "/login")
-//    public String userConnection(final ModelMap model, @RequestBody UserDto userDto) {
-//        //Liste des erreurs a passé au template
-//        List<String> errors = new ArrayList<>();
-//        User userDao = modelMapService.convertToDao(userDto);
-//        if(authService.isCredentialsUserAreCorrect(userDao)) {
-//            //Mot de passe et login sont correctes
-//            //rediriger vers /home
-//            return "home";
-//        } else {
-//            errors.add("Le mot de passe ou le login est incorrect !");
-//            model.put("errors", errors);
-//            model.put("login", userDto.getLogin());
-//            return "authentification";
-//        }
-//    }
+    @PostMapping(value = "/login")
+    public String userConnection(final ModelMap model, @RequestBody UserDto userDto) {
+        //Liste des erreurs a passé au template
+        List<String> errors = new ArrayList<>();
+        User userDao = modelMapService.convertToDao(userDto);
+        if(authService.isCredentialsUserAreCorrect(userDao)) {
+            //Mot de passe et login sont correctes
+            //rediriger vers /home
+            return "home";
+        } else {
+            errors.add("Le mot de passe ou le login est incorrect !");
+            model.put("errors", errors);
+            model.put("login", userDto.getLogin());
+            return "authentification";
+        }
+    }
 
     //-----------------------------------LOGOUT-----------------------------------------------------------------------//
     @GetMapping(value = "/logout")
