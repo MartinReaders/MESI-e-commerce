@@ -19,7 +19,7 @@ public class ProductDto {
 
     private Integer quantity;
 
-    private Integer type;
+    private String type;
 
     private String color;
 
@@ -35,7 +35,7 @@ public class ProductDto {
     }
 
     public ProductDto(Long id, String code, String brand, String model, Double price, String image, Integer quantity,
-                      Integer type, String color, String colorBrand, String description, Boolean rgb,
+                      String type, String color, String colorBrand, String description, Boolean rgb,
                       Set<LinkBasketProductDto> baskets) {
         this.id = id;
         this.code = code;
@@ -108,11 +108,11 @@ public class ProductDto {
         this.quantity = quantity;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
