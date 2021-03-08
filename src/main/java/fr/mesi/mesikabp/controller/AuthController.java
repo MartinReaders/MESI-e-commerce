@@ -4,6 +4,7 @@ import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.User;
 import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.ModelMapService;
+import fr.mesi.mesikabp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,12 +26,16 @@ public class AuthController {
     private AuthService authService;
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
     private ModelMapService modelMapService;
 
     @GetMapping(value = "/home")
     public String getHomePage(HttpServletRequest request, final ModelMap model) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
+            model.put("produits", productService.getProductByFilter(0, 7));
             return "home";
         } else {
             return "redirect:login";
@@ -51,14 +56,6 @@ public class AuthController {
     }
 
 
-
-
-//    @PostMapping("/authentif")
-//    public String postForm(@ModelAttribute("userForm") User user) {
-//        return "home";
-//    }
-
-
     @PostMapping(value = "/login")
     public String userConnection(HttpServletRequest request, final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
         //Liste des erreurs a passé au template
@@ -71,7 +68,6 @@ public class AuthController {
             return "redirect:home";
         } else {
             errors.add("Le mot de passe ou le login est incorrect !");
-            System.out.println("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
             model.put("userForm", userDto);
             return "authentification";

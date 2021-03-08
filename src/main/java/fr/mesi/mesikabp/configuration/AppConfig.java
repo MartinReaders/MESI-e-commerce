@@ -30,19 +30,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/", "/home").permitAll();
     }
 
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
-
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

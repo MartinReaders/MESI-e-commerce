@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void registerUser(User user) throws EntityExistsException {
         if(!isAccountExist(user)) {
-//            utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword())); //On chiffre le mot de passe
+            user.setPassword(passwordEncoder.encode(user.getPassword())); //On chiffre le mot de passe
             userRepository.save(user);
         } else {
             throw new EntityExistsException("User already exists !");
