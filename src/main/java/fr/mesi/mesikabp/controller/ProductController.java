@@ -62,7 +62,7 @@ public class ProductController {
         try {
             productService.createProduct(productDao);
             //Le produit a été crée alors on redirige vers sa page
-            return new RedirectView("/product/"+productDto.getCode());
+            return new RedirectView("/product/"+productDao.getCode());
         } catch(EntityExistsException entityExistsException) {
             //Le code produit existe déjà alors on redirige vers la liste d'article TODO a voir pour rajouter les erreurs a la page
             return new RedirectView("/product");

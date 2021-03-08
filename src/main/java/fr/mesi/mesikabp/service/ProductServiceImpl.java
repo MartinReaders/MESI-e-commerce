@@ -18,13 +18,13 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public void createProduct(Product product) throws EntityExistsException {
+    public Product createProduct(Product product) throws EntityExistsException {
         if(productRepository.findByCode(product.getCode()).isPresent()) {
             //Le produit existe déjà alors on lève une exception pour gérér l'erreur plus haut
             throw new EntityExistsException("Le code pour ce produit existe déjà !"); //TODO Constante
         } else {
             //On enregistre le nouveau produit
-            productRepository.save(product);
+            return productRepository.save(product);
         }
     }
 
