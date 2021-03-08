@@ -6,19 +6,13 @@ import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.EntityExistsException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,60 +28,65 @@ public class AuthController {
     private ModelMapService modelMapService;
 
     @GetMapping(value = "/home")
-    public String getHomePage(final ModelMap model) {
-        return "home";
+    public String getHomePage(HttpServletRequest request, final ModelMap model) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+        if(userDto != null) {
+            return "home";
+        } else {
+            return "redirect:login";
+        }
     }
 
     //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
-    public String getConnectionPage(Model model) {
-        User user = new User();
-        model.addAttribute("user",user);
-       return "authentification";
+    public String getConnectionPage(HttpServletRequest request, final ModelMap model) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+        if(userDto != null) {
+            return "redirect:home";
+        } else {
+            UserDto user = new UserDto();
+            model.addAttribute("userForm", user);
+            return "authentification";
+        }
     }
 
 
 
 
-    @PostMapping("/authentif")
-    public String postForm(@ModelAttribute("userForm") User user) {
-        return "home";
-    }
+//    @PostMapping("/authentif")
+//    public String postForm(@ModelAttribute("userForm") User user) {
+//        return "home";
+//    }
 
 
     @PostMapping(value = "/login")
-    public String userConnection(final ModelMap model, @RequestBody UserDto userDto) {
+    public String userConnection(HttpServletRequest request, final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
         //Liste des erreurs a passé au template
         List<String> errors = new ArrayList<>();
         User userDao = modelMapService.convertToDao(userDto);
         if(authService.isCredentialsUserAreCorrect(userDao)) {
             //Mot de passe et login sont correctes
             //rediriger vers /home
-            return "home";
+            request.getSession().setAttribute("user", userDto);
+            return "redirect:home";
         } else {
             errors.add("Le mot de passe ou le login est incorrect !");
+            System.out.println("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
-            model.put("login", userDto.getLogin());
+            model.put("userForm", userDto);
             return "authentification";
         }
     }
 
     //-----------------------------------LOGOUT-----------------------------------------------------------------------//
     @GetMapping(value = "/logout")
-    public RedirectView userDisconnection(HttpServletRequest request, HttpServletResponse response) {
+    public String userDisconnection(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if(request.isRequestedSessionIdValid() && session != null) {
             session.invalidate();
         }
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            cookie.setMaxAge(0);
-            cookie.setValue(null);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-        }
         //Rediriger vers le /login
-        return new RedirectView("/login");
+        return "redirect:login";
     }
 
     //-----------------------------------REGISTER---------------------------------------------------------------------//
