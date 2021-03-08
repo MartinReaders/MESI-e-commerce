@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<sonar.cpd.exclusions>src/test/java/**/*</sonar.cpd.exclusions>
+		<sonar.cpd.exclusions>src/main/java/fr/mesi/mesikabp/dto/*.java</sonar.cpd.exclusions>
 	</properties>
 
 	<dependencies>
