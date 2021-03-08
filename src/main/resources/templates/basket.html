@@ -9,10 +9,10 @@
             <div class="row rowNoGutters" style="justify-content: center;">
                 <div class="col-lg-12">
                     <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                        <h6 class="text-danger title5 pt-5">
-                            <strong>listPanier|length Article(s)</strong>
+                        <h6 class="text-primary title5 pt-5">
+                            <strong>panier.nbArticles Article(s)</strong>
                         </h6>
-                        <h2 class="titleSection">Votre basket</h2>
+                        <h2 class="titleSection">Votre panier</h2>
                         <p></p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                         <div class="col-2">
                             <form action="/delPanier" method="post">
                                 <input type="text" id="produitCode" style="display:none;" name="produitCode" value="product.code">
-                                <button type="submit" value="product" class="btn btn-outline-danger">Retirer du basket</button>
+                                <button type="submit" value="product" class="btn btn-outline-primary">Retirer du basket</button>
                             </form>
                         </div>
                     </div>
@@ -75,46 +75,15 @@
                         <div class="col-2">
                             <form action="/delPanier" method="post">
                                 <input type="text" id="produitCode" style="display:none;" name="produitCode" value="product.code">
-                                <button type="submit" value="product" class="btn btn-outline-danger">Retirer du basket</button>
+                                <button type="submit" value="product" class="btn btn-outline-primary">Retirer du basket</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
             <hr class="col-12">
-            <div class="row mt-5"></div>
-            <div class="row mt-5" style="justify-content: center;">
-                <div class="col-lg-7">
-                    <div class="row d-flex align-items-center animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                        <div class="col-3">
-                            <img src="/static/images/produits/product.image">
-                        </div>
-                        <div class="col-6">
-                            <div class="d-lfex flex-row">
-                                <div class="col-3 p-2">
-                                    <p>
-                                        <strong>product.code</strong>
-                                    </p>
-                                    product.marque
-                                </div>
-                                <div class="col-6 p-2">
-                                    product.modele
-                                </div>
-                                <div class="col-3 p-2">
-                                    product.prix €
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <form action="/delPanier" method="post">
-                                <input type="text" id="produitCode" style="display:none;" name="produitCode" value="product.code">
-                                <button type="submit" value="product" class="btn btn-outline-danger">Retirer du basket</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="col-12">
+
             <div class="row mt-5"></div>
             <div class="row mt-5" style="justify-content: center;">
                 <div class="col-lg-7">
@@ -141,7 +110,7 @@
                         <div class="col-2">
                             <form action="/delPanier" method="post">
                                 <input type="text" id="produitCode" style="display:none;" name="produitCode" value="product.code">
-                                <button type="submit" value="product" class="btn btn-outline-danger">Retirer du basket</button>
+                                <button type="submit" value="product" class="btn btn-outline-primary">Retirer du basket</button>
                             </form>
                         </div>
                     </div>
@@ -153,14 +122,14 @@
                 <div class="col-lg-4 ">
                     <div class="row d-flex align-items-center" style="font-weight: bold">
                         <div class="col-3">
-                            listPanier|length articles
+                            panier.nbArticles
                         </div>
                         <div class="col-6">
-                            Total ttc :  listPanier|sum(attribute='prix')  €
+                            Total ttc :  panier.totalTTC  €
                         </div>
                         <div class="col-3">
                             <form action="/addCommande" method="post">
-                                <button type="submit" value="product" class="btn btn-success">Valider order</button>
+                                <button type="submit" value="product" class="btn btn-outline-success">Valider commande</button>
                             </form>
                         </div>
                     </div>
