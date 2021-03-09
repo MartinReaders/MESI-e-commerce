@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
-public class ProductServiceIntegrationTest {
+class ProductServiceIntegrationTest {
 
     @Autowired
     private ProductServiceImpl productService;
@@ -40,7 +40,7 @@ public class ProductServiceIntegrationTest {
 
         Optional<Product> productOptional = productRepository.findByCode("TEST");
 
-        assertThat(productOptional.isPresent()).isTrue();
+        assertThat(productOptional).isPresent();
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ProductServiceIntegrationTest {
 
         assertThatThrownBy(() -> productService.createProduct(product))
                 .isInstanceOf(EntityExistsException.class)
-                .hasMessageContaining("Le code pour ce produit existe déjà !");
+                .hasMessageContaining(ProductServiceImpl.exceptionProductCodeAlreadyExists);
     }
 
     @Test
@@ -74,6 +74,6 @@ public class ProductServiceIntegrationTest {
 
         assertThatThrownBy(() -> productService.getProductById(100L))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining("Le produit demandé n'existe pas !");
+                .hasMessageContaining(ProductServiceImpl.exceptionProductDoesntExists);
     }
 }

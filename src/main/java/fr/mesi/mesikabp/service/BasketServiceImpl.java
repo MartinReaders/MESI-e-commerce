@@ -22,6 +22,10 @@ public class BasketServiceImpl implements BasketService {
     @Autowired
     private LinkBasketProductRepository linkBasketProductRepository;
 
+    public static final String exceptionProductAlreadyInBasket = "Le produit est déjà dans votre panier !";
+    public static final String exceptionProductNotInBasket = "Le produit n'est pas dans le panier !";
+    public static final String exceptionBasketDoesntExists = "Le panier n'existe pas !";
+
     @Override
     public void addProductToBasket(User userDao, Product product) throws EntityExistsException {
         Optional<Basket> basketOptional = basketRepository.findBasketLinkToUser(userDao.getId());
@@ -39,7 +43,7 @@ public class BasketServiceImpl implements BasketService {
         LinkBasketProduct linkBasketProduct;
         if(linkBasketProductOptional.isPresent()) {
             //Product already exist in this basket
-            throw new EntityExistsException("Le produit est déjà dans votre panier !");
+            throw new EntityExistsException(exceptionProductAlreadyInBasket);
         } else {
             //We add product in basket
             linkBasketProduct = new LinkBasketProduct();
@@ -63,16 +67,23 @@ public class BasketServiceImpl implements BasketService {
                 linkBasketProductRepository.delete(linkBasketProductOptional.get());
             } else {
                 //Product doesn't exist in basket, throw an exception
-                throw new EntityNotFoundException("Le produit n'est pas dans le panier !");
+                throw new EntityNotFoundException(exceptionProductNotInBasket);
             }
         } else {
             //Basket doesn't exist, throw an exception
-            throw new EntityNotFoundException("Le panier n'existe pas !");
+            throw new EntityNotFoundException(exceptionBasketDoesntExists);
         }
     }
 
     @Override
     public void dumpBasket(User userDao) {
-
+        Optional<Basket> basketOptional = basketRepository.findBasketLinkToUser(userDao.getId());
+        if(basketOptional.isPresent()) {
+            linkBasketProductRepository.deleteAllBasketLineOfBasket(basketOptional.get().getId());
+            //Basket is now empty
+        } else {
+            //Basket doesn't exist, throw an exception
+            throw new EntityNotFoundException(exceptionBasketDoesntExists);
+        }
     }
 }

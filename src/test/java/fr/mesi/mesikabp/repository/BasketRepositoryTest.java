@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class BasketRepositoryTest {
+class BasketRepositoryTest {
 
     @Autowired
     private BasketRepository basketRepository;

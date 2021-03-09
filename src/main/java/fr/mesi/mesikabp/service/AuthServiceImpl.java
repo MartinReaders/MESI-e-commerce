@@ -18,6 +18,8 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    public static final String exceptionUserAlreadyExists = "User already exists !";
+
     /*
     Retourne si oui ou non l'adresse email est déjà utilisée
      */
@@ -32,7 +34,7 @@ public class AuthServiceImpl implements AuthService {
             user.setPassword(passwordEncoder.encode(user.getPassword())); //On chiffre le mot de passe
             userRepository.save(user);
         } else {
-            throw new EntityExistsException("User already exists !");
+            throw new EntityExistsException(exceptionUserAlreadyExists);
         }
     }
 

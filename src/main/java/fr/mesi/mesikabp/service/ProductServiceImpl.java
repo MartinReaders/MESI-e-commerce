@@ -17,11 +17,16 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public static final String exceptionProductCodeAlreadyExists = "Le code pour ce produit existe déjà !";
+    public static final String exceptionProductDoesntExists = "Le produit demandé n'existe pas !";
+    public static final String exceptionNegativePage = "Impossible d'accéder a une page négative !";
+    public static final String exceptionSizePageNull = "Impossible de demander une taille de page nulle !";
+
     @Override
     public Product createProduct(Product product) throws EntityExistsException {
         if(productRepository.findByCode(product.getCode()).isPresent()) {
             //Le produit existe déjà alors on lève une exception pour gérér l'erreur plus haut
-            throw new EntityExistsException("Le code pour ce produit existe déjà !"); //TODO Constante
+            throw new EntityExistsException(exceptionProductCodeAlreadyExists);
         } else {
             //On enregistre le nouveau produit
             return productRepository.save(product);
@@ -36,18 +41,18 @@ public class ProductServiceImpl implements ProductService {
             return productOpt.get();
         } else {
             //Le produit n'existe pas alors on lève un exception
-            throw new EntityNotFoundException("Le produit demandé n'existe pas !"); //TODO Constante
+            throw new EntityNotFoundException(exceptionProductDoesntExists);
         }
     }
 
     @Override
     public Page<Product> getProductByFilter(Integer page, Integer size) throws IllegalArgumentException {
         if(page < 0) {
-            throw new IllegalArgumentException("Impossible d'accéder a une page négative !"); //TODO Constante
+            throw new IllegalArgumentException(exceptionNegativePage);
         }
 
         if(size < 1) {
-            throw new IllegalArgumentException("Impossible de demander une taille de page nulle !"); //TODO Constante
+            throw new IllegalArgumentException(exceptionSizePageNull);
         }
         //TODO Limite sur les paramètre
 //        Long countProduct = productRepository.count(); // 20

@@ -25,18 +25,22 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    private final String templateNameProductList = "productList";
+    private final String templateNameProductDetail = "productDetail";
+    private final String templateNameError404 = "error404";
+
     @GetMapping
     public String getProductPage(final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
         List<String> errors = new ArrayList<>();
         try {
             model.put("productList", productService.getProductByFilter(page, size));
             //Si tout se passe bien on retourne le template avec ses données
-            return "productList";
+            return templateNameProductList;
         } catch(IllegalArgumentException illegalArgumentException) {
             errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
             //Une erreur est survenue
-            return "productList";
+            return templateNameProductList;
         }
     }
 
@@ -47,12 +51,12 @@ public class ProductController {
             //Get product by id and transform DAO to DTO
             ProductDto productDto = modelMapService.convertToDto(productService.getProductById(idProduct));
             model.put("product", productDto);
-            return "productDetail";
+            return templateNameProductDetail;
         } catch(EntityNotFoundException entityNotFoundException) {
             //Product doesn't exist
             errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
-            return "error404";
+            return templateNameError404;
         }
     }
 

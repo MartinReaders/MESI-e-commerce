@@ -11,7 +11,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class UserRepositoryTest {
+class UserRepositoryTest {
 
     @Autowired
     private EntityManager entityManager;
@@ -20,7 +20,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void shouldFindUserSuccess() {
+    void shouldFindUserSuccess() {
         final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         entityManager.persist(user);
@@ -33,7 +33,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void shouldFindUserNotSuccess() {
+    void shouldFindUserNotSuccess() {
         final User user = new User();
         user.setLogin("test@test.ipilyon.net");
         entityManager.persist(user);

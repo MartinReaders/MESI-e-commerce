@@ -55,7 +55,7 @@ public class AuthServiceTest {
 
         assertThatThrownBy(() -> authService.registerUser(user))
         .isInstanceOf(EntityExistsException.class)
-        .hasMessageContaining("User already exists !");
+        .hasMessageContaining(AuthServiceImpl.exceptionUserAlreadyExists);
     }
 
     @Test

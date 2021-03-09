@@ -15,14 +15,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
-public class BasketServiceTest {
+class BasketServiceTest {
 
     @Mock
     private BasketRepository basketRepository;
@@ -94,7 +92,7 @@ public class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.addProductToBasket(user, product))
                 .isInstanceOf(EntityExistsException.class)
-                .hasMessageContaining("Le produit est déjà dans votre panier !");
+                .hasMessageContaining(BasketServiceImpl.exceptionProductAlreadyInBasket);
     }
 
     @Test
@@ -133,7 +131,7 @@ public class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.deleteProductToBasket(user, product))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining("Le panier n'existe pas !");
+                .hasMessageContaining(BasketServiceImpl.exceptionBasketDoesntExists);
     }
 
     @Test
@@ -152,6 +150,33 @@ public class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.deleteProductToBasket(user, product))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining("Le produit n'est pas dans le panier !");
+                .hasMessageContaining(BasketServiceImpl.exceptionProductNotInBasket);
+    }
+
+    @Test
+    void shouldDumpBasketSuccess() {
+        User user = new User();
+        user.setId(1L);
+        Basket basket = new Basket();
+        basket.setId(1000L);
+
+        Mockito.when(basketRepository.findBasketLinkToUser(Mockito.anyLong())).thenReturn(Optional.of(basket));
+
+        basketService.dumpBasket(user);
+
+        Mockito.verify(linkBasketProductRepository, Mockito.times(1))
+                .deleteAllBasketLineOfBasket(Mockito.anyLong());
+    }
+
+    @Test
+    void shouldDumpBasketThrownEntityNotFoundExceptionBecauseBasketDoesntExists() {
+        User user = new User();
+        user.setId(1L);
+
+        Mockito.when(basketRepository.findBasketLinkToUser(Mockito.anyLong())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> basketService.dumpBasket(user))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining(BasketServiceImpl.exceptionBasketDoesntExists);
     }
 }
