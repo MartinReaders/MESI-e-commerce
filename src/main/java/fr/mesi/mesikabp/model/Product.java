@@ -158,13 +158,7 @@ public class Product {
         this.rgb = rgb;
     }
 
-    public Set<LinkBasketProduct> getBaskets() {
-        return baskets;
-    }
 
-    public void setBaskets(Set<LinkBasketProduct> baskets) {
-        this.baskets = baskets;
-    }
 
 
     // Override Methods
@@ -186,13 +180,13 @@ public class Product {
                 Objects.equals(getColor(), product.getColor()) &&
                 Objects.equals(getColorBrand(), product.getColorBrand()) &&
                 Objects.equals(getDescription(), product.getDescription()) &&
-                Objects.equals(getRgb(), product.getRgb()) &&
-                Objects.equals(getBaskets(), product.getBaskets());
+                Objects.equals(getRgb(), product.getRgb());
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCode(), getBrand(), getModel(), getPrice(), getImage(), getQuantity(), getType(), getColor(), getColorBrand(), getDescription(), getRgb(), getBaskets());
+        return Objects.hash(getId(), getCode(), getBrand(), getModel(), getPrice(), getImage(), getQuantity(), getType(), getColor(), getColorBrand(), getDescription(), getRgb());
     }
 
     @Override
@@ -210,7 +204,6 @@ public class Product {
                 ", colorBrand='" + colorBrand + '\'' +
                 ", description='" + description + '\'' +
                 ", rgb=" + rgb +
-                ", baskets=" + baskets +
                 '}';
     }
 }
