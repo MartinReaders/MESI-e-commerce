@@ -29,8 +29,8 @@ public class BasketController {
     @Autowired
     private ProductService productService;
 
-    private static final String templateNameBasket = "basket";
-    private static final String redirectionLoginPath = "redirect:login";
+    private static final String TEMPLATE_NAME_BASKET = "basket";
+    private static final String REDIRECTION_LOGIN_PATH = "redirect:login";
 
     /*
      * Validé panier
@@ -39,9 +39,9 @@ public class BasketController {
     public String getBasketPage(HttpServletRequest request, final ModelMap model) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
-            return templateNameBasket;
+            return TEMPLATE_NAME_BASKET;
         } else {
-            return redirectionLoginPath;
+            return REDIRECTION_LOGIN_PATH;
         }
     }
 
@@ -59,12 +59,12 @@ public class BasketController {
                     errors.add(entityExistsException.getMessage());
                     model.put("errors", errors);
                 }
-                return templateNameBasket;
+                return TEMPLATE_NAME_BASKET;
             } else {
-                return templateNameBasket;
+                return TEMPLATE_NAME_BASKET;
             }
         } else {
-            return redirectionLoginPath;
+            return REDIRECTION_LOGIN_PATH;
         }
     }
 
@@ -72,9 +72,9 @@ public class BasketController {
     public String deleteProductToBasket(HttpServletRequest request, @RequestBody ProductDto productDto) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
-            return templateNameBasket;
+            return TEMPLATE_NAME_BASKET;
         } else {
-            return redirectionLoginPath;
+            return REDIRECTION_LOGIN_PATH;
         }
     }
 

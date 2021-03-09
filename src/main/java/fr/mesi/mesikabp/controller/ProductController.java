@@ -25,9 +25,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    private static final String templateNameProductList = "productList";
-    private static final String templateNameProductDetail = "productDetail";
-    private static final String templateNameError404 = "error404";
+    private static final String TEMPLATE_NAME_PRODUCT_LIST = "productList";
+    private static final String TEMPLATE_NAME_PRODUCT_DETAIL = "productDetail";
+    private static final String TEMPLATE_NAME_ERROR_404 = "error404";
 
     @GetMapping
     public String getProductPage(final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
@@ -35,12 +35,12 @@ public class ProductController {
         try {
             model.put("productList", productService.getProductByFilter(page, size));
             //Si tout se passe bien on retourne le template avec ses données
-            return templateNameProductList;
+            return TEMPLATE_NAME_PRODUCT_LIST;
         } catch(IllegalArgumentException illegalArgumentException) {
             errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
             //Une erreur est survenue
-            return templateNameProductList;
+            return TEMPLATE_NAME_PRODUCT_LIST;
         }
     }
 
@@ -51,12 +51,12 @@ public class ProductController {
             //Get product by id and transform DAO to DTO
             ProductDto productDto = modelMapService.convertToDto(productService.getProductById(idProduct));
             model.put("product", productDto);
-            return templateNameProductDetail;
+            return TEMPLATE_NAME_PRODUCT_DETAIL;
         } catch(EntityNotFoundException entityNotFoundException) {
             //Product doesn't exist
             errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
-            return templateNameError404;
+            return TEMPLATE_NAME_ERROR_404;
         }
     }
 
