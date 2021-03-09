@@ -52,7 +52,7 @@ class ProductServiceIntegrationTest {
 
         assertThatThrownBy(() -> productService.createProduct(product))
                 .isInstanceOf(EntityExistsException.class)
-                .hasMessageContaining(ProductServiceImpl.exceptionProductCodeAlreadyExists);
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_CODE_ALREADY_EXISTS);
     }
 
     @Test
@@ -74,6 +74,6 @@ class ProductServiceIntegrationTest {
 
         assertThatThrownBy(() -> productService.getProductById(100L))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining(ProductServiceImpl.exceptionProductDoesntExists);
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_DOESNT_EXISTS);
     }
 }

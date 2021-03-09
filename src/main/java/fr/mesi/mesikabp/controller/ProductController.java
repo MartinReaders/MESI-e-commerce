@@ -25,9 +25,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    private final String templateNameProductList = "productList";
-    private final String templateNameProductDetail = "productDetail";
-    private final String templateNameError404 = "error404";
+    private static final String templateNameProductList = "productList";
+    private static final String templateNameProductDetail = "productDetail";
+    private static final String templateNameError404 = "error404";
 
     @GetMapping
     public String getProductPage(final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
@@ -68,7 +68,6 @@ public class ProductController {
             //Le produit a été crée alors on redirige vers sa page
             return new RedirectView("/product/"+productDao.getCode());
         } catch(EntityExistsException entityExistsException) {
-            //Le code produit existe déjà alors on redirige vers la liste d'article TODO a voir pour rajouter les erreurs a la page
             return new RedirectView("/product");
         }
     }

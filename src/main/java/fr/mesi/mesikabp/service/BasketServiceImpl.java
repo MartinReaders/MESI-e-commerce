@@ -22,9 +22,9 @@ public class BasketServiceImpl implements BasketService {
     @Autowired
     private LinkBasketProductRepository linkBasketProductRepository;
 
-    public static final String exceptionProductAlreadyInBasket = "Le produit est déjà dans votre panier !";
-    public static final String exceptionProductNotInBasket = "Le produit n'est pas dans le panier !";
-    public static final String exceptionBasketDoesntExists = "Le panier n'existe pas !";
+    public static final String EXCEPTION_PRODUCT_ALREADY_IN_BASKET = "Le produit est déjà dans votre panier !";
+    public static final String EXCEPTION_PRODUCT_NOT_IN_BASKET = "Le produit n'est pas dans le panier !";
+    public static final String EXCEPTION_BASKET_DOESNT_EXISTS = "Le panier n'existe pas !";
 
     @Override
     public void addProductToBasket(User userDao, Product product) throws EntityExistsException {
@@ -43,7 +43,7 @@ public class BasketServiceImpl implements BasketService {
         LinkBasketProduct linkBasketProduct;
         if(linkBasketProductOptional.isPresent()) {
             //Product already exist in this basket
-            throw new EntityExistsException(exceptionProductAlreadyInBasket);
+            throw new EntityExistsException(EXCEPTION_PRODUCT_ALREADY_IN_BASKET);
         } else {
             //We add product in basket
             linkBasketProduct = new LinkBasketProduct();
@@ -67,11 +67,11 @@ public class BasketServiceImpl implements BasketService {
                 linkBasketProductRepository.delete(linkBasketProductOptional.get());
             } else {
                 //Product doesn't exist in basket, throw an exception
-                throw new EntityNotFoundException(exceptionProductNotInBasket);
+                throw new EntityNotFoundException(EXCEPTION_PRODUCT_NOT_IN_BASKET);
             }
         } else {
             //Basket doesn't exist, throw an exception
-            throw new EntityNotFoundException(exceptionBasketDoesntExists);
+            throw new EntityNotFoundException(EXCEPTION_BASKET_DOESNT_EXISTS);
         }
     }
 
@@ -83,7 +83,7 @@ public class BasketServiceImpl implements BasketService {
             //Basket is now empty
         } else {
             //Basket doesn't exist, throw an exception
-            throw new EntityNotFoundException(exceptionBasketDoesntExists);
+            throw new EntityNotFoundException(EXCEPTION_BASKET_DOESNT_EXISTS);
         }
     }
 }

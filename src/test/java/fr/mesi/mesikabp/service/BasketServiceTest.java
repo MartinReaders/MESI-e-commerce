@@ -92,7 +92,7 @@ class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.addProductToBasket(user, product))
                 .isInstanceOf(EntityExistsException.class)
-                .hasMessageContaining(BasketServiceImpl.exceptionProductAlreadyInBasket);
+                .hasMessageContaining(BasketServiceImpl.EXCEPTION_PRODUCT_ALREADY_IN_BASKET);
     }
 
     @Test
@@ -131,7 +131,7 @@ class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.deleteProductToBasket(user, product))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining(BasketServiceImpl.exceptionBasketDoesntExists);
+                .hasMessageContaining(BasketServiceImpl.EXCEPTION_BASKET_DOESNT_EXISTS);
     }
 
     @Test
@@ -150,7 +150,7 @@ class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.deleteProductToBasket(user, product))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining(BasketServiceImpl.exceptionProductNotInBasket);
+                .hasMessageContaining(BasketServiceImpl.EXCEPTION_PRODUCT_NOT_IN_BASKET);
     }
 
     @Test
@@ -177,6 +177,6 @@ class BasketServiceTest {
 
         assertThatThrownBy(() -> basketService.dumpBasket(user))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining(BasketServiceImpl.exceptionBasketDoesntExists);
+                .hasMessageContaining(BasketServiceImpl.EXCEPTION_BASKET_DOESNT_EXISTS);
     }
 }

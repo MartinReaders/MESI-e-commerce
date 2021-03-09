@@ -52,7 +52,7 @@ class ProductServiceTest {
 
         assertThatThrownBy(() -> productService.createProduct(product))
                 .isInstanceOf(EntityExistsException.class)
-                .hasMessageContaining(ProductServiceImpl.exceptionProductCodeAlreadyExists);
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_CODE_ALREADY_EXISTS);
     }
 
     @Test
@@ -72,7 +72,7 @@ class ProductServiceTest {
 
         assertThatThrownBy(() -> productService.getProductById(1L))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining(ProductServiceImpl.exceptionProductDoesntExists);
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_DOESNT_EXISTS);
     }
 
     @Test
@@ -96,14 +96,14 @@ class ProductServiceTest {
     void shouldGetProductByFilterThrownIllegalArgumentExceptionBecausePageIsNegative() {
         assertThatThrownBy(() -> productService.getProductByFilter(-1, 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ProductServiceImpl.exceptionNegativePage);
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_NEGATIVE_PAGE);
     }
 
     @Test
     void shouldGetProductByFilterThrownIllegalArgumentExceptionBecauseSizeIsUnderOne() {
         assertThatThrownBy(() -> productService.getProductByFilter(0, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ProductServiceImpl.exceptionSizePageNull);
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_SIZE_PAGE_NULL);
     }
 
 }

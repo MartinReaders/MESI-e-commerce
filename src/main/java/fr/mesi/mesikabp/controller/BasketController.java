@@ -29,8 +29,8 @@ public class BasketController {
     @Autowired
     private ProductService productService;
 
-    private final String templateNameBasket = "basket";
-    private final String redirectionLoginPath = "redirect:login";
+    private static final String templateNameBasket = "basket";
+    private static final String redirectionLoginPath = "redirect:login";
 
     /*
      * Validé panier
