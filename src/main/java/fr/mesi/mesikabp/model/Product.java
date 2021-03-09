@@ -59,21 +59,6 @@ public class Product {
 
     }
 
-    public Product(Long id, String code, String brand, String model, Double price, String image, Integer quantity, String type, String color, String colorBrand, String description, Boolean rgb, Set<LinkBasketProduct> baskets) {
-        this.id = id;
-        this.code = code;
-        this.brand = brand;
-        this.model = model;
-        this.price = price;
-        this.image = image;
-        this.quantity = quantity;
-        this.type = type;
-        this.color = color;
-        this.colorBrand = colorBrand;
-        this.description = description;
-        this.rgb = rgb;
-        this.baskets = baskets;
-    }
 
     // Getter & Setter
 
@@ -93,20 +78,36 @@ public class Product {
         this.code = code;
     }
 
-    public String getMarque() {
+    public String getBrand() {
         return brand;
     }
 
-    public void setMarque(String brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
-    public Double getPrix() {
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrix(Double price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getQuantity() {
@@ -125,35 +126,19 @@ public class Product {
         this.type = type;
     }
 
-    public String getModele() {
-        return model;
-    }
-
-    public void setModele(String model) {
-        this.model = model;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getCouleur() {
+    public String getColor() {
         return color;
     }
 
-    public void setCouleur(String color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public String getCouleurMarque() {
+    public String getColorBrand() {
         return colorBrand;
     }
 
-    public void setCouleurMarque(String colorBrand) {
+    public void setColorBrand(String colorBrand) {
         this.colorBrand = colorBrand;
     }
 
@@ -173,7 +158,17 @@ public class Product {
         this.rgb = rgb;
     }
 
+    public Set<LinkBasketProduct> getBaskets() {
+        return baskets;
+    }
+
+    public void setBaskets(Set<LinkBasketProduct> baskets) {
+        this.baskets = baskets;
+    }
+
+
     // Override Methods
+
 
     @Override
     public boolean equals(Object o) {
@@ -182,22 +177,22 @@ public class Product {
         Product product = (Product) o;
         return Objects.equals(getId(), product.getId()) &&
                 Objects.equals(getCode(), product.getCode()) &&
-                Objects.equals(getMarque(), product.getMarque()) &&
-                Objects.equals(getModele(), product.getModele()) &&
-                Objects.equals(getPrix(), product.getPrix()) &&
+                Objects.equals(getBrand(), product.getBrand()) &&
+                Objects.equals(getModel(), product.getModel()) &&
+                Objects.equals(getPrice(), product.getPrice()) &&
                 Objects.equals(getImage(), product.getImage()) &&
                 Objects.equals(getQuantity(), product.getQuantity()) &&
                 Objects.equals(getType(), product.getType()) &&
-                Objects.equals(getCouleur(), product.getCouleur()) &&
-                Objects.equals(getCouleurMarque(), product.getCouleurMarque()) &&
+                Objects.equals(getColor(), product.getColor()) &&
+                Objects.equals(getColorBrand(), product.getColorBrand()) &&
                 Objects.equals(getDescription(), product.getDescription()) &&
                 Objects.equals(getRgb(), product.getRgb()) &&
-                Objects.equals(baskets, product.baskets);
+                Objects.equals(getBaskets(), product.getBaskets());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCode(), getMarque(), getModele(), getPrix(), getImage(), getQuantity(), getType(), getCouleur(), getCouleurMarque(), getDescription(), getRgb(), baskets);
+        return Objects.hash(getId(), getCode(), getBrand(), getModel(), getPrice(), getImage(), getQuantity(), getType(), getColor(), getColorBrand(), getDescription(), getRgb(), getBaskets());
     }
 
     @Override
@@ -210,7 +205,7 @@ public class Product {
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", quantity=" + quantity +
-                ", type=" + type +
+                ", type='" + type + '\'' +
                 ", color='" + color + '\'' +
                 ", colorBrand='" + colorBrand + '\'' +
                 ", description='" + description + '\'' +
