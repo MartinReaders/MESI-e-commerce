@@ -3,7 +3,6 @@ package fr.mesi.mesikabp.controller;
 import fr.mesi.mesikabp.dto.ProductDto;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Product;
-import fr.mesi.mesikabp.model.User;
 import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import fr.mesi.mesikabp.service.ProductService;
@@ -16,7 +15,6 @@ import javax.persistence.EntityExistsException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/basket")
@@ -71,7 +69,6 @@ public class BasketController {
     public String deleteProductToBasket(HttpServletRequest request, @RequestBody ProductDto productDto) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
-            User userDao = modelMapService.convertToDao(userDto);
             return "basket";
         } else {
             return "redirect:login";

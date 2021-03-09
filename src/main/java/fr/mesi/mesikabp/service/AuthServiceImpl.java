@@ -40,12 +40,9 @@ public class AuthServiceImpl implements AuthService {
     public boolean isCredentialsUserAreCorrect(User user) {
         Optional<User> userOpt = userRepository.findByLogin(user.getLogin());
         if(userOpt.isPresent()) {
-            if(user.getPassword().equals(userOpt.get().getPassword())) {
-                //Le mot de passe est correct
-                return true;
-            } else {
-                return false; //Mot de passe incorrect
-            }
+            //Le mot de passe est correct
+            //Mot de passe incorrect
+            return user.getPassword().equals(userOpt.get().getPassword());
         } else {
             return false; //Compte n'existe pas
         }
