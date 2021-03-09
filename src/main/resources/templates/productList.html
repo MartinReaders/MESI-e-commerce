@@ -25,9 +25,10 @@
 
                         <img th:src="'/img/' + ${product.image}" style="width: 350px;">
                         <div class="text-center m-4 p-5">
-                            <p style="font-weight: bold;" th:text="${product.modele} + ' - ' + ${product.couleur}"></p>
-                            <p th:text="${product.marque}"></p>
-                            <p style="color: #878786;" th:text="${product.prix} + ' € '"></p>
+                            <p style="font-weight: bold;" th:text="${product.model} + ' - ' + ${product.color}"></p>
+                            <p th:text="${product.brand}"></p>
+                            <p style="color: #878786;" th:text="${product.price} + ' € '"></p>
+
                             <!-- Retravailler cette partie une fois la vue fonctionnelle -->
                             <button class="btn btn-outline-primary">Afficher détails</button>
 
