@@ -7,4 +7,5 @@ public interface BasketService {
 
     void addProductToBasket(User userDao, Product product);
     void deleteProductToBasket(User userDao, Product product);
+    void dumpBasket(User userDao);
 }

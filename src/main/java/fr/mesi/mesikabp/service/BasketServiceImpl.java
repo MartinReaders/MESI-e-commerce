@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -50,7 +51,7 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public void deleteProductToBasket(User userDao, Product product) {
+    public void deleteProductToBasket(User userDao, Product product) throws EntityNotFoundException {
         Optional<Basket> basketOptional = basketRepository.findBasketLinkToUser(userDao.getId());
         if(basketOptional.isPresent()) {
             //Basket exist, we can delete product from basket
@@ -62,9 +63,16 @@ public class BasketServiceImpl implements BasketService {
                 linkBasketProductRepository.delete(linkBasketProductOptional.get());
             } else {
                 //Product doesn't exist in basket, throw an exception
+                throw new EntityNotFoundException("Le produit n'est pas dans le panier !");
             }
         } else {
             //Basket doesn't exist, throw an exception
+            throw new EntityNotFoundException("Le panier n'existe pas !");
         }
+    }
+
+    @Override
+    public void dumpBasket(User userDao) {
+
     }
 }

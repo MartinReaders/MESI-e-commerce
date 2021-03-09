@@ -14,7 +14,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -92,5 +95,63 @@ public class BasketServiceTest {
         assertThatThrownBy(() -> basketService.addProductToBasket(user, product))
                 .isInstanceOf(EntityExistsException.class)
                 .hasMessageContaining("Le produit est déjà dans votre panier !");
+    }
+
+    @Test
+    void shouldDeleteProductToBasketSuccess() {
+        User user = new User();
+        user.setId(1L);
+        Product product = new Product();
+        product.setId(100L);
+        product.setCode("LOGITECH");
+        Basket basket = new Basket();
+        basket.setId(1000L);
+        LinkBasketProduct linkBasketProduct = new LinkBasketProduct();
+
+        Mockito.when(basketRepository.findBasketLinkToUser(Mockito.anyLong())).thenReturn(Optional.of(basket));
+
+        Mockito.when(linkBasketProductRepository.findBasketLine(Mockito.anyLong(), Mockito.anyLong()))
+                .thenReturn(Optional.of(linkBasketProduct));
+
+        basketService.deleteProductToBasket(user, product);
+
+        Mockito.verify(linkBasketProductRepository, Mockito.times(1))
+                .delete(Mockito.any(LinkBasketProduct.class));
+    }
+
+    @Test
+    void shouldDeleteProductToBasketThrownEntityNotFoundExceptionBecauseBasketDoesntExist() {
+        User user = new User();
+        user.setId(1L);
+        Product product = new Product();
+        product.setId(100L);
+        product.setCode("LOGITECH");
+        Basket basket = new Basket();
+        basket.setId(1000L);
+
+        Mockito.when(basketRepository.findBasketLinkToUser(Mockito.anyLong())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> basketService.deleteProductToBasket(user, product))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining("Le panier n'existe pas !");
+    }
+
+    @Test
+    void shouldDeleteProductToBasketThrownEntityNotFoundExceptionBecauseProductDoesntExistInBasket() {
+        User user = new User();
+        user.setId(1L);
+        Product product = new Product();
+        product.setId(100L);
+        product.setCode("LOGITECH");
+        Basket basket = new Basket();
+        basket.setId(1000L);
+
+        Mockito.when(basketRepository.findBasketLinkToUser(Mockito.anyLong())).thenReturn(Optional.of(basket));
+        Mockito.when(linkBasketProductRepository.findBasketLine(Mockito.anyLong(), Mockito.anyLong()))
+                .thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> basketService.deleteProductToBasket(user, product))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining("Le produit n'est pas dans le panier !");
     }
 }

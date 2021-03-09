@@ -12,4 +12,8 @@ public interface LinkBasketProductRepository extends JpaRepository<LinkBasketPro
     @Query(value = "SELECT pb.* FROM product_basket pb" +
             "WHERE idBasket = :idBasket AND idProduct = :idProduct", nativeQuery = true)
     Optional<LinkBasketProduct> findBasketLine(@Param("idBasket") Long idBasket, @Param("idProduct") Long idProduct);
+
+    @Query(value = "DELETE FROM product_basket " +
+            "WHERE idBasket = :idBasket", nativeQuery = true)
+    void deleteAllBasketLineOfBasket(@Param("idBasket") Long idBasket);
 }
