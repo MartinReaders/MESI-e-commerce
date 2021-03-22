@@ -63,4 +63,14 @@ public class ProductServiceImpl implements ProductService {
         //Retourne la page N°page comprenant size produits sans aucun tri
         return productRepository.findAll(PageRequest.of(page, size));
     }
+
+    @Override
+    public void deleteProduct(Long idProduct) {
+        Optional<Product> product = productRepository.findById(idProduct);
+        if(product.isPresent()) {
+            productRepository.delete(product.get());
+        } else {
+            throw new EntityNotFoundException(EXCEPTION_PRODUCT_DOESNT_EXISTS);
+        }
+    }
 }

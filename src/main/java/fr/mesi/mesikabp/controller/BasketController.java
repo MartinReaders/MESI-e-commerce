@@ -45,6 +45,19 @@ public class BasketController {
         }
     }
 
+    @PostMapping("/checkout")
+    public String checkoutBasket(HttpServletRequest request, final ModelMap model) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+        if(userDto != null) {
+            /*
+             * Insert here code for basket validation
+             */
+            return REDIRECTION_LOGIN_PATH;
+        } else {
+            return REDIRECTION_LOGIN_PATH;
+        }
+    }
+
     @GetMapping("/add/{idProduct}")
     public String addProductToBasket(HttpServletRequest request, final ModelMap model, @PathVariable Long idProduct) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
@@ -57,13 +70,13 @@ public class BasketController {
                             modelMapService.convertToDao(userDto), productOptional);
                 } catch(EntityExistsException entityExistsException) {
                     errors.add(entityExistsException.getMessage());
-                    model.put("errors", errors);
                 }
-                return TEMPLATE_NAME_BASKET;
-            } else {
-                return TEMPLATE_NAME_BASKET;
             }
+            model.put("errors", errors);
+            return TEMPLATE_NAME_BASKET;
+
         } else {
+            model.put("errors", errors);
             return REDIRECTION_LOGIN_PATH;
         }
     }
@@ -77,6 +90,4 @@ public class BasketController {
             return REDIRECTION_LOGIN_PATH;
         }
     }
-
-
 }
