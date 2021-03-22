@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
-public class AuthServiceTest {
+class AuthServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -55,7 +55,7 @@ public class AuthServiceTest {
 
         assertThatThrownBy(() -> authService.registerUser(user))
         .isInstanceOf(EntityExistsException.class)
-        .hasMessageContaining("User already exists !");
+        .hasMessageContaining(AuthServiceImpl.EXCEPTION_USER_ALREADY_EXISTS);
     }
 
     @Test

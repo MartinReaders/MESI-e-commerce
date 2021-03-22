@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductServiceTest {
+class ProductServiceTest {
 
     @Mock
     private ProductRepository productRepository;
@@ -52,7 +52,7 @@ public class ProductServiceTest {
 
         assertThatThrownBy(() -> productService.createProduct(product))
                 .isInstanceOf(EntityExistsException.class)
-                .hasMessageContaining("Le code pour ce produit existe déjà !");
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_CODE_ALREADY_EXISTS);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class ProductServiceTest {
 
         assertThatThrownBy(() -> productService.getProductById(1L))
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessageContaining("Le produit demandé n'existe pas !");
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_DOESNT_EXISTS);
     }
 
     @Test
@@ -96,14 +96,14 @@ public class ProductServiceTest {
     void shouldGetProductByFilterThrownIllegalArgumentExceptionBecausePageIsNegative() {
         assertThatThrownBy(() -> productService.getProductByFilter(-1, 1))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Impossible d'accéder a une page négative !");
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_NEGATIVE_PAGE);
     }
 
     @Test
     void shouldGetProductByFilterThrownIllegalArgumentExceptionBecauseSizeIsUnderOne() {
         assertThatThrownBy(() -> productService.getProductByFilter(0, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Impossible de demander une taille de page nulle !");
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_SIZE_PAGE_NULL);
     }
 
 }

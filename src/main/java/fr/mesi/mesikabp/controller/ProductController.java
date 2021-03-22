@@ -25,18 +25,22 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    private static final String TEMPLATE_NAME_PRODUCT_LIST = "productList";
+    private static final String TEMPLATE_NAME_PRODUCT_DETAIL = "productDetail";
+    private static final String TEMPLATE_NAME_ERROR_404 = "error404";
+
     @GetMapping
     public String getProductPage(final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
         List<String> errors = new ArrayList<>();
         try {
             model.put("productList", productService.getProductByFilter(page, size));
             //Si tout se passe bien on retourne le template avec ses données
-            return "productList";
+            return TEMPLATE_NAME_PRODUCT_LIST;
         } catch(IllegalArgumentException illegalArgumentException) {
             errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
             //Une erreur est survenue
-            return "productList";
+            return TEMPLATE_NAME_PRODUCT_LIST;
         }
     }
 
@@ -47,12 +51,12 @@ public class ProductController {
             //Get product by id and transform DAO to DTO
             ProductDto productDto = modelMapService.convertToDto(productService.getProductById(idProduct));
             model.put("product", productDto);
-            return "productDetail";
+            return TEMPLATE_NAME_PRODUCT_DETAIL;
         } catch(EntityNotFoundException entityNotFoundException) {
             //Product doesn't exist
             errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
             model.put("errors", errors); //On passe la liste des erreurs au template
-            return "error404";
+            return TEMPLATE_NAME_ERROR_404;
         }
     }
 
@@ -64,7 +68,6 @@ public class ProductController {
             //Le produit a été crée alors on redirige vers sa page
             return new RedirectView("/product/"+productDao.getCode());
         } catch(EntityExistsException entityExistsException) {
-            //Le code produit existe déjà alors on redirige vers la liste d'article TODO a voir pour rajouter les erreurs a la page
             return new RedirectView("/product");
         }
     }
