@@ -10,4 +10,5 @@ public interface ProductService {
     Product createProduct(Product product) throws EntityExistsException;
     Product getProductById(Long idProduct) throws EntityNotFoundException;
     Page<Product> getProductByFilter(Integer page, Integer size) throws IllegalArgumentException;
+    void deleteProduct(Long idProduct);
 }
