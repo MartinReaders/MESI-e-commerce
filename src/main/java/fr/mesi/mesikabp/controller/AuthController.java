@@ -106,9 +106,10 @@ public class AuthController {
             //On ajoute l'erreur de l'exception a la liste
             errors.add(e.getMessage());
             model.put("errors", errors);
-            return "register";
+            System.out.println(e.getMessage());
+            return "redirect:login";
         }
-        return "login"; //Création de compte réussie
+        return "authentification"; //Création de compte réussie
     }
 
 

@@ -1,6 +1,7 @@
 package fr.mesi.mesikabp.controller;
 
 import fr.mesi.mesikabp.dto.ProductDto;
+import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.service.ModelMapService;
 import fr.mesi.mesikabp.service.ProductService;
@@ -8,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,15 +61,24 @@ public class ProductController {
         }
     }
 
+    /*
+     * Only connected, only admin
+     */
     @PostMapping
-    public RedirectView createProduct(@RequestBody ProductDto productDto) {
-        Product productDao = modelMapService.convertToDao(productDto);
-        try {
-            productService.createProduct(productDao);
-            //Le produit a été crée alors on redirige vers sa page
-            return new RedirectView("/product/"+productDao.getCode());
-        } catch(EntityExistsException entityExistsException) {
-            return new RedirectView("/product");
+    public String createProduct(HttpServletRequest request, @RequestBody ProductDto productDto) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+        if(userDto != null) {
+            try {
+                Product productCreated = productService
+                        .createProduct(modelMapService.convertToDao(productDto));
+                //Le produit a été crée alors on redirige vers sa page
+                return "redirect:/product/"+productCreated.getCode();
+            } catch(EntityExistsException entityExistsException) {
+                return "redirect:/product";
+            }
+        } else {
+            //Not connected, redirect to login
+            return "redirect:/login";
         }
     }
 }

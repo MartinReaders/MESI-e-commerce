@@ -5,6 +5,7 @@ import fr.mesi.mesikabp.repository.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -73,6 +74,29 @@ class ProductServiceIntegrationTest {
         product = productRepository.save(product); //Premier produit donc a toujours le premier identifiant
 
         assertThatThrownBy(() -> productService.getProductById(100L))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_DOESNT_EXISTS);
+    }
+
+    @Test
+    void shouldDeleteProductSuccess() {
+        Product product = new Product();
+
+        product = productRepository.save(product);
+
+        productService.deleteProduct(product.getId());
+
+        Optional<Product> optionalProduct = productRepository.findById(product.getId());
+
+        assertThat(optionalProduct).isEmpty();
+    }
+
+    @Test
+    void shouldDeleteProductThrownEntityNotFoundException() {
+        Product product = new Product();
+        product.setId(1L);
+
+        assertThatThrownBy(() -> productService.deleteProduct(product.getId()))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_DOESNT_EXISTS);
     }
