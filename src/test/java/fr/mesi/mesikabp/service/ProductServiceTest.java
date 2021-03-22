@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,4 +107,28 @@ class ProductServiceTest {
                 .hasMessageContaining(ProductServiceImpl.EXCEPTION_SIZE_PAGE_NULL);
     }
 
+    @Test
+    void shouldDeleteProductSuccess() {
+        Product product = new Product();
+        product.setId(1L);
+
+        Mockito.when(productRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(product));
+
+        productService.deleteProduct(product.getId());
+
+        Mockito.verify(productRepository, Mockito.times(1))
+                .delete(Mockito.any(Product.class));
+    }
+
+    @Test
+    void shouldDeleteProductThrownEntityNotFoundException() {
+        Product product = new Product();
+        product.setId(1L);
+
+        Mockito.when(productRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> productService.deleteProduct(product.getId()))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining(ProductServiceImpl.EXCEPTION_PRODUCT_DOESNT_EXISTS);
+    }
 }

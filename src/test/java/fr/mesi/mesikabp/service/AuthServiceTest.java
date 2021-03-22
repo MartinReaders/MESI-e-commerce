@@ -60,11 +60,16 @@ class AuthServiceTest {
 
     @Test
     void shouldCredentialsAreCorrect() {
-        final User user = new User();
-        user.setPassword("IPIadmin");
-        Mockito.when(userRepository.findByLogin(user.getLogin())).thenReturn(Optional.of(user));
+        User user = new User();
+        user.setPassword("$2a$12$ZUgrtYItE5I8Qc8TYtV9ne/.4yZQ74rn1uwL0E9lrEPGwQnA07eQi");
 
-        Boolean isCorrect = authService.isCredentialsUserAreCorrect(user);
+        User userChecking = new User();
+        userChecking.setPassword("IPIADMIN");
+
+        Mockito.when(userRepository.findByLogin(user.getLogin())).thenReturn(Optional.of(user));
+        Mockito.when(passwordEncoder.matches(userChecking.getPassword(), user.getPassword())).thenReturn(true);
+
+        Boolean isCorrect = authService.isCredentialsUserAreCorrect(userChecking);
 
         assertThat(isCorrect).isTrue();
     }
