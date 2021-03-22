@@ -63,15 +63,15 @@ CREATE TABLE characteristics (
   FOREIGN KEY (idTypeProduct) REFERENCES typeProduct (idTypeProduct)
 );
 
-CREATE TABLE product_characteristics(
-  idProductCharacteristics INT(10) AUTO_INCREMENT,
-  idProduct INT(10) NOT NULL,
-  idCharacteristics INT(10) NOT NULL,
-  valeur VARCHAR(30),
-  PRIMARY KEY (idProductCharacteristics),
-  FOREIGN KEY (idProduct) REFERENCES product (idProduct),
-  FOREIGN KEY (idCharacteristics) REFERENCES characteristics (idCharacteristics)
-);
+# CREATE TABLE product_characteristics(
+#   idProductCharacteristics INT(10) AUTO_INCREMENT,
+#   idProduct INT(10) NOT NULL,
+#   idCharacteristics INT(10) NOT NULL,
+#   valeur VARCHAR(30),
+#   PRIMARY KEY (idProductCharacteristics),
+#   FOREIGN KEY (idProduct) REFERENCES product (idProduct),
+#   FOREIGN KEY (idCharacteristics) REFERENCES characteristics (idCharacteristics)
+# );
 
 
 CREATE TABLE basket (
