@@ -17,11 +17,17 @@ public class Product {
     @Column(name = "idProduct")
     private Long id;
 
-    @Column(name = "code")
-    private String code;
+    @ManyToOne
+    @Column(name = "idBrand")
+    private Brand brand;
 
-    @Column(name = "brand")
-    private String brand;
+    @ManyToOne
+    @Column(name = "idTypeProduct")
+    private TypeProduct typeProduct;
+
+    @ManyToOne
+    @Column(name = "idStatusProduct")
+    private StatusProduct statusProduct;
 
     @Column(name = "model")
     private String model;
@@ -35,20 +41,11 @@ public class Product {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "type")
-    private String type;
-
-    @Column(name = "color")
-    private String color;
-
-    @Column(name = "colorBrand")
-    private String colorBrand;
-
     @Column(name = "description")
     private String description;
 
-    @Column(name = "rgb")
-    private Boolean rgb;
+    @Column(name = "score")
+    private Integer score;
 
     @OneToMany(mappedBy = "product")
     private Set<LinkBasketProduct> baskets;
@@ -59,9 +56,6 @@ public class Product {
 
     }
 
-
-    // Getter & Setter
-
     public Long getId() {
         return id;
     }
@@ -70,20 +64,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public TypeProduct getTypeProduct() {
+        return typeProduct;
+    }
+
+    public void setTypeProduct(TypeProduct typeProduct) {
+        this.typeProduct = typeProduct;
+    }
+
+    public StatusProduct getStatusProduct() {
+        return statusProduct;
+    }
+
+    public void setStatusProduct(StatusProduct statusProduct) {
+        this.statusProduct = statusProduct;
     }
 
     public String getModel() {
@@ -118,30 +120,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getColorBrand() {
-        return colorBrand;
-    }
-
-    public void setColorBrand(String colorBrand) {
-        this.colorBrand = colorBrand;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -150,60 +128,59 @@ public class Product {
         this.description = description;
     }
 
-    public Boolean getRgb() {
-        return rgb;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setRgb(Boolean rgb) {
-        this.rgb = rgb;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
+    public Set<LinkBasketProduct> getBaskets() {
+        return baskets;
+    }
 
-
-
-    // Override Methods
-
+    public void setBaskets(Set<LinkBasketProduct> baskets) {
+        this.baskets = baskets;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(getId(), product.getId()) &&
-                Objects.equals(getCode(), product.getCode()) &&
-                Objects.equals(getBrand(), product.getBrand()) &&
-                Objects.equals(getModel(), product.getModel()) &&
-                Objects.equals(getPrice(), product.getPrice()) &&
-                Objects.equals(getImage(), product.getImage()) &&
-                Objects.equals(getQuantity(), product.getQuantity()) &&
-                Objects.equals(getType(), product.getType()) &&
-                Objects.equals(getColor(), product.getColor()) &&
-                Objects.equals(getColorBrand(), product.getColorBrand()) &&
-                Objects.equals(getDescription(), product.getDescription()) &&
-                Objects.equals(getRgb(), product.getRgb());
-
+        return Objects.equals(id, product.id) &&
+                Objects.equals(brand, product.brand) &&
+                Objects.equals(typeProduct, product.typeProduct) &&
+                Objects.equals(statusProduct, product.statusProduct) &&
+                Objects.equals(model, product.model) &&
+                Objects.equals(price, product.price) &&
+                Objects.equals(image, product.image) &&
+                Objects.equals(quantity, product.quantity) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(score, product.score) &&
+                Objects.equals(baskets, product.baskets);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCode(), getBrand(), getModel(), getPrice(), getImage(), getQuantity(), getType(), getColor(), getColorBrand(), getDescription(), getRgb());
+        return Objects.hash(id, brand, typeProduct, statusProduct, model, price, image, quantity, description, score, baskets);
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
-                ", brand='" + brand + '\'' +
+                ", brand=" + brand +
+                ", typeProduct=" + typeProduct +
+                ", statusProduct=" + statusProduct +
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", quantity=" + quantity +
-                ", type='" + type + '\'' +
-                ", color='" + color + '\'' +
-                ", colorBrand='" + colorBrand + '\'' +
                 ", description='" + description + '\'' +
-                ", rgb=" + rgb +
+                ", score=" + score +
+                ", baskets=" + baskets +
                 '}';
     }
 }
