@@ -44,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
         if(userOpt.isPresent()) {
             //Le mot de passe est correct
             //Mot de passe incorrect
-            return user.getPassword().equals(userOpt.get().getPassword());
+            return passwordEncoder.matches(user.getPassword(), userOpt.get().getPassword());
         } else {
             return false; //Compte n'existe pas
         }
