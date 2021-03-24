@@ -18,16 +18,19 @@ public class Product {
     private Long id;
 
     @ManyToOne
-    @Column(name = "idBrand")
+    @JoinColumn(name = "idBrand")
     private Brand brand;
 
     @ManyToOne
-    @Column(name = "idTypeProduct")
+    @JoinColumn(name = "idTypeProduct")
     private TypeProduct typeProduct;
 
     @ManyToOne
-    @Column(name = "idStatusProduct")
+    @JoinColumn(name = "idStatusProduct")
     private StatusProduct statusProduct;
+
+    @Column(name = "code")
+    private String code;
 
     @Column(name = "model")
     private String model;
@@ -86,6 +89,14 @@ public class Product {
 
     public void setStatusProduct(StatusProduct statusProduct) {
         this.statusProduct = statusProduct;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getModel() {
@@ -153,6 +164,7 @@ public class Product {
                 Objects.equals(brand, product.brand) &&
                 Objects.equals(typeProduct, product.typeProduct) &&
                 Objects.equals(statusProduct, product.statusProduct) &&
+                Objects.equals(code, product.code) &&
                 Objects.equals(model, product.model) &&
                 Objects.equals(price, product.price) &&
                 Objects.equals(image, product.image) &&
@@ -164,7 +176,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, brand, typeProduct, statusProduct, model, price, image, quantity, description, score, baskets);
+        return Objects.hash(id, brand, typeProduct, statusProduct, code, model, price, image, quantity, description, score, baskets);
     }
 
     @Override
@@ -174,6 +186,7 @@ public class Product {
                 ", brand=" + brand +
                 ", typeProduct=" + typeProduct +
                 ", statusProduct=" + statusProduct +
+                ", code='" + code + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", image='" + image + '\'' +

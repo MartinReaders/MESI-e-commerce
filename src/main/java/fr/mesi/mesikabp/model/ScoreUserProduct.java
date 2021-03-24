@@ -13,11 +13,11 @@ public class ScoreUserProduct {
     private Long id;
 
     @ManyToOne
-    @Column(name = "idUser")
+    @JoinColumn(name = "idUser")
     private User idUser;
 
     @ManyToOne
-    @Column(name = "idProduct")
+    @JoinColumn(name = "idProduct")
     private Product idProduct;
 
     @Column(name = "valeur")
