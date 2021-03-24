@@ -39,6 +39,7 @@ CREATE TABLE brand (
 
 CREATE TABLE product (
   idProduct INT(10) AUTO_INCREMENT,
+  code VARCHAR (100),
   idBrand INT(10) NOT NULL,
   model VARCHAR(100)NOT NULL,
   price INT(10) NOT NULL,
