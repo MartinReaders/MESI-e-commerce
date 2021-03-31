@@ -57,6 +57,15 @@ public class Product {
 
     }
 
+    public Product(Long id, Brand brand, String model, Double price, String image, Integer quantity, String description) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.image = image;
+        this.quantity = quantity;
+        this.description = description;
+    }
 
     // Getter & Setter
 
