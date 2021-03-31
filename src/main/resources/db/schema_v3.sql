@@ -102,7 +102,8 @@ CREATE TABLE allOrder (
   date DATE,
   totalPrice INT(15) NOT NULL,
   PRIMARY KEY (idOrder),
-  FOREIGN KEY (idBasket) REFERENCES basket (idBasket)
+  FOREIGN KEY (idBasket) REFERENCES basket (idBasket),
+  FOREIGN KEY (idUser) REFERENCES user (idUser)
 );
 
 CREATE TABLE score_user_product (
