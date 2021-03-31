@@ -11,6 +11,8 @@ import java.util.Set;
 @Table(name = "basket")
 public class Basket {
 
+    // Column of Basket
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +24,20 @@ public class Basket {
     @JoinColumn(name = "idUser")
     private User user;
 
+
+    // Constructor
+
+    public Basket() {
+
+    }
+
+    public Basket(Long id, Set<LinkBasketProduct> products, User user) {
+        this.id = id;
+        this.products = products;
+        this.user = user;
+    }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -46,6 +62,8 @@ public class Basket {
     public void setUser(User user) {
         this.user = user;
     }
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

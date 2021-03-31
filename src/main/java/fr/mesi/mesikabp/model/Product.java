@@ -9,9 +9,6 @@ public class Product {
 
     // Column of Product
 
-    // Replace  produit = code, brand, model, price, image, quantity, type, color, colorBrand, description
-    // By       product = code, brand, model, price, image, quantity, type, colorBrand, description
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idProduct")
@@ -53,11 +50,29 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<LinkBasketProduct> baskets;
 
+
     // Constructor
 
     public Product() {
 
     }
+
+    public Product(Long id, Brand brand, TypeProduct typeProduct, StatusProduct statusProduct, String code, String model, Double price, String image, Integer quantity, String description, Integer score, Set<LinkBasketProduct> baskets) {
+        this.id = id;
+        this.brand = brand;
+        this.typeProduct = typeProduct;
+        this.statusProduct = statusProduct;
+        this.code = code;
+        this.model = model;
+        this.price = price;
+        this.image = image;
+        this.quantity = quantity;
+        this.description = description;
+        this.score = score;
+        this.baskets = baskets;
+    }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -154,6 +169,9 @@ public class Product {
     public void setBaskets(Set<LinkBasketProduct> baskets) {
         this.baskets = baskets;
     }
+
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 public class Characteristics {
+
+    // Column of Characteristics
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcharacteristics")
@@ -18,11 +21,19 @@ public class Characteristics {
     @Column(name = "title")
     private String title;
 
+    // Constructor
+
+    public Characteristics() {
+
+    }
+
     public Characteristics(Long idcharacteristics, Long idTypeProduct, String title) {
         this.idcharacteristics = idcharacteristics;
         this.idTypeProduct = idTypeProduct;
         this.title = title;
     }
+
+    // Getter & Setter
 
     public Long getIdcharacteristics() {
         return idcharacteristics;
@@ -48,6 +59,7 @@ public class Characteristics {
         this.title = title;
     }
 
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

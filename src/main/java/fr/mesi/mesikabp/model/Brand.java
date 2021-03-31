@@ -2,7 +2,6 @@ package fr.mesi.mesikabp.model;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "brand")
@@ -31,7 +30,9 @@ public class Brand {
     // Constructor
 
     public Brand() {
+
     }
+
 
     public Brand(Long idBrand, String libelle, String colorBrand, String image, String description) {
         this.idBrand = idBrand;

@@ -7,21 +7,32 @@ import java.util.Objects;
 @Entity
 public class TypeProduct {
 
+    // Column of TypeProduct
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdTypeProduct")
     private Long id;
 
-
-
     @Column(name = "typeProduct")
     private String typeProduct;
-
-
 
     @Column(name = "familyProduct")
     private String familyProduct;
 
+    // Constructor
+
+    public TypeProduct(){
+
+    }
+
+    public TypeProduct(Long id, String typeProduct, String familyProduct) {
+        this.id = id;
+        this.typeProduct = typeProduct;
+        this.familyProduct = familyProduct;
+    }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -47,6 +58,8 @@ public class TypeProduct {
         this.familyProduct = familyProduct;
     }
 
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

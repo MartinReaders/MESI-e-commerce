@@ -1,11 +1,14 @@
 package fr.mesi.mesikabp.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "product_basket")
 public class LinkBasketProduct {
+
+    // Column of LinkBasketProduct
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +25,21 @@ public class LinkBasketProduct {
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private Product product;
+
+    // Constructor
+
+    public LinkBasketProduct(){
+
+    }
+
+    public LinkBasketProduct(Long id, Integer quantity, Basket basket, Product product) {
+        this.id = id;
+        this.quantity = quantity;
+        this.basket = basket;
+        this.product = product;
+    }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -54,6 +72,8 @@ public class LinkBasketProduct {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

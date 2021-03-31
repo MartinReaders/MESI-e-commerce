@@ -2,7 +2,6 @@ package fr.mesi.mesikabp.model;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "statusProduct")
@@ -20,6 +19,7 @@ public class StatusProduct {
     // Constructor
 
     public StatusProduct() {
+
     }
 
     public StatusProduct(Long idStatusProduct, String statusProduct) {
