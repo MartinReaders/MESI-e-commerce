@@ -57,20 +57,6 @@ public class Product {
 
     }
 
-    public Product(Long id, Brand brand, TypeProduct typeProduct, StatusProduct statusProduct, String code, String model, Double price, String image, Integer quantity, String description, Integer score, Set<LinkBasketProduct> baskets) {
-        this.id = id;
-        this.brand = brand;
-        this.typeProduct = typeProduct;
-        this.statusProduct = statusProduct;
-        this.code = code;
-        this.model = model;
-        this.price = price;
-        this.image = image;
-        this.quantity = quantity;
-        this.description = description;
-        this.score = score;
-        this.baskets = baskets;
-    }
 
     // Getter & Setter
 
