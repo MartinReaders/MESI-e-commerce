@@ -33,6 +33,8 @@ CREATE TABLE brand (
   idBrand INT(10) AUTO_INCREMENT,
   libelle VARCHAR(30),
   colorBrand VARCHAR(30),
+  image VARCHAR(150),
+  description VARCHAR(5000),
   PRIMARY KEY (idBrand)
 );
 

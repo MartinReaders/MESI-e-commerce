@@ -20,15 +20,25 @@ public class Brand {
     @Column(name = "colorBrand")
     private String colorBrand;
 
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "description")
+    private String description;
+
+
+
     // Constructor
 
     public Brand() {
     }
 
-    public Brand(Long idBrand, String libelle, String colorBrand) {
+    public Brand(Long idBrand, String libelle, String colorBrand, String image, String description) {
         this.idBrand = idBrand;
         this.libelle = libelle;
         this.colorBrand = colorBrand;
+        this.image = image;
+        this.description = description;
     }
 
 
@@ -58,8 +68,24 @@ public class Brand {
         this.colorBrand = colorBrand;
     }
 
-    // Override Methods
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {
@@ -68,12 +94,14 @@ public class Brand {
         Brand brand = (Brand) o;
         return Objects.equals(getIdBrand(), brand.getIdBrand()) &&
                 Objects.equals(getLibelle(), brand.getLibelle()) &&
-                Objects.equals(getColorBrand(), brand.getColorBrand());
+                Objects.equals(getColorBrand(), brand.getColorBrand()) &&
+                Objects.equals(getImage(), brand.getImage()) &&
+                Objects.equals(getDescription(), brand.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdBrand(), getLibelle(), getColorBrand());
+        return Objects.hash(getIdBrand(), getLibelle(), getColorBrand(), getImage(), getDescription());
     }
 
     @Override
@@ -82,6 +110,8 @@ public class Brand {
                 "idBrand=" + idBrand +
                 ", libelle='" + libelle + '\'' +
                 ", colorBrand='" + colorBrand + '\'' +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
