@@ -1,106 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/header :: head"></head>
-    <body>
-        <header th:replace="fragments/header :: header"></header>
+<head th:replace="fragments/header :: head"></head>
+<body>
+<header th:replace="fragments/header :: header"></header>
 
 
 
-        <div id="" class="container-fluid big-container">
-            <div class="container-am" style="padding-top: 30px; padding-bottom: 30px;">
-                <div class="row rowNoGutters animate__animated animate__fadeIn" style="justify-content: center;">
-                    <div class="col-md-6">
-                        <div class="text-center">
-                            <img th:src="'/img/' + ${product.image}">
-                        </div>
+<div id="" class="container-fluid big-container">
+    <div class="container-am" style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="row rowNoGutters animate__animated animate__fadeIn" style="justify-content: center;">
+            <div class="col-md-6">
+                <div class="text-center">
+                    <img th:src="'/img/' + ${product.image}">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h6 class="text-primary title5 pt-5" style="animation-name: fadeIn;"><strong><span th:text="${product.brand}"></span></strong></h6>
+                <h2 class="titleSection font-weight-bold"><span th:text="${product.model}"></span></h2>
+
+                <hr class="col-10">
+
+                <h4 class="font-weight-light"><p th:text="${product.price}"></p></h4>
+                <div class="col-lg-8 mb-5">
+
+                    <div th:if="${product.quantity != 0}" class="col-lg-6 text-succes mt-3" style="font-size: x-large;">
+                        <span th:text="${product.quantity} + ' acticles disponible'"></span>
                     </div>
 
-                    <div class="col-md-6">
-                        <h6 class="text-primary title5 pt-5" style="animation-name: fadeIn;"><strong><span th:text="${product.brand}"></span></strong></h6>
-                        <h2 class="titleSection font-weight-bold"><span th:text="${product.model}"></span></h2>
 
-                        <hr class="col-10">
+                    <div th:unless="${product.quantity != 0}" class="col-lg-6 text-succes mt-3">
+                        <span> Plus disponible actuellement</span>
+                    </div>
 
-                        <h4 class="font-weight-light"><p th:text="${product.price}"></p></h4>
-                        <div class="col-lg-8 mb-5">
-
-                            <div th:if="${product.quantity != 0}" class="col-lg-6 text-succes mt-3" style="font-size: x-large;">
-                                <span th:text="${product.quantity} + ' acticles disponible'"></span>
-                            </div>
-
-
-                            <div th:unless="${product.quantity != 0}" class="col-lg-6 text-succes mt-3">
-                                <span> Plus disponible actuellement</span>
-                            </div>
-
-                            <div class=" mt-3">
-                                    <input type="hidden" id="idProduct" name="produitCode" th:value="product.code">
-                                    <a th:href="'/basket/add/' + ${product.id}"><button type="button" class="btn btn-outline-primary">Ajouter au panier</button></a>
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <div class="text-uppercase">
-                                <h3>Description</h3>
-                            </div>
-
-                            <hr class="col-10">
-
-                            <div class="col-10 pl-0">
-                                <span th:text="${product.description}"></span>
-                            </div>
-
-                        </div>
+                    <div class=" mt-3">
+                        <input type="hidden" id="idProduct" name="produitCode" th:value="product.code">
+                        <a th:href="'/basket/add/' + ${product.id}"><button type="button" class="btn btn-outline-primary">Ajouter au panier</button></a>
                     </div>
                 </div>
 
+                <div class="mb-5">
+                    <div class="text-uppercase">
+                        <h3>Description</h3>
+                    </div>
+
+                    <hr class="col-10">
+
+                    <div class="col-10 pl-0">
+                        <span th:text="${product.description}"></span>
+                    </div>
+
+                </div>
             </div>
         </div>
 
+    </div>
+</div>
 
-        <div id="container4Block" class="container-fluid big-container">
-            <div class="container-am" style="padding-top: 30px; padding-bottom: 30px;">
-                <div class="row rowNoGutters mt-5" style="justify-content: center;">
-                    <div class="col-lg-8">
-                        <div class="row text-center">
-                            <div class="col-md-3">
-                                <div class="d-flex flex-column animate__animated animate__fadeInBottomLeft">
-                                    <i class="p-2 mb-2 fas fa-check-double"></i>
-                                    <div class="p-2 font-weight-bold">Neufs et authentiques</div>
-                                    <div class="p-2">Tous les produits vendus sur KAPS Numérics sont authentifiés par nos experts avant de vous être envoyés.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="d-flex flex-column animate__animated animate__fadeInUp">
-                                    <i class="p-2 mb-2 fas fa-box-open"></i>
-                                    <div class="p-2 font-weight-bold">Livraison et retours offerts</div>
-                                    <div class="p-2">Aucun frais à ajouter pour les livraisons et retours à destination de la France Métropolitaine. Nous livrons partout dans le monde !</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="d-flex flex-column animate__animated animate__fadeInUp">
-                                    <i class="p-2 mb-2 fas fa-cart-arrow-down"></i>
-                                    <div class="p-2 font-weight-bold">Paiement en 4 fois possible</div>
-                                    <div class="p-2">Divisez le montant de votre order en 4 mensualités, en toute sécurité grâce à un protocole SSL crypté 3D Secure.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="d-flex flex-column animate__animated animate__fadeInBottomRight">
-                                    <i class="p-2 mb-2 fab fa-rocketchat"></i>
-                                    <div class="p-2 font-weight-bold">Service client français réactif</div>
-                                    <div class="p-2">Notre équipe est disponible par téléphone, mail ou chat (en bas à droite de chaque page), du lundi au vendredi !</div>
-                                </div>
-                            </div>
+
+<div id="container4Block" class="container-fluid big-container">
+    <div class="container-am" style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="row rowNoGutters mt-5" style="justify-content: center;">
+            <div class="col-lg-8">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column animate__animated animate__fadeInBottomLeft">
+                            <i class="p-2 mb-2 fas fa-check-double"></i>
+                            <div class="p-2 font-weight-bold">Neufs et authentiques</div>
+                            <div class="p-2">Tous les produits vendus sur KAPS Numérics sont authentifiés par nos experts avant de vous être envoyés.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column animate__animated animate__fadeInUp">
+                            <i class="p-2 mb-2 fas fa-box-open"></i>
+                            <div class="p-2 font-weight-bold">Livraison et retours offerts</div>
+                            <div class="p-2">Aucun frais à ajouter pour les livraisons et retours à destination de la France Métropolitaine. Nous livrons partout dans le monde !</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column animate__animated animate__fadeInUp">
+                            <i class="p-2 mb-2 fas fa-cart-arrow-down"></i>
+                            <div class="p-2 font-weight-bold">Paiement en 4 fois possible</div>
+                            <div class="p-2">Divisez le montant de votre order en 4 mensualités, en toute sécurité grâce à un protocole SSL crypté 3D Secure.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column animate__animated animate__fadeInBottomRight">
+                            <i class="p-2 mb-2 fab fa-rocketchat"></i>
+                            <div class="p-2 font-weight-bold">Service client français réactif</div>
+                            <div class="p-2">Notre équipe est disponible par téléphone, mail ou chat (en bas à droite de chaque page), du lundi au vendredi !</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="fragments/footer :: footer"></footer>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+<!-- Regarder si pas utilisé - retirer -->
+<!-- Regarder si utilisé - copy in footer -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>

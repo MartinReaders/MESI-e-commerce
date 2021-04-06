@@ -5,11 +5,17 @@ import java.util.Set;
 
 public class ProductDto {
 
+    // Column of Product
+
     private Long id;
 
-    private String code;
+    private BrandDto brand;
 
-    private String brand;
+    private TypeProductDto typeProduct;
+
+    private StatusProductDto statusProduct;
+
+    private String code;
 
     private String model;
 
@@ -19,38 +25,35 @@ public class ProductDto {
 
     private Integer quantity;
 
-    private String type;
-
-    private String color;
-
-    private String colorBrand;
-
     private String description;
 
-    private Boolean rgb;
+    private Integer score;
 
     private Set<LinkBasketProductDto> baskets;
 
+
+    // Constructor
+
     public ProductDto() {
+
     }
 
-    public ProductDto(Long id, String code, String brand, String model, Double price, String image, Integer quantity,
-                      String type, String color, String colorBrand, String description, Boolean rgb,
-                      Set<LinkBasketProductDto> baskets) {
+    public ProductDto(Long id, BrandDto brand, TypeProductDto typeProduct, StatusProductDto statusProduct, String code, String model, Double price, String image, Integer quantity, String description, Integer score, Set<LinkBasketProductDto> baskets) {
         this.id = id;
-        this.code = code;
         this.brand = brand;
+        this.typeProduct = typeProduct;
+        this.statusProduct = statusProduct;
+        this.code = code;
         this.model = model;
         this.price = price;
         this.image = image;
         this.quantity = quantity;
-        this.type = type;
-        this.color = color;
-        this.colorBrand = colorBrand;
         this.description = description;
-        this.rgb = rgb;
+        this.score = score;
         this.baskets = baskets;
     }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -60,20 +63,36 @@ public class ProductDto {
         this.id = id;
     }
 
+    public BrandDto getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandDto brand) {
+        this.brand = brand;
+    }
+
+    public TypeProductDto getTypeProduct() {
+        return typeProduct;
+    }
+
+    public void setTypeProduct(TypeProductDto typeProduct) {
+        this.typeProduct = typeProduct;
+    }
+
+    public StatusProductDto getStatusProduct() {
+        return statusProduct;
+    }
+
+    public void setStatusProduct(StatusProductDto statusProduct) {
+        this.statusProduct = statusProduct;
+    }
+
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public String getModel() {
@@ -108,30 +127,6 @@ public class ProductDto {
         this.quantity = quantity;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getColorBrand() {
-        return colorBrand;
-    }
-
-    public void setColorBrand(String colorBrand) {
-        this.colorBrand = colorBrand;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -140,12 +135,12 @@ public class ProductDto {
         this.description = description;
     }
 
-    public Boolean getRgb() {
-        return rgb;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setRgb(Boolean rgb) {
-        this.rgb = rgb;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     public Set<LinkBasketProductDto> getBaskets() {
@@ -156,48 +151,48 @@ public class ProductDto {
         this.baskets = baskets;
     }
 
+    // Override Methods
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ProductDto)) return false;
         ProductDto that = (ProductDto) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(code, that.code) &&
-                Objects.equals(brand, that.brand) &&
-                Objects.equals(model, that.model) &&
-                Objects.equals(price, that.price) &&
-                Objects.equals(image, that.image) &&
-                Objects.equals(quantity, that.quantity) &&
-                Objects.equals(type, that.type) &&
-                Objects.equals(color, that.color) &&
-                Objects.equals(colorBrand, that.colorBrand) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(rgb, that.rgb) &&
-                Objects.equals(baskets, that.baskets);
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getBrand(), that.getBrand()) &&
+                Objects.equals(getTypeProduct(), that.getTypeProduct()) &&
+                Objects.equals(getStatusProduct(), that.getStatusProduct()) &&
+                Objects.equals(getCode(), that.getCode()) &&
+                Objects.equals(getModel(), that.getModel()) &&
+                Objects.equals(getPrice(), that.getPrice()) &&
+                Objects.equals(getImage(), that.getImage()) &&
+                Objects.equals(getQuantity(), that.getQuantity()) &&
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getScore(), that.getScore()) &&
+                Objects.equals(getBaskets(), that.getBaskets());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, code, brand, model, price, image, quantity, type, color, colorBrand, description, rgb,
-                baskets);
+        return Objects.hash(id, brand, typeProduct, statusProduct, code, model, price, image, quantity, description, score, baskets);
     }
 
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "Product{" +
                 "id=" + id +
+                ", brand=" + brand +
+                ", typeProduct=" + typeProduct +
+                ", statusProduct=" + statusProduct +
                 ", code='" + code + '\'' +
-                ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", quantity=" + quantity +
-                ", type=" + type +
-                ", color='" + color + '\'' +
-                ", colorBrand='" + colorBrand + '\'' +
                 ", description='" + description + '\'' +
-                ", rgb=" + rgb +
-                ", baskets='" + baskets + '\'' +
+                ", score=" + score +
+                ", baskets=" + baskets +
                 '}';
     }
 }

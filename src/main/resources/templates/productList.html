@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/header :: head"></head>
-    <body>
-        <header th:replace="fragments/header :: header"></header>
+<head th:replace="fragments/header :: head"></head>
+<body>
+<header th:replace="fragments/header :: header"></header>
 
-        <!-- Container contenant tout les produits -->
-        <div id="containerAllProducts" class="container-fluid big-container">
-            <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
-                <div class="row rowNoGutters" style="justify-content: center;">
-                    <div class="col-lg-12">
-                        <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
-                            <!-- Définir la couleur par defaut rouge + lorsque filtre couleur utilisé, adapter celle-ci -->
-                            <h6 class="text-primary title5 pt-5"><strong>En France</strong></h6>
-                            <h2 class="titleSection">Produits disponibles</h2>
-                        </div>
-                    </div>
-                </div>
-                <!-- Affichages de tous les produits dans une ligne -->
-                <div class="row rowNoGutters mt-5" style="text-align: -webkit-center;">
-
-                    <div th:each="product : ${productList}" class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                        <a th:href="'/product/' + ${product.id}" style="color: black; text-decoration: none;">
-
-
-                        <img th:src="'/img/' + ${product.image}" style="width: 350px;">
-                        <div class="text-center m-4 p-5">
-                            <p style="font-weight: bold;" th:text="${product.model} + ' - ' + ${product.color}"></p>
-                            <p th:text="${product.brand}"></p>
-                            <p style="color: #878786;" th:text="${product.price} + ' € '"></p>
-
-                            <!-- Retravailler cette partie une fois la vue fonctionnelle -->
-                            <button class="btn btn-outline-primary">Afficher détails</button>
-
-                            <!-- Replacer par ajouter au panier -->
-                            <!--<form action="/addPanier" method="post">
-                                <input type="text" id="produitCode" style="display:none;" name="produitCode" th:value="product.code">
-                                <button class="btn btn-outline-primary">Afficher détails</button>
-                            </form>-->
-                        </div>
-                        </a>
-                    </div>
+<!-- Container contenant tout les produits -->
+<div id="containerAllProducts" class="container-fluid big-container">
+    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+        <div class="row rowNoGutters" style="justify-content: center;">
+            <div class="col-lg-12">
+                <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
+                    <!-- Définir la couleur par defaut rouge + lorsque filtre couleur utilisé, adapter celle-ci -->
+                    <h6 class="text-primary title5 pt-5"><strong>En France</strong></h6>
+                    <h2 class="titleSection">Produits disponibles</h2>
                 </div>
             </div>
         </div>
+        <!-- Affichages de tous les produits dans une ligne -->
+        <div class="row rowNoGutters mt-5" style="text-align: -webkit-center;">
+
+            <div th:each="product : ${productList}" class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
+                <a th:href="'/product/' + ${product.id}" style="color: black; text-decoration: none;">
 
 
-        <footer th:replace="fragments/footer :: footer"></footer>
+                    <img th:src="'/img/' + ${product.image}" style="width: 350px;">
+                    <div class="text-center m-4 p-5">
+                        <p style="font-weight: bold;" th:text="${product.model} + ' - ' + ${product.color}"></p>
+                        <p th:text="${product.brand}"></p>
+                        <p style="color: #878786;" th:text="${product.price} + ' € '"></p>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+                        <!-- Retravailler cette partie une fois la vue fonctionnelle -->
+                        <button class="btn btn-outline-primary">Afficher détails</button>
+
+                        <!-- Replacer par ajouter au panier -->
+                        <!--<form action="/addPanier" method="post">
+                            <input type="text" id="produitCode" style="display:none;" name="produitCode" th:value="product.code">
+                            <button class="btn btn-outline-primary">Afficher détails</button>
+                        </form>-->
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<!-- Regarder si pas utilisé - retirer -->
+<!-- Regarder si utilisé - copy in footer -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>

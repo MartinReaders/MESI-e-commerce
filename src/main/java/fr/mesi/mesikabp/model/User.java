@@ -198,8 +198,8 @@ public class User {
         this.country = country;
     }
 
-    // Override Methods
 
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

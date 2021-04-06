@@ -1,40 +1,32 @@
-package fr.mesi.mesikabp.model;
+package fr.mesi.mesikabp.dto;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "statusProduct")
-public class StatusProduct {
+public class StatusProductDto {
 
-    // Column of StatusProduct
+    private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idStatusProduct;
-
-    @Column(name = "statusProduct")
     private String statusProduct;
 
     // Constructor
 
-    public StatusProduct() {
+    public StatusProductDto() {
 
     }
 
-    public StatusProduct(Long idStatusProduct, String statusProduct) {
-        this.idStatusProduct = idStatusProduct;
+    public StatusProductDto(Long idStatusProduct, String statusProduct) {
+        this.id = idStatusProduct;
         this.statusProduct = statusProduct;
     }
 
     // Getter & Setter
 
     public Long getIdStatusProduct() {
-        return idStatusProduct;
+        return id;
     }
 
     public void setIdStatusProduct(Long idStatusProduct) {
-        this.idStatusProduct = idStatusProduct;
+        this.id = idStatusProduct;
     }
 
     public String getStatusProduct() {
@@ -50,8 +42,8 @@ public class StatusProduct {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof StatusProduct)) return false;
-        StatusProduct that = (StatusProduct) o;
+        if (!(o instanceof StatusProductDto)) return false;
+        StatusProductDto that = (StatusProductDto) o;
         return Objects.equals(getIdStatusProduct(), that.getIdStatusProduct()) &&
                 Objects.equals(getStatusProduct(), that.getStatusProduct());
     }
@@ -64,7 +56,7 @@ public class StatusProduct {
     @Override
     public String toString() {
         return "StatusProduct{" +
-                "idStatusProduct=" + idStatusProduct +
+                "idStatusProduct=" + id +
                 ", statusProduct='" + statusProduct + '\'' +
                 '}';
     }

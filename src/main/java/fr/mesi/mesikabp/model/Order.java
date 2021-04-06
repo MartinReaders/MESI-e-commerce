@@ -9,6 +9,7 @@ import java.util.Objects;
 @Table(name = "allOrder")
 public class Order {
 
+    // Column of allOrder
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +29,21 @@ public class Order {
     @Column(name = "totalPrice")
     private Double totalPrice;
 
+    // Constructor
+
 
     public Order(){
 
     }
+
+    public Order(Long idOrder, User user, LocalDate date, Double totalPrice) {
+        this.idOrder = idOrder;
+        this.user = user;
+        this.date = date;
+        this.totalPrice = totalPrice;
+    }
+
+    // Getter & Setter
 
     public Long getIdOrder() {
         return idOrder;
@@ -40,8 +52,6 @@ public class Order {
     public void setIdOrder(Long idOrder) {
         this.idOrder = idOrder;
     }
-
-
 
     public User getUser() {
         return user;
@@ -66,6 +76,9 @@ public class Order {
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {
@@ -92,12 +105,5 @@ public class Order {
                 ", date=" + date +
                 ", totalPrice=" + totalPrice +
                 '}';
-    }
-
-    public Order(Long idOrder, User user, LocalDate date, Double totalPrice) {
-        this.idOrder = idOrder;
-        this.user = user;
-        this.date = date;
-        this.totalPrice = totalPrice;
     }
 }

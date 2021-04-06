@@ -7,6 +7,8 @@ import java.util.Objects;
 @Table(name = "score_user_product")
 public class ScoreUserProduct {
 
+    // Column of ScoreUserProduct
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idScoreUserProduct")
@@ -23,9 +25,20 @@ public class ScoreUserProduct {
     @Column(name = "valeur")
     private Boolean score;
 
+    // Constructor
+
     public ScoreUserProduct() {
 
     }
+
+    public ScoreUserProduct(Long id, User idUser, Product idProduct, Boolean score) {
+        this.id = id;
+        this.idUser = idUser;
+        this.idProduct = idProduct;
+        this.score = score;
+    }
+
+    // Getter & Setter
 
     public Long getId() {
         return id;
@@ -58,6 +71,9 @@ public class ScoreUserProduct {
     public void setScore(Boolean score) {
         this.score = score;
     }
+
+
+    // Override Methods
 
     @Override
     public boolean equals(Object o) {

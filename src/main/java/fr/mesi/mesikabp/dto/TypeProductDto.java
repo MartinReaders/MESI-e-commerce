@@ -1,32 +1,22 @@
-package fr.mesi.mesikabp.model;
+package fr.mesi.mesikabp.dto;
 
-
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-public class TypeProduct {
+public class TypeProductDto {
 
-    // Column of TypeProduct
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdTypeProduct")
     private Long id;
 
-    @Column(name = "typeProduct")
     private String typeProduct;
 
-    @Column(name = "familyProduct")
     private String familyProduct;
 
     // Constructor
 
-    public TypeProduct(){
+    public TypeProductDto(){
 
     }
 
-    public TypeProduct(Long id, String typeProduct, String familyProduct) {
+    public TypeProductDto(Long id, String typeProduct, String familyProduct) {
         this.id = id;
         this.typeProduct = typeProduct;
         this.familyProduct = familyProduct;
@@ -65,7 +55,7 @@ public class TypeProduct {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TypeProduct that = (TypeProduct) o;
+        TypeProductDto that = (TypeProductDto) o;
         return Objects.equals(id, that.id) && Objects.equals(typeProduct, that.typeProduct) && Objects.equals(familyProduct, that.familyProduct);
     }
 

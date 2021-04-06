@@ -1,41 +1,27 @@
-package fr.mesi.mesikabp.model;
+package fr.mesi.mesikabp.dto;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "brand")
-public class Brand {
+public class BrandDto {
 
-    // Column of Brand
+    private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idBrand;
-
-    @Column(name = "libelle")
     private String libelle;
 
-    @Column(name = "colorBrand")
     private String colorBrand;
 
-    @Column(name = "image")
     private String image;
 
-    @Column(name = "description")
     private String description;
-
 
 
     // Constructor
 
-    public Brand() {
-
+    public BrandDto() {
     }
 
-
-    public Brand(Long idBrand, String libelle, String colorBrand, String image, String description) {
-        this.idBrand = idBrand;
+    public BrandDto(Long id, String libelle, String colorBrand, String image, String description) {
+        this.id = id;
         this.libelle = libelle;
         this.colorBrand = colorBrand;
         this.image = image;
@@ -45,12 +31,12 @@ public class Brand {
 
     // Getter & Setter
 
-    public Long getIdBrand() {
-        return idBrand;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdBrand(Long idBrand) {
-        this.idBrand = idBrand;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLibelle() {
@@ -91,24 +77,24 @@ public class Brand {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Brand)) return false;
-        Brand brand = (Brand) o;
-        return Objects.equals(getIdBrand(), brand.getIdBrand()) &&
-                Objects.equals(getLibelle(), brand.getLibelle()) &&
-                Objects.equals(getColorBrand(), brand.getColorBrand()) &&
-                Objects.equals(getImage(), brand.getImage()) &&
-                Objects.equals(getDescription(), brand.getDescription());
+        if (!(o instanceof BrandDto)) return false;
+        BrandDto brandDto = (BrandDto) o;
+        return Objects.equals(getId(), brandDto.getId()) &&
+                Objects.equals(getLibelle(), brandDto.getLibelle()) &&
+                Objects.equals(getColorBrand(), brandDto.getColorBrand()) &&
+                Objects.equals(getImage(), brandDto.getImage()) &&
+                Objects.equals(getDescription(), brandDto.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdBrand(), getLibelle(), getColorBrand(), getImage(), getDescription());
+        return Objects.hash(getId(), getLibelle(), getColorBrand(), getImage(), getDescription());
     }
 
     @Override
     public String toString() {
-        return "Brand{" +
-                "idBrand=" + idBrand +
+        return "BrandDto{" +
+                "id=" + id +
                 ", libelle='" + libelle + '\'' +
                 ", colorBrand='" + colorBrand + '\'' +
                 ", image='" + image + '\'' +
