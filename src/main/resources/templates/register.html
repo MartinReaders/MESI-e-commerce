@@ -1,0 +1,106 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<html xmlns:th="http://www.thymeleaf.org">
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+    <hr>
+
+
+
+
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <form  th:action="@{/register}" th:object="${registerForm}" th:method="post">
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" th:field="*{lastName}"  class="form-control" placeholder="Last Name" type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" th:field="*{firstName}" class="form-control" placeholder="First Name" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" th:field="*{email}" class="form-control" placeholder="Email address" type="email">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <input name="" th:field="*{number}"  class="form-control" placeholder="Phone number" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" th:field="*{login}" class="form-control" placeholder="login" type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input th:field="*{password}"  class="form-control" placeholder="Create password" type="password">
+                </div> <!-- form-group// -->
+
+
+
+
+                <div class="form-group input-group">
+
+                    <input th:field="*{birthday}"  class="form-control" placeholder="birthday" type="date">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+
+                    <input th:field="*{adress1}" class="form-control" placeholder="Adress 1 " type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+
+                    <input th:field="*{adress2}"  class="form-control" placeholder="Adress 2 " type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+
+                    <input th:field="*{zipCode}"  class="form-control" placeholder="Zip Code" type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+
+                    <input th:field="*{city}"  class="form-control" placeholder="City" type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+
+                    <input th:field="*{country}"  class="form-control" placeholder="Country" type="text">
+                </div> <!-- form-group// -->
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Have an account? <a href="/login">Log In</a> </p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
+
+</div>
+<!--container end.//-->
+
+<br><br>
