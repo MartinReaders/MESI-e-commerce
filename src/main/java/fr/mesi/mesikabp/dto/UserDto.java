@@ -24,7 +24,9 @@ public class UserDto implements Serializable {
 
     private LocalDate birthday;
 
-    private String address;
+    private String address1;
+
+    private String address2;
 
     private String zipCode;
 
@@ -36,7 +38,7 @@ public class UserDto implements Serializable {
     }
 
     public UserDto(Long id, String login, String password, Integer grade, String firstName, String lastName,
-                   String email, String phone, LocalDate birthday, String address, String zipCode, String city,
+                   String email, String phone, LocalDate birthday, String address1, String address2, String zipCode, String city,
                    String country) {
         this.id = id;
         this.login = login;
@@ -47,7 +49,8 @@ public class UserDto implements Serializable {
         this.email = email;
         this.phone = phone;
         this.birthday = birthday;
-        this.address = address;
+        this.address1 = address1;
+        this.address2 = address2;
         this.zipCode = zipCode;
         this.city = city;
         this.country = country;
@@ -125,12 +128,20 @@ public class UserDto implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 
     public String getZipCode() {
@@ -171,7 +182,8 @@ public class UserDto implements Serializable {
                 Objects.equals(email, userDto.email) &&
                 Objects.equals(phone, userDto.phone) &&
                 Objects.equals(birthday, userDto.birthday) &&
-                Objects.equals(address, userDto.address) &&
+                Objects.equals(address1, userDto.address1) &&
+                Objects.equals(address2, userDto.address2) &&
                 Objects.equals(zipCode, userDto.zipCode) &&
                 Objects.equals(city, userDto.city) &&
                 Objects.equals(country, userDto.country);
@@ -179,7 +191,7 @@ public class UserDto implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, grade, firstName, lastName, email, phone, birthday, address, zipCode, city, country);
+        return Objects.hash(id, login, password, grade, firstName, lastName, email, phone, birthday, address1, address2, zipCode, city, country);
     }
 
     @Override
@@ -194,7 +206,8 @@ public class UserDto implements Serializable {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", birthday=" + birthday +
-                ", address='" + address + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
                 ", zipCode='" + zipCode + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
