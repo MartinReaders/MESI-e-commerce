@@ -8,4 +8,5 @@ public interface AuthService {
     boolean isAccountExist(User user);
     void registerUser(User user) throws EntityExistsException;
     boolean isCredentialsUserAreCorrect(User user);
+    User getUserInfoByLogin(String login);
 }

@@ -49,4 +49,15 @@ public class AuthServiceImpl implements AuthService {
             return false; //Compte n'existe pas
         }
     }
+
+    @Override
+    public User getUserInfoByLogin(String login) {
+        if(login.isEmpty()) {
+            return null;
+        }
+
+        Optional<User> userOpt = userRepository.findByLogin(login);
+
+        return userOpt.orElse(null);
+    }
 }

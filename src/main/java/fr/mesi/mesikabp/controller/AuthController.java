@@ -34,7 +34,9 @@ public class AuthController {
     public String getHomePage(HttpServletRequest request, final ModelMap model) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
+            userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
             model.put("produits", productService.getProductByFilter(0, 7));
+            model.put("user", userDto);
             return "home";
         } else {
             return "redirect:login";
