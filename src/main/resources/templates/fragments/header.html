@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <!-- cdn Slick JS - css - theme -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick-theme.css">
-        <title>Projet MESI - Page.nom</title>
+        <title>Projet MESI - Page ...</title>
     </head>
     <body>
         <header th:fragment="header">
@@ -38,7 +38,8 @@
 
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User.name</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${user.firstName}"></a>
+
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/profile/1">Mon profil</a>
                                 <a class="dropdown-item" href="#">...</a>
