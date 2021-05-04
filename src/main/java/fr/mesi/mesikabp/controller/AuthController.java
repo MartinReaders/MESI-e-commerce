@@ -86,8 +86,13 @@ public class AuthController {
 
     //-----------------------------------REGISTER---------------------------------------------------------------------//
     @GetMapping(value = "/register")
-    public String getRegisterPage() {
-        return "register";
+    public String getRegisterPage(HttpServletRequest request) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+        if(userDto != null) {
+            return "redirect:home";
+        } else {
+            return "register";
+        }
     }
 
     /*
