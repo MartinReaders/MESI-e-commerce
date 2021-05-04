@@ -3,8 +3,9 @@ INSERT INTO user (login, password, grade) VALUES
 ('Dylan','ANTONIOTTI',1),
 ('Martin','KHAPHERIAN',1),
 ('Manahel','BOUCHKARA',1),
-('root','root',2),
+('root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1);
 ('user','user',2);
+
 
 INSERT INTO typeProduct (idTypeProduct, typeProduct, familyProduct) VALUES
 (1,'all','all'),
