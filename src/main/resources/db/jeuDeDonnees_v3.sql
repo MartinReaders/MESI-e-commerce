@@ -1,14 +1,9 @@
 INSERT INTO user (login, password, grade) VALUES
-('Pierre','POCHERON',1),
-('Dylan','ANTONIOTTI',1),
-('Martin','KHAPHERIAN',1),
-('Manahel','BOUCHKARA',1),
-('root','root',2),
-('user','user',2);
+('root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1);
+
 
 INSERT INTO typeProduct (idTypeProduct, typeProduct, familyProduct) VALUES
 (1,'all','all'),
-
 (2,'souris','périphériques'),
 (3,'enceinte','périphériques'),
 (4,'chaise','périphériques'),
@@ -282,13 +277,13 @@ INSERT INTO characteristics (idCharacteristics, idTypeProduct, title) VALUES
 
 
 INSERT INTO basket (idUser, createdBasket) VALUES
-(1,'2020/12/17'),
+/*(1,'2020/12/17'),
 (2,'2020/12/16'),
 (3,'2020/12/15'),
-(4,'2020/12/14');
+(4,'2020/12/14');*/
 
 INSERT INTO product_basket (idProduct, idBasket, quantity) VALUES
-(1,1,2),
+/*(1,1,2),
 (1,2,1),
 (2,2,1),
 (3,2,1),
@@ -296,16 +291,16 @@ INSERT INTO product_basket (idProduct, idBasket, quantity) VALUES
 (7,3,1),
 (1,4,1),
 (4,4,1),
-(5,4,1);
+(5,4,1);*/
 
 INSERT INTO allOrder (idUser, idBasket, date, totalPrice) VALUES
-(1,1,'2020/12/17',400),
+/*(1,1,'2020/12/17',400),
 (2,2,'2020/12/17',500),
 (3,3,'2020/12/17',600),
-(4,4,'2020/12/17',700);
+(4,4,'2020/12/17',700);*/
  
  INSERT INTO score_user_product (idUser, idProduct, valeur) VALUES
-(1,1,1),
+/*(1,1,1),
 (1,2,1),
 (1,3,1),
 (1,4,0),
@@ -316,4 +311,4 @@ INSERT INTO allOrder (idUser, idBasket, date, totalPrice) VALUES
 (1,9,1),
 (2,1,0),
 (2,2,1),
-(3,1,1);
+(3,1,1);*/
