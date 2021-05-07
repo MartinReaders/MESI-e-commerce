@@ -35,7 +35,7 @@ public class AuthController {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
             userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-            model.put("produits", productService.getProductByFilter(0, 7));
+            model.put("products", productService.getProductByFilter(0, 7));
             model.put("user", userDto);
             return "home";
         } else {
