@@ -103,7 +103,7 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
-    public String userRegister(final ModelMap model, @RequestBody UserDto userDto) {
+    public String userRegister(HttpServletRequest request, final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
         List<String> errors = new ArrayList<>();
         User userDao = modelMapService.convertToDao(userDto);
         try {
