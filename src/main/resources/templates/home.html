@@ -37,6 +37,7 @@
                             <!-- ?? Probleme -> lors de la recuperation de la marque,
                             toutes les infos concernant la marque sont récupérés et non pas seulement le libelle de la marque-->
                             <span th:text="${product.brand.libelle}"></span>
+                            </br>
                             <a th:href="'/product/' + ${product.id}">View produit</a>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
 
 <!-- |||||  Container - Coming Soon  |||||-->
 <div id="containerComingSoon" class="container-fluid big-container">
-    <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
+    <div class="container" style="padding-top: 30px; padding-bottom: 56px;">
         <div class="row rowNoGutters" style="justify-content: center;">
             <div class="col-lg-12">
                 <div class="text-center animate__animated animate__fadeIn">
@@ -185,11 +186,12 @@
 <!--                            </p>-->
 <!--                            </p>-->
                     <div class="row sliderComingSoon">
-                        <div th:each="product : ${listeSoonProduct}" class="product">
+                        <div th:each="product : ${listeSoonProduct}" class="product" style="text-align: -webkit-center;">
 
                             <img th:src="'/img/' + ${product.image}" style="max-width: 250px; height: 250px;">
                             <p>
                                 <span th:text="${product.model}"></span>
+                                </br>
                                 <span th:text="${product.brand.libelle}"></span>
                             </p>
                             <!-- Quand click sur plus ou moins, Passe le bouton en actif et plus cliquable-->
@@ -226,9 +228,9 @@
                             <div class="text-center">
                                 <img th:src="'/img/' + ${brand.image}" style="width: 300px;">
                             </div>
-                            <p class="text-secondary">
+                            <!--<p class="text-secondary">
                                 <span th:text="${brand.libelle}"></span>
-                            </p>
+                            </p>-->
                         </a>
                     </div>
                 </div>
