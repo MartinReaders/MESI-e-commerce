@@ -1,5 +1,5 @@
-INSERT INTO user (login, password, grade, firstName) VALUES
-('root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1,'un Prenom');
+INSERT INTO user (login, password, grade, firstName, lastName, image) VALUES
+('root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1,'un Prenom','un Nom','img.png');
 
 
 INSERT INTO typeProduct (idTypeProduct, typeProduct, familyProduct) VALUES
@@ -18,21 +18,21 @@ INSERT INTO statusProduct (idStatusProduct, statusProduct) VALUES
 (3,'a venir');
 
 INSERT INTO brand (idBrand, libelle, colorBrand, image, description) VALUES
-(1,'Logitech','bleu','logitech/logo.jpg','desc'),
-(2,'Corsair','jaune','Corsair/logo.jpg','desc'),
-(3,'Millenium','violet','Millenium/logo.jpg','desc'),
-(4,'SteelSeries','orange','SteelSeries/logo.jpg','desc'),
-(5,'Razer','vert','Razer/logo.jpg','desc'),
-(6,'Ducky Channel','jaune','Ducky_Channel/logo.jpg','desc'),
-(7,'Aorus','argent','Aorus/logo.jpg','desc'),
-(8,'Alienware','cyan','Alienware/logo.jpg','desc'),
-(9,'AKRacing','rouge','AKRacing/logo.jpg','desc'),
-(10,'DXRacer','blanc','DXRacer/logo.jpg','desc'),
-(11,'Spirit of Gamer','noir','Spirit_of_Gamer/logo.jpg','desc'),
-(12,'REKT','orange','REKT/logo.jpg','desc'),
-(13,'Noblechairs','noir','Noblechairs/logo.jpg','desc'),
-(14,'Bose','argent','Bose/logo.jpg','desc'),
-(15,'JBL','orange','JBL/logo.jpg','desc');
+(1,'Logitech','bleu','logitech/logo.png','desc'),
+(2,'Corsair','jaune','Corsair/logo.png','desc'),
+(3,'Millenium','violet','Millenium/logo.png','desc'),
+(4,'SteelSeries','orange','SteelSeries/logo.png','desc'),
+(5,'Razer','vert','Razer/logo.png','desc'),
+(6,'Ducky Channel','jaune','Ducky_Channel/logo.png','desc'),
+(7,'Aorus','argent','Aorus/logo.png','desc'),
+(8,'Alienware','cyan','Alienware/logo.png','desc'),
+(9,'AKRacing','rouge','AKRacing/logo.png','desc'),
+(10,'DXRacer','blanc','DXRacer/logo.png','desc'),
+(11,'Spirit of Gamer','noir','Spirit_of_Gamer/logo.png','desc'),
+(12,'REKT','orange','REKT/logo.png','desc'),
+(13,'Noblechairs','noir','Noblechairs/logo.svg','desc'),
+(14,'Bose','argent','Bose/logo.png','desc'),
+(15,'JBL','orange','JBL/logo.png','desc');
 
 INSERT INTO product (code, idBrand, model, price, image, quantity, idTypeProduct, idStatusProduct, description) VALUES
 ('CLA-LOG',1,'G513 Carbone',139,'logitech/G513_Carbone.jpg',15,6,1,'Mélange parfait de performances, de technologies et d''une conception d''une qualité inégalée, le clavier G513 est un clavier gaming mécanique RVB équipé des switches mécaniques tactiles GX Brown plébiscités par les professionnels d''eSports du monde entier.'),

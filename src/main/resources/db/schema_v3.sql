@@ -13,6 +13,7 @@ CREATE TABLE user (
   zipCode VARCHAR(10),
   city VARCHAR(100),
   country VARCHAR(30),
+  image VARCHAR(150),
   PRIMARY KEY(idUser)
 );
 

@@ -34,12 +34,14 @@ public class UserDto implements Serializable {
 
     private String country;
 
+    private String image;
+
     public UserDto() {
     }
 
     public UserDto(Long id, String login, String password, Integer grade, String firstName, String lastName,
                    String email, String phone, LocalDate birthday, String address1, String address2, String zipCode, String city,
-                   String country) {
+                   String country, String image) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -54,6 +56,7 @@ public class UserDto implements Serializable {
         this.zipCode = zipCode;
         this.city = city;
         this.country = country;
+        this.image = image;
     }
 
     public Long getId() {
@@ -168,6 +171,14 @@ public class UserDto implements Serializable {
         this.country = country;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -186,12 +197,13 @@ public class UserDto implements Serializable {
                 Objects.equals(address2, userDto.address2) &&
                 Objects.equals(zipCode, userDto.zipCode) &&
                 Objects.equals(city, userDto.city) &&
-                Objects.equals(country, userDto.country);
+                Objects.equals(country, userDto.country) &&
+                Objects.equals(image, userDto.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, grade, firstName, lastName, email, phone, birthday, address1, address2, zipCode, city, country);
+        return Objects.hash(id, login, password, grade, firstName, lastName, email, phone, birthday, address1, address2, zipCode, city, country, image);
     }
 
     @Override
@@ -211,6 +223,7 @@ public class UserDto implements Serializable {
                 ", zipCode='" + zipCode + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

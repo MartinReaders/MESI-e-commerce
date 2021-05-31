@@ -57,6 +57,9 @@ public class User {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "image")
+    private String image;
+
     // Constructor
 
     public User(){
@@ -65,7 +68,7 @@ public class User {
 
     public User(Long id, String login, String password, Integer grade, String lastName, String firstName,
                 String email, String phone, LocalDate dateBirth, String address1, String address2, String zipCode,
-                String city, String country) {
+                String city, String country, String image) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -80,6 +83,7 @@ public class User {
         this.zipCode = zipCode;
         this.city = city;
         this.country = country;
+        this.image = image;
     }
 
 
@@ -198,6 +202,13 @@ public class User {
         this.country = country;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     // Override Methods
 
@@ -219,12 +230,13 @@ public class User {
                 Objects.equals(getAddress2(), that.getAddress2()) &&
                 Objects.equals(getZipCode(), that.getZipCode()) &&
                 Objects.equals(getCity(), that.getCity()) &&
-                Objects.equals(getCountry(), that.getCountry());
+                Objects.equals(getCountry(), that.getCountry()) &&
+                Objects.equals(getImage(), that.getImage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getLogin(), getPassword(), getGrade(), getLastName(), getFirstName(), getEmail(), getPhone(), getDateBirth(), getAddress1(), getAddress2(), getZipCode(), getCity(), getCountry());
+        return Objects.hash(getId(), getLogin(), getPassword(), getGrade(), getLastName(), getFirstName(), getEmail(), getPhone(), getDateBirth(), getAddress1(), getAddress2(), getZipCode(), getCity(), getCountry(), getImage());
     }
 
     @Override
@@ -244,6 +256,7 @@ public class User {
                 ", zipCode=" + zipCode +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 

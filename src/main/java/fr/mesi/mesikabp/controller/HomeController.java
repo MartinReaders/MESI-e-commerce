@@ -44,8 +44,6 @@ public class HomeController {
     private AuthService authService;
 
 
-
-
     @GetMapping(value = "/home")
     public String getHomePage(HttpServletRequest request, final ModelMap model) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
