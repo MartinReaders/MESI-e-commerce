@@ -13,12 +13,16 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="row my-3" style="text-align: center;">
                                     <div class="col-12">
-                                        <span>Image.utilisateur</span>
+                                        <img th:src="'/usr/' + ${user.image}" style="max-width: 250px; height: 250px;">
                                     </div>
                                 </div>
                                 <div class="row mb-2" style="text-align: center;">
                                     <div class="col-12">
-                                        <span>User.nom + User.prenom</span>
+                                        <p>
+                                            <span th:text="${user.lastName}"></span>
+                                            </br>
+                                            <span th:text="${user.firstName}"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row mb-5" style="text-align: center;">
