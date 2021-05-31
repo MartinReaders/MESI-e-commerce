@@ -35,7 +35,7 @@ public class AuthController {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
             userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-            model.put("produits", productService.getProductByFilter(0, 7));
+            model.put("products", productService.getProductByFilter(0, 7));
             model.put("user", userDto);
             return "home";
         } else {
@@ -103,7 +103,11 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
+<<<<<<< HEAD
     public String userRegister(HttpServletRequest request, final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
+=======
+    public String userRegister(final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
+>>>>>>> d82a10b775ed7f2ccdff9e15a07c814029e8aae4
         List<String> errors = new ArrayList<>();
         User userDao = modelMapService.convertToDao(userDto);
         try {

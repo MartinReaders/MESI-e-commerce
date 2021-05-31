@@ -1,5 +1,5 @@
-INSERT INTO user (login, password, grade) VALUES
-('root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1);
+INSERT INTO user (login, password, grade, firstName) VALUES
+('root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1,'un Prenom');
 
 
 INSERT INTO typeProduct (idTypeProduct, typeProduct, familyProduct) VALUES

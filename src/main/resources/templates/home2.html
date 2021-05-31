@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<th:block th:each="brand : ${brand}">
+    <tr>
+        <td th:text="${brand.libelle}">Price</td>
+
+        <td><a class="btn" th:href="${brand.idBrand}">Détail</a></td>
+    </tr>
+</th:block>
+
+
+
+
+
+
