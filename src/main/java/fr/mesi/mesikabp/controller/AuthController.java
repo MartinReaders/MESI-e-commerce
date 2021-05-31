@@ -103,7 +103,7 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
-    public String userRegister(final ModelMap model, @ModelAttribute("registerForm") UserDto userDto) {
+    public String userRegister(final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
         List<String> errors = new ArrayList<>();
         User userDao = modelMapService.convertToDao(userDto);
         try {
@@ -116,7 +116,7 @@ public class AuthController {
             System.out.println(e.getMessage());
             return "redirect:login";
         }
-        return "authentification"; //Création de compte réussie
+        return "redirect:login"; //Création de compte réussie
     }
 
 
