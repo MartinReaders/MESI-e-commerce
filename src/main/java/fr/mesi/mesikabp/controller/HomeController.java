@@ -54,7 +54,7 @@ public class HomeController {
             model.put("products", productService.getProductByFilter(0, 7));
             model.put("listeBestProduct", productService.getProductByFilter(2, 10));
             model.put("listeSoonProduct", productService.getProductByFilter(1, 5));
-//            model.put("listeBrand", brandRepository.findAll());
+            model.put("listeBrand", brandRepository.findAll());
 
             model.put("user", userDto);
             return "home";
