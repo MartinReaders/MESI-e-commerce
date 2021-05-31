@@ -30,18 +30,18 @@ public class AuthController {
     @Autowired
     private ModelMapService modelMapService;
 
-    @GetMapping(value = "/home")
-    public String getHomePage(HttpServletRequest request, final ModelMap model) {
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto != null) {
-            userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-            model.put("products", productService.getProductByFilter(0, 7));
-            model.put("user", userDto);
-            return "home";
-        } else {
-            return "redirect:login";
-        }
-    }
+//    @GetMapping(value = "/home")
+//    public String getHomePage(HttpServletRequest request, final ModelMap model) {
+//        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
+//        if(userDto != null) {
+//            userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
+//            model.put("products", productService.getProductByFilter(0, 7));
+//            model.put("user", userDto);
+//            return "home";
+//        } else {
+//            return "redirect:login";
+//        }
+//    }
 
     //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
@@ -103,7 +103,7 @@ public class AuthController {
      * Le mot de passe doit être crypté coté client ???
      */
     @PostMapping(value = "/register")
-    public String userRegister(final ModelMap model, @ModelAttribute("userForm") UserDto userDto) {
+    public String userRegister(final ModelMap model, @ModelAttribute("registerForm") UserDto userDto) {
         List<String> errors = new ArrayList<>();
         User userDao = modelMapService.convertToDao(userDto);
         try {

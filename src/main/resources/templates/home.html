@@ -29,14 +29,14 @@
                     <h2 class="titleSection mb-5">Meilleurs ventes</h2>
                     <div class="row sliderBestSellers">
                         <!-- Recuperer uniquement une liste d'une 10ene de produits -->
-                        <div th:each="product : ${products}" class="product">
+                        <div th:each="product : ${listeBestProduct}" class="product">
                             <div class="text-center">
                                 <img th:src="'/img/' + ${product.image}">
                             </div>
                             <span th:text="${product.model}"></span>
                             <!-- ?? Probleme -> lors de la recuperation de la marque,
                             toutes les infos concernant la marque sont récupérés et non pas seulement le libelle de la marque-->
-                            <span th:text="${product.brand}"></span>
+                            <span th:text="${product.brand.libelle}"></span>
                             <a th:href="'/product/' + ${product.id}">View produit</a>
                         </div>
                     </div>

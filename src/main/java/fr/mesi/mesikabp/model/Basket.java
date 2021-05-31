@@ -15,6 +15,7 @@ public class Basket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idBasket")
     private Long id;
 
     @OneToMany(mappedBy = "basket")

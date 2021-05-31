@@ -62,14 +62,15 @@ public class ProductController {
         List<String> errors = new ArrayList<>();
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto == null) {
-            //Retourner 402
+            //Retourner 401
             return "";
         }
 
         userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
         try {
             //Get product by id and transform DAO to DTO
-            ProductDto productDto = modelMapService.convertToDto(productService.getProductById(idProduct));
+            Product product = productService.getProductById(idProduct);
+            ProductDto productDto = modelMapService.convertToDto(product);
             model.put("product", productDto);
             model.put("user", userDto);
             return TEMPLATE_NAME_PRODUCT_DETAIL;
