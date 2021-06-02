@@ -1,5 +1,6 @@
 package fr.mesi.mesikabp.service;
 
+import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.User;
 import fr.mesi.mesikabp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Service
@@ -17,6 +19,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ModelMapService modelMapService;
 
     public static final String EXCEPTION_USER_ALREADY_EXISTS = "User already exists !";
 
@@ -51,13 +56,18 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public User getUserInfoByLogin(String login) {
+    public UserDto getUserInfoByLogin(String login) {
         if(login.isEmpty()) {
             return null;
         }
 
         Optional<User> userOpt = userRepository.findByLogin(login);
 
-        return userOpt.orElse(null);
+        return userOpt.map(user -> modelMapService.convertToDto(user)).orElse(null);
+    }
+
+    @Override
+    public boolean isAuthenticated(HttpSession session) {
+        return session.getAttribute("user") != null;
     }
 }

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import static fr.mesi.mesikabp.Constantes.*;
 
 
 @Controller
@@ -30,25 +31,10 @@ public class AuthController {
     @Autowired
     private ModelMapService modelMapService;
 
-//    @GetMapping(value = "/home")
-//    public String getHomePage(HttpServletRequest request, final ModelMap model) {
-//        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-//        if(userDto != null) {
-//            userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-//            model.put("products", productService.getProductByFilter(0, 7));
-//            model.put("user", userDto);
-//            return "home";
-//        } else {
-//            return "redirect:login";
-//        }
-//    }
-
-    //-----------------------------------LOGIN------------------------------------------------------------------------//
     @GetMapping(value = "/login")
     public String getConnectionPage(HttpServletRequest request, final ModelMap model) {
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto != null) {
-            return "redirect:home";
+        if(authService.isAuthenticated(request.getSession())) {
+            return REDIRECT_HOME;
         } else {
             UserDto user = new UserDto();
             model.addAttribute("userForm", user);
@@ -66,7 +52,7 @@ public class AuthController {
             //Mot de passe et login sont correctes
             //rediriger vers /home
             request.getSession().setAttribute("user", userDto);
-            return "redirect:home";
+            return REDIRECT_HOME;
         } else {
             errors.add("Le mot de passe ou le login est incorrect !");
             model.put("errors", errors);
@@ -83,15 +69,14 @@ public class AuthController {
             session.invalidate();
         }
         //Rediriger vers le /login
-        return "redirect:login";
+        return REDIRECT_LOGIN;
     }
 
     //-----------------------------------REGISTER---------------------------------------------------------------------//
     @GetMapping(value = "/register")
     public String getRegisterPage(HttpServletRequest request) {
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto != null) {
-            return "redirect:home";
+        if(authService.isAuthenticated(request.getSession())) {
+            return REDIRECT_HOME;
         } else {
             return "register";
         }
@@ -114,9 +99,9 @@ public class AuthController {
             errors.add(e.getMessage());
             model.put("errors", errors);
             System.out.println(e.getMessage());
-            return "redirect:login";
+            return REDIRECT_LOGIN;
         }
-        return "redirect:login"; //Création de compte réussie
+        return REDIRECT_LOGIN; //Création de compte réussie
     }
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
+import static fr.mesi.mesikabp.Constantes.*;
 
 @Controller
 public class ProfilController {
@@ -22,15 +23,14 @@ public class ProfilController {
 
     @GetMapping("/profile")
     public String getProfilPage(HttpServletRequest request, final ModelMap model) {
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto == null) {
-            //Retourner 402
-            return "";
-        }
+        if(authService.isAuthenticated(request.getSession())) {
+            UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
 
-        userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-        model.put("user", userDto);
-        return "profile";
+            model.put("user", userDto);
+            return "profile";
+        } else {
+            return REDIRECT_LOGIN;
+        }
     }
 
     @GetMapping("/profile/{idProfile}/order/{idOrder}")

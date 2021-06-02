@@ -1,5 +1,6 @@
 package fr.mesi.mesikabp.controller;
 
+import fr.mesi.mesikabp.Constantes;
 import fr.mesi.mesikabp.dto.ProductDto;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Product;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.mesi.mesikabp.Constantes.*;
+
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -30,55 +33,49 @@ public class ProductController {
     @Autowired
     private AuthService authService;
 
-    private static final String TEMPLATE_NAME_PRODUCT_LIST = "productList";
-    private static final String TEMPLATE_NAME_PRODUCT_DETAIL = "productDetail";
-    private static final String TEMPLATE_NAME_ERROR_404 = "error404";
-
     @GetMapping
     public String getProductPage(HttpServletRequest request, final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
-        List<String> errors = new ArrayList<>();
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto == null) {
-            //Retourner 402
-            return "";
-        }
+        if(authService.isAuthenticated(request.getSession())) {
+            List<String> errors = new ArrayList<>();
+            UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
 
-        userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-        try {
-            model.put("productList", productService.getProductByFilter(page, size));
-            model.put("user", userDto);
-            //Si tout se passe bien on retourne le template avec ses données
-            return TEMPLATE_NAME_PRODUCT_LIST;
-        } catch(IllegalArgumentException illegalArgumentException) {
-            errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
-            model.put("errors", errors); //On passe la liste des erreurs au template
-            //Une erreur est survenue
-            return TEMPLATE_NAME_PRODUCT_LIST;
+            try {
+                model.put("productList", productService.getProductByFilter(page, size));
+                model.put("user", userDto);
+                //Si tout se passe bien on retourne le template avec ses données
+                return TEMPLATE_NAME_PRODUCT_LIST;
+            } catch(IllegalArgumentException illegalArgumentException) {
+                errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
+                model.put("errors", errors); //On passe la liste des erreurs au template
+                //Une erreur est survenue
+                return TEMPLATE_NAME_PRODUCT_LIST;
+            }
+        } else {
+            return REDIRECT_LOGIN;
         }
     }
 
     @GetMapping("/{idProduct}")
     public String getProductPageById(HttpServletRequest request, final ModelMap model, @PathVariable Long idProduct) {
-        List<String> errors = new ArrayList<>();
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto == null) {
-            //Retourner 401
-            return "";
-        }
+        if(authService.isAuthenticated(request.getSession())) {
+            List<String> errors = new ArrayList<>();
+            UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
 
-        userDto = modelMapService.convertToDto(authService.getUserInfoByLogin(userDto.getLogin()));
-        try {
-            //Get product by id and transform DAO to DTO
-            Product product = productService.getProductById(idProduct);
-            ProductDto productDto = modelMapService.convertToDto(product);
-            model.put("product", productDto);
-            model.put("user", userDto);
-            return TEMPLATE_NAME_PRODUCT_DETAIL;
-        } catch(EntityNotFoundException entityNotFoundException) {
-            //Product doesn't exist
-            errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
-            model.put("errors", errors); //On passe la liste des erreurs au template
-            return TEMPLATE_NAME_ERROR_404;
+            try {
+                //Get product by id and transform DAO to DTO
+                Product product = productService.getProductById(idProduct);
+                ProductDto productDto = modelMapService.convertToDto(product);
+                model.put("product", productDto);
+                model.put("user", userDto);
+                return TEMPLATE_NAME_PRODUCT_DETAIL;
+            } catch(EntityNotFoundException entityNotFoundException) {
+                //Product doesn't exist
+                errors.add(entityNotFoundException.getMessage()); //On ajoute le message d'erreur a la liste
+                model.put("errors", errors); //On passe la liste des erreurs au template
+                return TEMPLATE_NAME_ERROR_404;
+            }
+        } else {
+            return REDIRECT_LOGIN;
         }
     }
 
@@ -87,8 +84,7 @@ public class ProductController {
      */
     @PostMapping
     public String createProduct(HttpServletRequest request, @RequestBody ProductDto productDto) {
-        UserDto userDto = (UserDto) request.getSession().getAttribute("user");
-        if(userDto != null) {
+        if(authService.isAuthenticated(request.getSession())) {
             try {
                 Product productCreated = productService
                         .createProduct(modelMapService.convertToDao(productDto));
@@ -98,8 +94,7 @@ public class ProductController {
                 return "redirect:/product";
             }
         } else {
-            //Not connected, redirect to login
-            return "redirect:/login";
+            return REDIRECT_LOGIN;
         }
     }
 }
