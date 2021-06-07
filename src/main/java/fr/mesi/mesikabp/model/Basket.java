@@ -66,18 +66,20 @@ public class Basket {
 
     // Override Methods
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Basket)) return false;
         Basket basket = (Basket) o;
-        return Objects.equals(id, basket.id) &&
-                Objects.equals(products, basket.products);
+        return Objects.equals(getId(), basket.getId()) &&
+                Objects.equals(getProducts(), basket.getProducts()) &&
+                Objects.equals(getUser(), basket.getUser());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products);
+        return Objects.hash(getId(), getProducts(), getUser());
     }
 
     @Override
@@ -85,6 +87,7 @@ public class Basket {
         return "Basket{" +
                 "id=" + id +
                 ", products=" + products +
+                ", user=" + user +
                 '}';
     }
 }
