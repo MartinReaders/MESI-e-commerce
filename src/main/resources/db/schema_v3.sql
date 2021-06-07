@@ -67,15 +67,15 @@ CREATE TABLE characteristics (
   FOREIGN KEY (idTypeProduct) REFERENCES typeProduct (idTypeProduct)
 );
 
-# CREATE TABLE product_characteristics(
-#   idProductCharacteristics INT(10) AUTO_INCREMENT,
-#   idProduct INT(10) NOT NULL,
-#   idCharacteristics INT(10) NOT NULL,
-#   valeur VARCHAR(30),
-#   PRIMARY KEY (idProductCharacteristics),
-#   FOREIGN KEY (idProduct) REFERENCES product (idProduct),
-#   FOREIGN KEY (idCharacteristics) REFERENCES characteristics (idCharacteristics)
-# );
+-- CREATE TABLE product_characteristics(
+--     idProductCharacteristics INT(10) AUTO_INCREMENT,
+--     idProduct INT(10) NOT NULL,
+--     idCharacteristics INT(10) NOT NULL,
+--     valeur VARCHAR(30),
+--     PRIMARY KEY (idProductCharacteristics),
+--     FOREIGN KEY (idProduct) REFERENCES product (idProduct),
+--     FOREIGN KEY (idCharacteristics) REFERENCES characteristics (idCharacteristics)
+-- );
 
 
 CREATE TABLE basket (
@@ -107,12 +107,12 @@ CREATE TABLE allOrder (
   FOREIGN KEY (idUser) REFERENCES user (idUser)
 );
 
-CREATE TABLE score_user_product (
-  idScoreUserProduct INT(10) AUTO_INCREMENT,
-  idUser INT(10) NOT NULL,
-  idProduct INT(10) NOT NULL,
-  valeur TINYINT(1),
-  PRIMARY KEY (idScoreUserProduct),
-  FOREIGN KEY (idUser) REFERENCES user (idUser),
-  FOREIGN KEY (idProduct) REFERENCES product (idProduct)
-);
+-- CREATE TABLE score_user_product (
+--   idScoreUserProduct INT(10) AUTO_INCREMENT,
+--   idUser INT(10) NOT NULL,
+--   idProduct INT(10) NOT NULL,
+--   valeur TINYINT(1),
+--   PRIMARY KEY (idScoreUserProduct),
+--   FOREIGN KEY (idUser) REFERENCES user (idUser),
+--   FOREIGN KEY (idProduct) REFERENCES product (idProduct)
+-- );
