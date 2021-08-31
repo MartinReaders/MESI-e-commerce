@@ -45,6 +45,7 @@
                             <form action="/delPanier" method="post">
                                 <input type="text" id="produitCode" style="display:none;" name="produitCode" value="product.code">
                                 <button type="submit" value="product" class="btn btn-outline-primary">Retirer du panier</button>
+
                             </form>
                         </div>
                     </div>
@@ -64,9 +65,17 @@
                         <p th:text="'Total ttc : ' + ${totalTTC}  + ' €'"></p>
                     </div>
                     <div class="col-3">
-                        <form action="/addCommande" method="post">
-                            <button type="submit" value="product" class="btn btn-outline-success">Valider commande</button>
-                        </form>
+<!--                        <form action="/addCommande" method="post">-->
+<!--                            <button type="submit" value="product" class="btn btn-outline-success">Valider commande</button>-->
+<!--                        </form>-->
+
+
+<!--                        <a th:href="'/orderConfirmation}" style="color: black; text-decoration: none;">-->
+<!--                            <button type="submit" value="product" class="btn btn-outline-success">Valider commande</button>-->
+<!--                        </a>-->
+                        <a th:href="'/order/orderConfirmation'">Valider commande</a>
+
+
                     </div>
                 </div>
             </div>
