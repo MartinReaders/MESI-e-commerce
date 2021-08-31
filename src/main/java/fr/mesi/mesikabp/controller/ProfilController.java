@@ -1,7 +1,9 @@
 package fr.mesi.mesikabp.controller;
 
+import fr.mesi.mesikabp.Util;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
+import fr.mesi.mesikabp.repository.BrandRepository;
 import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
@@ -26,13 +28,16 @@ public class ProfilController {
     @Autowired
     private BasketService basketService;
 
+    @Autowired
+    private BrandRepository brandRepository;
+
     @GetMapping("/profile")
     public String getProfilPage(HttpServletRequest request, final ModelMap model) {
         if(authService.isAuthenticated(request.getSession())) {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
-            model.put("user", userDto);
-            model.put("nbProduct", basketDao.getProducts().size());
+
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
             return "profile";
         } else {
             return REDIRECT_LOGIN;

@@ -1,10 +1,12 @@
 package fr.mesi.mesikabp.controller;
 
 import fr.mesi.mesikabp.Constantes;
+import fr.mesi.mesikabp.Util;
 import fr.mesi.mesikabp.dto.ProductDto;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.model.Product;
+import fr.mesi.mesikabp.repository.BrandRepository;
 import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
@@ -39,6 +41,9 @@ public class ProductController {
     @Autowired
     private BasketService basketService;
 
+    @Autowired
+    private BrandRepository brandRepository;
+
     @GetMapping
     public String getProductPage(HttpServletRequest request, final ModelMap model
             , @RequestParam(defaultValue = "0") Integer page
@@ -48,11 +53,11 @@ public class ProductController {
             List<String> errors = new ArrayList<>();
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
+
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
             try {
                 Page<Product> productPage = productService.getProductByFilter(page, size, brand);
                 model.put("productList", productPage);
-                model.put("user", userDto);
-                model.put("nbProduct", basketDao.getProducts().size());
                 model.put("size", size);
                 model.put("pageNumber", page + 1);
                 model.put("previousPage", page - 1);
@@ -65,7 +70,6 @@ public class ProductController {
             } catch(IllegalArgumentException illegalArgumentException) {
                 errors.add(illegalArgumentException.getMessage()); //On ajoute le message d'erreur a la liste
                 model.put("errors", errors); //On passe la liste des erreurs au template
-                model.put("nbProduct", basketDao.getProducts().size());
                 //Une erreur est survenue
                 return TEMPLATE_NAME_PRODUCT_LIST;
             }
@@ -80,13 +84,13 @@ public class ProductController {
             List<String> errors = new ArrayList<>();
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
+
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
             try {
                 //Get product by id and transform DAO to DTO
                 Product product = productService.getProductById(idProduct);
                 ProductDto productDto = modelMapService.convertToDto(product);
                 model.put("product", productDto);
-                model.put("user", userDto);
-                model.put("nbProduct", basketDao.getProducts().size());
                 model.put("isExist", basketService.isProductAlreadyInBasket(modelMapService.convertToDao(userDto), modelMapService.convertToDao(productDto)));
                 return TEMPLATE_NAME_PRODUCT_DETAIL;
             } catch(EntityNotFoundException entityNotFoundException) {

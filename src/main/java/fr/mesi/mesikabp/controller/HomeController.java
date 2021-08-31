@@ -2,6 +2,7 @@ package fr.mesi.mesikabp.controller;
 
 
 import fr.mesi.mesikabp.Constantes;
+import fr.mesi.mesikabp.Util;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.repository.BrandRepository;
@@ -49,10 +50,8 @@ public class HomeController {
             model.put("products", productService.getProductByFilter(0, 7, 0L));
             model.put("listeBestProduct", productService.getProductByFilter(2, 10, 0L));
             model.put("listeSoonProduct", productService.getProductByFilter(1, 5, 0L));
-            model.put("listeBrand", brandRepository.findAll());
 
-            model.put("user", userDto);
-            model.put("nbProduct", basketDao.getProducts().size());
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
 
             return "home";
         } else {
