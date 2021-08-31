@@ -73,28 +73,20 @@
                                 <a class="dropdown-item" href="#">clavier</a>
                                 <a class="dropdown-item" href="#">processeur</a>
 
+<!--                                <div th:each="typeProduct : ${listetypeProduct}" class="brand" style="width: 65px;">-->
+<!--                                    <a class="dropdown-item" th:href="'/product/' + ${typeProduct.id}"><span th:text="${typeProduct.typeProduct}"></span></a>-->
+<!--                                </div>-->
+
                             </div>
                         </li>
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logitech</a>
-                                <a class="dropdown-item" href="#">Corsair</a>
-                                <a class="dropdown-item" href="#">Millenium</a>
-                                <a class="dropdown-item" href="#">SteelSeries</a>
-                                <a class="dropdown-item" href="#">Razer</a>
-                                <a class="dropdown-item" href="#">Ducky Channel</a>
-                                <a class="dropdown-item" href="#">Aorus</a>
-                                <a class="dropdown-item" href="#">Alienware</a>
-                                <a class="dropdown-item" href="#">AKRacing</a>
-                                <a class="dropdown-item" href="#">DXRacer</a>
-                                <a class="dropdown-item" href="#">Spirit of Gamer</a>
-                                <a class="dropdown-item" href="#">REKT</a>
-                                <a class="dropdown-item" href="#">Noblechair</a>
-                                <a class="dropdown-item" href="#">Bose</a>
-                                <a class="dropdown-item" href="#">JBL</a>
-
-
+                                <div th:each="brand : ${listeBrand}" class="brand" style="width: 65px;">
+                                    <a class="dropdown-item" th:href="'/product/' + ${brand.idBrand}"><span th:text="${brand.libelle}"></span></a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -104,7 +96,6 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
-
             </nav>
             <!-- End Nav bar -->
         </header>
