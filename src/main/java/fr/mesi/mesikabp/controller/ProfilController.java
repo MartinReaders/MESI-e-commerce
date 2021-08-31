@@ -1,7 +1,9 @@
 package fr.mesi.mesikabp.controller;
 
 import fr.mesi.mesikabp.dto.UserDto;
+import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.service.AuthService;
+import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +23,16 @@ public class ProfilController {
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private BasketService basketService;
+
     @GetMapping("/profile")
     public String getProfilPage(HttpServletRequest request, final ModelMap model) {
         if(authService.isAuthenticated(request.getSession())) {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
-
+            Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
             model.put("user", userDto);
+            model.put("nbProduct", basketDao.getProducts().size());
             return "profile";
         } else {
             return REDIRECT_LOGIN;
