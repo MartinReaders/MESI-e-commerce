@@ -46,9 +46,9 @@ public class HomeController {
 
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
 
-            model.put("products", productService.getProductByFilter(0, 7));
-            model.put("listeBestProduct", productService.getProductByFilter(2, 10));
-            model.put("listeSoonProduct", productService.getProductByFilter(1, 5));
+            model.put("products", productService.getProductByFilter(0, 7, 0L));
+            model.put("listeBestProduct", productService.getProductByFilter(2, 10, 0L));
+            model.put("listeSoonProduct", productService.getProductByFilter(1, 5, 0L));
             model.put("listeBrand", brandRepository.findAll());
 
             model.put("user", userDto);

@@ -89,20 +89,20 @@ class ProductServiceTest {
 
         Mockito.when(productRepository.findAll(PageRequest.of(1, 5))).thenReturn(productPage);
 
-        Page<Product> page = productService.getProductByFilter(1, 5);
+        Page<Product> page = productService.getProductByFilter(1, 5, 0L);
         assertThat(page).hasSize(5);
     }
 
     @Test
     void shouldGetProductByFilterThrownIllegalArgumentExceptionBecausePageIsNegative() {
-        assertThatThrownBy(() -> productService.getProductByFilter(-1, 1))
+        assertThatThrownBy(() -> productService.getProductByFilter(-1, 1, 0L))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ProductServiceImpl.EXCEPTION_NEGATIVE_PAGE);
     }
 
     @Test
     void shouldGetProductByFilterThrownIllegalArgumentExceptionBecauseSizeIsUnderOne() {
-        assertThatThrownBy(() -> productService.getProductByFilter(0, 0))
+        assertThatThrownBy(() -> productService.getProductByFilter(0, 0, 0L))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ProductServiceImpl.EXCEPTION_SIZE_PAGE_NULL);
     }
