@@ -59,6 +59,7 @@ public class ProductController {
                 model.put("nextPage", page + 1);
                 model.put("start", page * size + 1);
                 model.put("end", (page)*size + productPage.getNumberOfElements());
+                model.put("nbProductTotal", productPage.getTotalElements());
                 //Si tout se passe bien on retourne le template avec ses données
                 return TEMPLATE_NAME_PRODUCT_LIST;
             } catch(IllegalArgumentException illegalArgumentException) {
