@@ -5,6 +5,7 @@ import fr.mesi.mesikabp.dto.ProductDto;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.service.AuthService;
+import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import fr.mesi.mesikabp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class ProductController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private BasketService basketService;
 
     @GetMapping
     public String getProductPage(HttpServletRequest request, final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
@@ -67,6 +71,7 @@ public class ProductController {
                 ProductDto productDto = modelMapService.convertToDto(product);
                 model.put("product", productDto);
                 model.put("user", userDto);
+                model.put("isExist", basketService.isProductAlreadyInBasket(modelMapService.convertToDao(userDto), modelMapService.convertToDao(productDto)));
                 return TEMPLATE_NAME_PRODUCT_DETAIL;
             } catch(EntityNotFoundException entityNotFoundException) {
                 //Product doesn't exist

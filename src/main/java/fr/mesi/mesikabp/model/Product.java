@@ -1,6 +1,7 @@
 package fr.mesi.mesikabp.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -47,8 +48,8 @@ public class Product {
     @Column(name = "score")
     private Integer score;
 
-    @OneToMany(mappedBy = "product")
-    private Set<LinkBasketProduct> baskets;
+    @ManyToMany(mappedBy = "products")
+    private Set<Basket> baskets = new HashSet<>();
 
 
     // Constructor
@@ -157,11 +158,11 @@ public class Product {
         this.score = score;
     }
 
-    public Set<LinkBasketProduct> getBaskets() {
+    public Set<Basket> getBaskets() {
         return baskets;
     }
 
-    public void setBaskets(Set<LinkBasketProduct> baskets) {
+    public void setBaskets(Set<Basket> baskets) {
         this.baskets = baskets;
     }
 
