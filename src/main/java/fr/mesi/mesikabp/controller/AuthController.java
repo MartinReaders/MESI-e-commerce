@@ -51,7 +51,7 @@ public class AuthController {
         if(authService.isCredentialsUserAreCorrect(userDao)) {
             //Mot de passe et login sont correctes
             //rediriger vers /home
-            request.getSession().setAttribute("user", userDto);
+            request.getSession().setAttribute("user", authService.getUserInfoByLogin(userDto.getLogin()));
             return REDIRECT_HOME;
         } else {
             errors.add("Le mot de passe ou le login est incorrect !");
