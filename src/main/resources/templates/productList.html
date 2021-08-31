@@ -42,6 +42,40 @@
                 </a>
             </div>
         </div>
+
+
+
+
+<!--        ROW Pagination -->
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    Affichage des Article(s) <span th:text="${start}">1</span> à <span th:text="${end}">10</span> sur un total de <span th:text="${nbProductTotal}">275</span>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <ul class="pagination">
+                    <li class="page-item disabled" th:if="${pageNumber} == 1" >
+                        <a  class="page-link" href="#">
+                            «
+                        </a>
+                    </li>
+                    <li class="page-item" th:if="${pageNumber} != 1">
+<!--                        <a  class="page-link" th:href="@{/product(page=${previousPage}, size=${param.size}, sortDirection=${param.sortDirection}, sortProperty=${param.sortProperty})}">-->
+                        <a  class="page-link" th:href="@{/product(page=${previousPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty})}">
+                            «
+                        </a>
+                    </li>
+                    <li><a href="#">Page <span th:text="${pageNumber}">1</span></a></li>
+                    <li class="page-item" th:if="${pageNumber} != ${end} ">
+<!--                        <a class="page-link" th:href="@{/product(page=${nextPage}, size=${param.size}, sortDirection=${param.sortDirection}, sortProperty=${param.sortProperty})}">-->
+                        <a class="page-link" th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty})}">
+                            »
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
