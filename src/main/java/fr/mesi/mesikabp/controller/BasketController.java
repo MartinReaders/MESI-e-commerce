@@ -39,6 +39,7 @@ public class BasketController {
     public String getBasketPage(HttpServletRequest request, final ModelMap model) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
+            model.put("user", userDto);
             return TEMPLATE_NAME_BASKET;
         } else {
             return REDIRECTION_LOGIN_PATH;
