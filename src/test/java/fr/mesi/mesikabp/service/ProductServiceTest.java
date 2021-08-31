@@ -89,7 +89,7 @@ class ProductServiceTest {
 
         Mockito.when(productRepository.findAll(PageRequest.of(1, 5))).thenReturn(productPage);
 
-        List<Product> page = productService.getProductByFilter(1, 5, 0L);
+        Page<Product> page = productService.getProductByFilter(1, 5, 0L);
         assertThat(page).hasSize(5);
     }
 

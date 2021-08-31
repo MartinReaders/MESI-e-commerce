@@ -47,8 +47,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductByFilter(Integer page, Integer size, Long idBrand) throws IllegalArgumentException {
-        List<Product> listProduct;
+    public Page<Product> getProductByFilter(Integer page, Integer size, Long idBrand) throws IllegalArgumentException {
+        Page<Product> listProduct;
 
         if(page < 0) {
             throw new IllegalArgumentException(EXCEPTION_NEGATIVE_PAGE);
@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
         if(idBrand > 0) {
             listProduct = productRepository.findAllByBrand(idBrand, PageRequest.of(page, size));
         } else {
-            listProduct = productRepository.findAll(PageRequest.of(page, size)).toList();
+            listProduct = productRepository.findAll(PageRequest.of(page, size));
         }
 
         return listProduct;

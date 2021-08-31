@@ -12,7 +12,8 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByCode(String codeProduit);
-    @Query(value = "SELECT p.* FROM product p WHERE idBrand = :idBrand"
+    @Query(value = "SELECT * FROM product WHERE idBrand = ?1 ORDER BY ?#{#pageable}"
+            , countQuery = "SELECT count(*) FROM product WHERE idBrand = ?1"
             , nativeQuery = true)
-    List<Product> findAllByBrand(@Param("idBrand") Long idBrand, Pageable pageable);
+    Page<Product> findAllByBrand(Long idBrand, Pageable pageable);
 }

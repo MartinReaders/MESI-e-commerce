@@ -10,6 +10,7 @@ import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import fr.mesi.mesikabp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -48,9 +49,16 @@ public class ProductController {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
             try {
-                model.put("productList", productService.getProductByFilter(page, size, brand));
+                Page<Product> productPage = productService.getProductByFilter(page, size, brand);
+                model.put("productList", productPage);
                 model.put("user", userDto);
                 model.put("nbProduct", basketDao.getProducts().size());
+                model.put("size", size);
+                model.put("pageNumber", page + 1);
+                model.put("previousPage", page - 1);
+                model.put("nextPage", page + 1);
+                model.put("start", page * size + 1);
+                model.put("end", (page)*size + productPage.getNumberOfElements());
                 //Si tout se passe bien on retourne le template avec ses données
                 return TEMPLATE_NAME_PRODUCT_LIST;
             } catch(IllegalArgumentException illegalArgumentException) {
