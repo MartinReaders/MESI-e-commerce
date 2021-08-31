@@ -3,6 +3,7 @@ package fr.mesi.mesikabp.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,8 +19,11 @@ public class Basket {
     @Column(name = "idBasket")
     private Long id;
 
-    @OneToMany(mappedBy = "basket")
-    private Set<LinkBasketProduct> products;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_basket",
+        joinColumns = @JoinColumn(name = "idBasket", referencedColumnName = "idBasket"),
+        inverseJoinColumns = @JoinColumn(name = "idProduct", referencedColumnName = "idProduct"))
+    private Set<Product> products = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "idUser")
@@ -32,7 +36,7 @@ public class Basket {
 
     }
 
-    public Basket(Long id, Set<LinkBasketProduct> products, User user) {
+    public Basket(Long id, Set<Product> products, User user) {
         this.id = id;
         this.products = products;
         this.user = user;
@@ -48,11 +52,11 @@ public class Basket {
         this.id = id;
     }
 
-    public Set<LinkBasketProduct> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<LinkBasketProduct> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 
