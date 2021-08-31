@@ -10,7 +10,8 @@
             <div class="col-lg-12">
                 <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
                     <h6 class="text-primary title5 pt-5">
-                        <strong>panier.nbArticles Article(s)</strong>
+                        <strong><p th:text="${nbProduct}  + ' Article(s)'"></p></strong>
+
                     </h6>
                     <h2 class="titleSection">Votre panier</h2>
                     <p></p>
@@ -24,14 +25,15 @@
                 <div class="col-lg-7">
                     <div class="row d-flex align-items-center animate__animated animate__flipInX" style="animation-name: zoomIn;">
                         <div class="col-3">
-                            <img th:src="'/img/' + ${product.image}">
+                            <img th:src="'/img/' + ${product.image}" style="width: auto; height: 250px;">
                         </div>
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-3">
-                                    <p style="font-weight: bold;" th:text="${product.code} + ' - ' + ${product.color}"></p>
+<!--                                    <p style="font-weight: bold;" th:text="${product.code} + ' - ' + ${product.color}"></p>-->
+                                    <p style="font-weight: bold;" th:text="${product.code}"></p>
 
-                                    <p th:text="${product.brand}"></p>
+                                    <p th:text="${product.brand.libelle}"></p>
                                 </div>
                                 <div class="col-6">
                                     <p th:text="${product.model}"></p>
@@ -59,7 +61,7 @@
             <div class="col-lg-4 ">
                 <div class="row d-flex align-items-center" style="font-weight: bold">
                     <div class="col-3">
-                        <p th:text="${nbProduct}  + ' articles'"></p>
+                        <p th:text="${nbProduct}  + ' Article(s)'"></p>
                     </div>
                     <div class="col-6">
                         <p th:text="'Total ttc : ' + ${totalTTC}  + ' €'"></p>
