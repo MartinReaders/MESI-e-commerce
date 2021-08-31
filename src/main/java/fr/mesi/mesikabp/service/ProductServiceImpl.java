@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,7 +47,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> getProductByFilter(Integer page, Integer size) throws IllegalArgumentException {
+    public List<Product> getProductByFilter(Integer page, Integer size, Long idBrand) throws IllegalArgumentException {
+        List<Product> listProduct;
+
         if(page < 0) {
             throw new IllegalArgumentException(EXCEPTION_NEGATIVE_PAGE);
         }
@@ -60,8 +63,13 @@ public class ProductServiceImpl implements ProductService {
 //
 //        }
 
-        //Retourne la page N°page comprenant size produits sans aucun tri
-        return productRepository.findAll(PageRequest.of(page, size));
+        if(idBrand > 0) {
+            listProduct = productRepository.findAllByBrand(idBrand, PageRequest.of(page, size));
+        } else {
+            listProduct = productRepository.findAll(PageRequest.of(page, size)).toList();
+        }
+
+        return listProduct;
     }
 
     @Override

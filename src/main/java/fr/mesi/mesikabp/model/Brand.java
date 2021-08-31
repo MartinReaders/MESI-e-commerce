@@ -1,6 +1,7 @@
 package fr.mesi.mesikabp.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -25,7 +26,8 @@ public class Brand {
     @Column(name = "description")
     private String description;
 
-
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    private List<Product> productList;
 
     // Constructor
 
@@ -85,6 +87,13 @@ public class Brand {
         this.description = description;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     // Override Methods
 

@@ -39,13 +39,16 @@ public class ProductController {
     private BasketService basketService;
 
     @GetMapping
-    public String getProductPage(HttpServletRequest request, final ModelMap model, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "15") Integer size) {
+    public String getProductPage(HttpServletRequest request, final ModelMap model
+            , @RequestParam(defaultValue = "0") Integer page
+            , @RequestParam(defaultValue = "15") Integer size
+            , @RequestParam(defaultValue = "0") Long brand) {
         if(authService.isAuthenticated(request.getSession())) {
             List<String> errors = new ArrayList<>();
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
             try {
-                model.put("productList", productService.getProductByFilter(page, size));
+                model.put("productList", productService.getProductByFilter(page, size, brand));
                 model.put("user", userDto);
                 model.put("nbProduct", basketDao.getProducts().size());
                 //Si tout se passe bien on retourne le template avec ses données
