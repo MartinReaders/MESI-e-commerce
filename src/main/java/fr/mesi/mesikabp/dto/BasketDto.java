@@ -1,5 +1,8 @@
 package fr.mesi.mesikabp.dto;
 
+import fr.mesi.mesikabp.model.Product;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -7,14 +10,14 @@ public class BasketDto {
 
     private Long id;
 
-    private Set<LinkBasketProductDto> products;
+    private List<Product> products;
 
     private UserDto user;
 
     public BasketDto() {
     }
 
-    public BasketDto(Long id, Set<LinkBasketProductDto> products, UserDto user) {
+    public BasketDto(Long id, List<Product> products, UserDto user) {
         this.id = id;
         this.products = products;
         this.user = user;
@@ -28,11 +31,11 @@ public class BasketDto {
         this.id = id;
     }
 
-    public Set<LinkBasketProductDto> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<LinkBasketProductDto> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -50,7 +53,6 @@ public class BasketDto {
         if (o == null || getClass() != o.getClass()) return false;
         BasketDto basketDto = (BasketDto) o;
         return Objects.equals(id, basketDto.id) &&
-                Objects.equals(products, basketDto.products) &&
                 Objects.equals(user, basketDto.user);
     }
 

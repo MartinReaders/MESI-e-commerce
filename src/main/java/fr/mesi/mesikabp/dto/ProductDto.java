@@ -1,5 +1,8 @@
 package fr.mesi.mesikabp.dto;
 
+import fr.mesi.mesikabp.model.Basket;
+
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,7 +32,7 @@ public class ProductDto {
 
     private Integer score;
 
-    private Set<LinkBasketProductDto> baskets;
+    private List<Basket> baskets;
 
 
     // Constructor
@@ -38,7 +41,7 @@ public class ProductDto {
 
     }
 
-    public ProductDto(Long id, BrandDto brand, TypeProductDto typeProduct, StatusProductDto statusProduct, String code, String model, Double price, String image, Integer quantity, String description, Integer score, Set<LinkBasketProductDto> baskets) {
+    public ProductDto(Long id, BrandDto brand, TypeProductDto typeProduct, StatusProductDto statusProduct, String code, String model, Double price, String image, Integer quantity, String description, Integer score, List<Basket> baskets) {
         this.id = id;
         this.brand = brand;
         this.typeProduct = typeProduct;
@@ -143,11 +146,11 @@ public class ProductDto {
         this.score = score;
     }
 
-    public Set<LinkBasketProductDto> getBaskets() {
+    public List<Basket> getBaskets() {
         return baskets;
     }
 
-    public void setBaskets(Set<LinkBasketProductDto> baskets) {
+    public void setBaskets(List<Basket> baskets) {
         this.baskets = baskets;
     }
 
@@ -169,8 +172,7 @@ public class ProductDto {
                 Objects.equals(getImage(), that.getImage()) &&
                 Objects.equals(getQuantity(), that.getQuantity()) &&
                 Objects.equals(getDescription(), that.getDescription()) &&
-                Objects.equals(getScore(), that.getScore()) &&
-                Objects.equals(getBaskets(), that.getBaskets());
+                Objects.equals(getScore(), that.getScore());
     }
 
     @Override

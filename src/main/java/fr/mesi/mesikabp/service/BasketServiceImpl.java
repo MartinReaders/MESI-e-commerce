@@ -47,7 +47,7 @@ public class BasketServiceImpl implements BasketService {
             boolean isExistInBasket = isProductAlreadyInBasket(userDao, product);
 
             if(isExistInBasket) {
-                basketDao.setProducts(basketDao.getProducts().stream().filter(p -> p.getId() != product.getId()).collect(Collectors.toSet()));
+                basketDao.setProducts(basketDao.getProducts().stream().filter(p -> p.getId() != product.getId()).collect(Collectors.toList()));
                 basketRepository.save(basketDao);
             }
         } else {
@@ -72,7 +72,9 @@ public class BasketServiceImpl implements BasketService {
     public boolean isProductAlreadyInBasket(User userDao, Product product) {
         Basket basketDao = getBasket(userDao);
 
-        return basketDao.getProducts().stream().anyMatch(p -> p.getId().equals(product.getId()));
+        boolean isExist = basketDao.getProducts().stream().anyMatch(p -> p.getId().equals(product.getId()));
+
+        return isExist;
     }
 
     @Override

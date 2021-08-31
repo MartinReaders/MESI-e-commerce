@@ -1,7 +1,11 @@
 package fr.mesi.mesikabp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -49,7 +53,8 @@ public class Product {
     private Integer score;
 
     @ManyToMany(mappedBy = "products")
-    private Set<Basket> baskets = new HashSet<>();
+    @JsonBackReference
+    private List<Basket> baskets;
 
 
     // Constructor
@@ -158,11 +163,11 @@ public class Product {
         this.score = score;
     }
 
-    public Set<Basket> getBaskets() {
+    public List<Basket> getBaskets() {
         return baskets;
     }
 
-    public void setBaskets(Set<Basket> baskets) {
+    public void setBaskets(List<Basket> baskets) {
         this.baskets = baskets;
     }
 
@@ -184,8 +189,7 @@ public class Product {
                 Objects.equals(image, product.image) &&
                 Objects.equals(quantity, product.quantity) &&
                 Objects.equals(description, product.description) &&
-                Objects.equals(score, product.score) &&
-                Objects.equals(baskets, product.baskets);
+                Objects.equals(score, product.score);
     }
 
     @Override
