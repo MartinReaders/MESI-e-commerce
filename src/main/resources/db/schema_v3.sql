@@ -90,7 +90,6 @@ CREATE TABLE product_basket (
   idProductBasket INT(10) AUTO_INCREMENT,
   idProduct INT(10) NOT NULL,
   idBasket INT(10) NOT NULL,
-  quantity INT(10),
   PRIMARY KEY (idProductBasket),
   FOREIGN KEY (idProduct) REFERENCES product (idProduct),
   FOREIGN KEY (idBasket) REFERENCES basket (idBasket)

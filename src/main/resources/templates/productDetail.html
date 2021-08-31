@@ -4,8 +4,6 @@
 <body>
 <header th:replace="fragments/header :: header"></header>
 
-
-
 <div id="" class="container-fluid big-container">
     <div class="container-am" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="row rowNoGutters animate__animated animate__fadeIn" style="justify-content: center;">
@@ -24,18 +22,18 @@
                 <h4 class="font-weight-light"><p th:text="${product.price}"></p></h4>
                 <div class="col-lg-8 mb-5">
 
-                    <div th:if="${product.quantity != 0}" class="col-lg-6 text-succes mt-3" style="font-size: x-large;">
-                        <span th:text="${product.quantity} + ' acticles disponible'"></span>
+                    <div th:if="${product.quantity != 0}" class="col-lg-8 text-succes mt-3" style="font-size: x-large;">
+                        <span th:text="${product.quantity} + ' acticles disponible 🟩'"></span>
                     </div>
 
 
-                    <div th:unless="${product.quantity != 0}" class="col-lg-6 text-succes mt-3">
-                        <span> Plus disponible actuellement</span>
+                    <div th:unless="${product.quantity != 0}" class="col-lg-8 text-succes mt-3">
+                        <span> 0 acticle disponible 🟥</span>
                     </div>
 
                     <div class=" mt-3">
                         <input type="hidden" id="idProduct" name="produitCode" th:value="product.code">
-                        <!--<a th:href="'/basket/add/' + ${product.id}"><button type="button" class="btn btn-outline-primary">Ajouter au panier</button></a>-->
+                        <a th:href="'/basket/add/' + ${product.id}"><button type="button" class="btn btn-outline-primary">Ajouter au panier</button></a>
                     </div>
                 </div>
 
