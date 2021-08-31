@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.mesi.mesikabp.Constantes.*;
+
 @Controller
 @RequestMapping("/basket")
 public class BasketController {
@@ -30,7 +32,6 @@ public class BasketController {
     private ProductService productService;
 
     private static final String TEMPLATE_NAME_BASKET = "basket";
-    private static final String REDIRECTION_LOGIN_PATH = "redirect:login";
 
     /*
      * Validé panier
@@ -42,7 +43,7 @@ public class BasketController {
             model.put("user", userDto);
             return TEMPLATE_NAME_BASKET;
         } else {
-            return REDIRECTION_LOGIN_PATH;
+            return REDIRECT_LOGIN;
         }
     }
 
@@ -53,9 +54,9 @@ public class BasketController {
             /*
              * Insert here code for basket validation
              */
-            return REDIRECTION_LOGIN_PATH;
+            return REDIRECT_LOGIN;
         } else {
-            return REDIRECTION_LOGIN_PATH;
+            return REDIRECT_LOGIN;
         }
     }
 
@@ -74,11 +75,12 @@ public class BasketController {
                 }
             }
             model.put("errors", errors);
+            model.put("user", userDto);
             return TEMPLATE_NAME_BASKET;
 
         } else {
             model.put("errors", errors);
-            return REDIRECTION_LOGIN_PATH;
+            return REDIRECT_LOGIN;
         }
     }
 
@@ -88,7 +90,7 @@ public class BasketController {
         if(userDto != null) {
             return TEMPLATE_NAME_BASKET;
         } else {
-            return REDIRECTION_LOGIN_PATH;
+            return REDIRECT_LOGIN;
         }
     }
 }

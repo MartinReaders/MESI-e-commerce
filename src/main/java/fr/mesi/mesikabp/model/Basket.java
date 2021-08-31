@@ -2,8 +2,12 @@ package fr.mesi.mesikabp.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,11 +23,12 @@ public class Basket {
     @Column(name = "idBasket")
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "product_basket",
-        joinColumns = @JoinColumn(name = "idBasket", referencedColumnName = "idBasket"),
-        inverseJoinColumns = @JoinColumn(name = "idProduct", referencedColumnName = "idProduct"))
-    private Set<Product> products = new HashSet<>();
+        joinColumns = @JoinColumn(name = "idBasket"),
+        inverseJoinColumns = @JoinColumn(name = "idProduct"))
+    @JsonManagedReference
+    private List<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "idUser")
@@ -36,7 +41,7 @@ public class Basket {
 
     }
 
-    public Basket(Long id, Set<Product> products, User user) {
+    public Basket(Long id, List<Product> products, User user) {
         this.id = id;
         this.products = products;
         this.user = user;
@@ -52,11 +57,11 @@ public class Basket {
         this.id = id;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -83,7 +88,7 @@ public class Basket {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProducts(), getUser());
+        return Objects.hash(getId(), getUser());
     }
 
     @Override
