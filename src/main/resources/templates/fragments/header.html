@@ -73,9 +73,9 @@
                                 <a class="dropdown-item" href="#">clavier</a>
                                 <a class="dropdown-item" href="#">processeur</a>
 
-<!--                                <div th:each="typeProduct : ${listetypeProduct}" class="brand" style="width: 65px;">-->
-<!--                                    <a class="dropdown-item" th:href="'/product/' + ${typeProduct.id}"><span th:text="${typeProduct.typeProduct}"></span></a>-->
-<!--                                </div>-->
+                                <div th:each="typeProduct : ${listetypeProduct}" class="brand" style="width: 65px;">
+                                    <a class="dropdown-item" th:href="'/product/' + ${typeProduct.id}"><span th:text="${typeProduct.typeProduct}"></span></a>
+                                </div>
 
                             </div>
                         </li>
@@ -85,7 +85,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div th:each="brand : ${listeBrand}" class="brand" style="width: 65px;">
-                                    <a class="dropdown-item" th:href="'/product/' + ${brand.idBrand}"><span th:text="${brand.libelle}"></span></a>
+                                    <a class="dropdown-item" th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brand.idBrand})}"><span th:text="${brand.libelle}"></span></a>
                                 </div>
                             </div>
                         </li>
