@@ -16,6 +16,27 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="row rowNoGutters mt-5">
+            <select class="form-select" aria-label="Select Brand">
+                <option value="0" selected>All</option>
+                <div th:each="brand : ${listBrand}" class="brand">
+                    <option th:value="brand.idBrand"><span th:text="${brand.libelle}"></span></option>
+                </div>
+            </select>
+
+            <select class="form-select" aria-label="Select Type of Product">
+                <option value="0" selected>All</option>
+                <div th:each="typeProduct : ${listTypeProduct}" class="type">
+                    <option th:value="typeProduct.id"><span th:text="${typeProduct.typeProduct}"></span></option>
+                </div>
+            </select>
+
+        </div>
+
+
+
         <!-- Affichages de tous les produits dans une ligne -->
         <div class="row rowNoGutters mt-5" style="text-align: -webkit-center;">
 
