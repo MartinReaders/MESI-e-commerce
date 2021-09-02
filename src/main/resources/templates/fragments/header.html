@@ -65,18 +65,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Toutes</a>
-                                <a class="dropdown-item" href="#">souris</a>
-                                <a class="dropdown-item" href="#">enceinte</a>
-                                <a class="dropdown-item" href="#">chaise</a>
-                                <a class="dropdown-item" href="#">tapis de souris</a>
-                                <a class="dropdown-item" href="#">clavier</a>
-                                <a class="dropdown-item" href="#">processeur</a>
-
-                                <div th:each="typeProduct : ${listetypeProduct}" class="brand" style="width: 65px;">
-                                    <a class="dropdown-item" th:href="'/product/' + ${typeProduct.id}"><span th:text="${typeProduct.typeProduct}"></span></a>
+                                <div th:each="typeProduct : ${listTypeProduct}" class="brand" style="width: 65px;">
+                                    <a class="dropdown-item" th:href="@{/product(type=${typeProduct.id})}"><span th:text="${typeProduct.typeProduct}"></span></a>
                                 </div>
-
                             </div>
                         </li>
 
@@ -84,8 +75,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <div th:each="brand : ${listeBrand}" class="brand" style="width: 65px;">
-                                    <a class="dropdown-item" th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brand.idBrand})}"><span th:text="${brand.libelle}"></span></a>
+                                <div th:each="brand : ${listBrand}" class="brand" style="width: 65px;">
+                                    <a class="dropdown-item" th:href="@{/product(brand=${brand.idBrand})}"><span th:text="${brand.libelle}"></span></a>
                                 </div>
                             </div>
                         </li>

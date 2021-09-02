@@ -62,7 +62,7 @@
                     </a>
                 </span>
                 <span th:if="${pageNumber} != 1">
-                    <a th:href="@{/product(page=${previousPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brand})}">
+                    <a th:href="@{/product(page=${previousPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
                         <button class="btn btn-outline-primary">️⬅️</button>
                     </a>
                 </span>
@@ -78,7 +78,7 @@
 
 
                 <span th:if="${pageNumber} != ${end} ">
-                    <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brand})}">
+                    <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
                         <button class="btn btn-outline-primary">➡️ </button>️
                     </a>
                 </span>
