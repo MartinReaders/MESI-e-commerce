@@ -17,6 +17,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             , nativeQuery = true)
     Page<Product> findAllByBrand(Long idBrand, Pageable pageable);
 
+    @Query(value = "SELECT * FROM product WHERE idTypeProduct = ?1 ORDER BY ?#{#pageable}"
+            , countQuery = "SELECT count(*) FROM product WHERE idTypeProduct = ?1"
+            , nativeQuery = true)
+    Page<Product> findAllByType(Long idType, Pageable pageable);
+
+    @Query(value = "SELECT * FROM product WHERE idTypeProduct = ?1 AND idBrand = ?2 ORDER BY ?#{#pageable}"
+            , countQuery = "SELECT count(*) FROM product WHERE idTypeProduct = ?1 AND idBrand = ?2"
+            , nativeQuery = true)
+    Page<Product> findAllByTypeAndBrand(Long idType, Long idBrand, Pageable pageable);
+
+
     @Query(value = "SELECT COUNT(idProduct) FROM score_user_product WHERE idProduct = :idProduct",
         nativeQuery = true)
     Integer countAllLike(@Param("idProduct") Long idProduct);

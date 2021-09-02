@@ -48,7 +48,8 @@ public class ProductController {
     public String getProductPage(HttpServletRequest request, final ModelMap model
             , @RequestParam(defaultValue = "0") Integer page
             , @RequestParam(defaultValue = "15") Integer size
-            , @RequestParam(defaultValue = "0") Long brand) {
+            , @RequestParam(defaultValue = "0") Long brand
+            , @RequestParam(defaultValue = "0") Long type) {
         if(authService.isAuthenticated(request.getSession())) {
             List<String> errors = new ArrayList<>();
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
@@ -56,7 +57,7 @@ public class ProductController {
 
             Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
             try {
-                Page<Product> productPage = productService.getProductByFilter(page, size, brand);
+                Page<Product> productPage = productService.getProductByFilter(page, size, brand, type);
                 model.put("productList", productPage);
                 model.put("size", size);
                 model.put("pageNumber", page + 1);

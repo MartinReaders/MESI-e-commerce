@@ -9,6 +9,6 @@ import javax.persistence.EntityNotFoundException;
 public interface ProductService {
     Product createProduct(Product product) throws EntityExistsException;
     Product getProductById(Long idProduct) throws EntityNotFoundException;
-    Page<Product> getProductByFilter(Integer page, Integer size, Long idBrand) throws IllegalArgumentException;
+    Page<Product> getProductByFilter(Integer page, Integer size, Long idBrand, Long idType) throws IllegalArgumentException;
     void deleteProduct(Long idProduct);
 }
