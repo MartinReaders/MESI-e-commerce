@@ -86,7 +86,7 @@ public class BasketController {
             }
             model.put("errors", errors);
             model.put("user", userDto);
-            return TEMPLATE_NAME_BASKET;
+            return REDIRECT_BASKET;
 
         } else {
             model.put("errors", errors);
@@ -94,11 +94,13 @@ public class BasketController {
         }
     }
 
-    @PostMapping("/delete")
-    public String deleteProductToBasket(HttpServletRequest request, @RequestBody ProductDto productDto) {
+    @GetMapping("/delete/{idProduct}")
+    public String deleteProductToBasket(HttpServletRequest request, @PathVariable Long idProduct) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
-            return TEMPLATE_NAME_BASKET;
+            Product product = productService.getProductById(idProduct);
+            basketService.deleteProductToBasket(modelMapService.convertToDao(userDto), product);
+            return REDIRECT_BASKET;
         } else {
             return REDIRECT_LOGIN;
         }
