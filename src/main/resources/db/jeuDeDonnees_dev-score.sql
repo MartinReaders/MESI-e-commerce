@@ -297,7 +297,7 @@ INSERT INTO allOrder (idUser, idBasket, date, totalPrice) VALUES
 (2,2,'2020/12/17',500),
 (3,3,'2020/12/17',600);
 
--- INSERT INTO score_user_product (idUser, idProduct, valeur) VALUES
+-- INSERT INTO score_user_product (idUser, idProduct) VALUES
 -- (1,1,1),
 -- (1,2,1),
 -- (1,3,1),

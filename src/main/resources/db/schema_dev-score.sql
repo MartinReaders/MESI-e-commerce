@@ -105,12 +105,11 @@ CREATE TABLE allOrder (
   FOREIGN KEY (idUser) REFERENCES user (idUser)
 );
 
--- CREATE TABLE score_user_product (
---   idScoreUserProduct INT(10) AUTO_INCREMENT,
---   idUser INT(10) NOT NULL,
---   idProduct INT(10) NOT NULL,
---   valeur TINYINT(1),
---   PRIMARY KEY (idScoreUserProduct),
---   FOREIGN KEY (idUser) REFERENCES user (idUser),
---   FOREIGN KEY (idProduct) REFERENCES product (idProduct)
--- );
+CREATE TABLE score_user_product (
+  idScoreUserProduct INT(10) AUTO_INCREMENT,
+  idUser INT(10) NOT NULL,
+  idProduct INT(10) NOT NULL,
+  PRIMARY KEY (idScoreUserProduct),
+  FOREIGN KEY (idUser) REFERENCES user (idUser),
+  FOREIGN KEY (idProduct) REFERENCES product (idProduct)
+);
