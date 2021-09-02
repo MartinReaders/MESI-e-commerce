@@ -5,13 +5,12 @@ INSERT INTO user (idUser, login, password, grade, firstName, lastName, image) VA
 
 
 INSERT INTO typeProduct (idTypeProduct, typeProduct, familyProduct) VALUES
-(1,'all','all'),
-(2,'souris','périphériques'),
-(3,'enceinte','périphériques'),
-(4,'chaise','périphériques'),
-(5,'tapis de souris','périphériques'),
-(6,'clavier','périphériques'),
-(7,'processeur','composants');
+(1,'souris','périphériques'),
+(2,'enceinte','périphériques'),
+(3,'chaise','périphériques'),
+(4,'tapis de souris','périphériques'),
+(5,'clavier','périphériques'),
+(6,'processeur','composants');
 
 
 INSERT INTO statusProduct (idStatusProduct, statusProduct) VALUES
@@ -297,16 +296,11 @@ INSERT INTO allOrder (idUser, idBasket, date, totalPrice) VALUES
 (2,2,'2020/12/17',500),
 (3,3,'2020/12/17',600);
 
--- INSERT INTO score_user_product (idUser, idProduct) VALUES
--- (1,1,1),
--- (1,2,1),
--- (1,3,1),
--- (1,4,0),
--- (1,5,1),
--- (1,6,1),
--- (1,7,0),
--- (1,8,1),
--- (1,9,1),
--- (2,1,0),
--- (2,2,1),
--- (3,1,1);
+INSERT INTO score_user_product (idUser, idProduct) VALUES
+(1,12),
+(1,22),
+(1,34),
+(1,45),
+(1,57),
+(2,21),
+(3,12);

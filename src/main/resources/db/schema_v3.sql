@@ -115,3 +115,7 @@ CREATE TABLE allOrder (
 --   FOREIGN KEY (idUser) REFERENCES user (idUser),
 --   FOREIGN KEY (idProduct) REFERENCES product (idProduct)
 -- );
+
+
+
+
