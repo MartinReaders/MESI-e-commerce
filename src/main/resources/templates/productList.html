@@ -19,6 +19,7 @@
 
 
         <div class="row rowNoGutters mt-5">
+            <span>Brand : </span>
             <select class="form-select" aria-label="Select Brand">
                 <option value="0" selected>All</option>
                 <div th:each="brand : ${listBrand}" class="brand">
@@ -26,6 +27,7 @@
                 </div>
             </select>
 
+            <span>Type : </span>
             <select class="form-select" aria-label="Select Type of Product">
                 <option value="0" selected>All</option>
                 <div th:each="typeProduct : ${listTypeProduct}" class="type">
