@@ -58,14 +58,13 @@ public class BasketDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products, user);
+        return Objects.hash(id, user);
     }
 
     @Override
     public String toString() {
         return "BasketDto{" +
                 "id=" + id +
-                ", products=" + products +
                 ", user=" + user +
                 '}';
     }

@@ -95,7 +95,6 @@ public class Basket {
     public String toString() {
         return "Basket{" +
                 "id=" + id +
-                ", products=" + products +
                 ", user=" + user +
                 '}';
     }
