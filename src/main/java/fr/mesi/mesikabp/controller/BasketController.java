@@ -5,6 +5,7 @@ import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.repository.BrandRepository;
+import fr.mesi.mesikabp.repository.TypeProductRepository;
 import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
 import fr.mesi.mesikabp.service.ProductService;
@@ -36,6 +37,9 @@ public class BasketController {
     @Autowired
     private BrandRepository brandRepository;
 
+    @Autowired
+    private TypeProductRepository typeProductRepository;
+
     private static final String TEMPLATE_NAME_BASKET = "basket";
 
     /*
@@ -46,7 +50,7 @@ public class BasketController {
         UserDto userDto = (UserDto) request.getSession().getAttribute("user");
         if(userDto != null) {
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
 
             model.put("productList", basketDao.getProducts());
             model.put("totalTTC", basketDao.getProducts().stream().map(Product::getPrice).reduce(0.0, Double::sum));

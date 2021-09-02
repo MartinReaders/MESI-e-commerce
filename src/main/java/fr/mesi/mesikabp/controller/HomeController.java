@@ -7,6 +7,7 @@ import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.repository.BrandRepository;
 import fr.mesi.mesikabp.repository.ProductRepository;
+import fr.mesi.mesikabp.repository.TypeProductRepository;
 import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
@@ -39,6 +40,9 @@ public class HomeController {
     @Autowired
     private BasketService basketService;
 
+    @Autowired
+    private TypeProductRepository typeProductRepository;
+
 
     @GetMapping(value = "/home")
     public String getHomePage(HttpServletRequest request, final ModelMap model) {
@@ -51,7 +55,7 @@ public class HomeController {
             model.put("listeBestProduct", productService.getProductByFilter(2, 10, 0L, 0L));
             model.put("listeSoonProduct", productService.getProductByFilter(1, 5, 0L, 0L));
 
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
 
             return "home";
         } else {

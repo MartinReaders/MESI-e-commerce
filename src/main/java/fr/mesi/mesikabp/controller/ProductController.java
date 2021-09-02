@@ -7,6 +7,7 @@ import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.model.Product;
 import fr.mesi.mesikabp.repository.BrandRepository;
+import fr.mesi.mesikabp.repository.TypeProductRepository;
 import fr.mesi.mesikabp.service.AuthService;
 import fr.mesi.mesikabp.service.BasketService;
 import fr.mesi.mesikabp.service.ModelMapService;
@@ -44,6 +45,9 @@ public class ProductController {
     @Autowired
     private BrandRepository brandRepository;
 
+    @Autowired
+    private TypeProductRepository typeProductRepository;
+
     @GetMapping
     public String getProductPage(HttpServletRequest request, final ModelMap model
             , @RequestParam(defaultValue = "0") Integer page
@@ -55,7 +59,7 @@ public class ProductController {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
 
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
             try {
                 Page<Product> productPage = productService.getProductByFilter(page, size, brand, type);
                 model.put("brandParam", brand);
@@ -89,7 +93,7 @@ public class ProductController {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
 
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
+            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
             try {
                 //Get product by id and transform DAO to DTO
                 Product product = productService.getProductById(idProduct);
