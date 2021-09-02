@@ -75,34 +75,32 @@
         </div>
 
 
-        <div class="row" style="text-align: center">
-            <div class="col-lg-12">
-                <span th:if="${pageNumber} == 1" >
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 d-flex justify-content-around">
+                <div th:if="${pageNumber} == 1" >
                     <a href="#">
                         <button class="btn btn-outline-primary" disabled>️⬅️</button>
                     </a>
-                </span>
-                <span th:if="${pageNumber} != 1">
+                </div>
+                <div th:if="${pageNumber} != 1">
                     <a th:href="@{/product(page=${previousPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
                         <button class="btn btn-outline-primary">️⬅️</button>
                     </a>
-                </span>
+                </div>
 
-                <span>Page <span th:text="${pageNumber}">1</span></span>
+                <div>Page <span th:text="${pageNumber}">1</span></div>
 
-
-                <span th:if="${pageNumber} == nbPageTotal">
+                <div th:if="${pageNumber} == nbPageTotal">
                     <a href="#">
                         <button class="btn btn-outline-primary" disabled>➡️ </button>️️
                     </a>
-                </span>
+                </div>
 
-
-                <span th:if="${pageNumber} != ${end} ">
+                <div th:if="${pageNumber} != ${end} ">
                     <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
                         <button class="btn btn-outline-primary">➡️ </button>️
                     </a>
-                </span>
+                </div>
             </div>
         </div>
 
