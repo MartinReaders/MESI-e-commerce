@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     // Column of Product

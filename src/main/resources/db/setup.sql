@@ -1,3 +1,7 @@
+CREATE DATABASE mesi;
+
+USE mesi;
+
 CREATE TABLE user (
   idUser INT(10) AUTO_INCREMENT,
   login VARCHAR(100) NOT NULL,

@@ -7,6 +7,7 @@ import java.util.Set;
 
 
 @Entity
+@Table(name = "user")
 public class User {
 
     // Column of Utilisateur
