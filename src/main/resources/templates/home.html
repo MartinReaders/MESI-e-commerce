@@ -195,10 +195,18 @@
                             </p>
                             <!-- Quand click sur plus ou moins, Passe le bouton en actif et plus cliquable-->
                             <!-- Appel fonction UpScoreProductSoon ou DownScoreProductSoon -->
+
                             <a href="#"><i class="fas fa-minus"></i></a>
+                            <a th:if="${isExist}" href="#"><i class="fas fa-minus"></i></a>
+                            <a th:if="${isExist}" href="#"><i class="fas fa-minus" disabled></i></a>
+
                             <!-- <span class="text-secondary mx-3">product.score°</span>-->
-                            <span class="text-secondary mx-3">Coming soon</span>
+                            <span th:text="${scoreProduct}" class="text-secondary mx-3">Coming soon</span>
+
                             <a href="#"><i class="fas fa-plus text-danger"></i></a>
+                            <a th:if="${isExist}" href="#"><i class="fas fa-plus text-danger"></i></a>
+                            <a th:unless="${isExist}" href="#"><i class="fas fa-plus text-danger" disabled></i></a>
+
                         </div>
                     </div>
                 </div>
@@ -223,7 +231,7 @@
                         -> Avec info description etc en bdd
                         -> Et btn qui redirige vers les produits de la marque
                         -->
-                        <a href="#">
+                        <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brand.idBrand})}">
                             <div style="min-height: 100%;min-height: 100%;display: flex;align-items: center;">
                                 <img th:src="'/img/' + ${brand.image}" style="max-height: 150px; max-width: 250px;">
                             </div>
