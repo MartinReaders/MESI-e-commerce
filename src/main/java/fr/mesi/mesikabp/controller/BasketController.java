@@ -1,7 +1,6 @@
 package fr.mesi.mesikabp.controller;
 
 import fr.mesi.mesikabp.Util;
-import fr.mesi.mesikabp.dto.ProductDto;
 import fr.mesi.mesikabp.dto.UserDto;
 import fr.mesi.mesikabp.model.Basket;
 import fr.mesi.mesikabp.model.Product;
