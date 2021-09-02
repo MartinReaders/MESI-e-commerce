@@ -39,7 +39,9 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> productOpt = productRepository.findById(idProduct);
         if(productOpt.isPresent()) {
             //Le produit existe on le retourne
-            return productOpt.get();
+            Product product = productOpt.get();
+            product.setScore(productRepository.countAllLike(product.getId()));
+            return product;
         } else {
             //Le produit n'existe pas alors on lève un exception
             throw new EntityNotFoundException(EXCEPTION_PRODUCT_DOESNT_EXISTS);

@@ -3,6 +3,7 @@ package fr.mesi.mesikabp.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -59,6 +60,9 @@ public class User {
 
     @Column(name = "image")
     private String image;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Product> products;
 
     // Constructor
 
@@ -208,6 +212,14 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     // Override Methods

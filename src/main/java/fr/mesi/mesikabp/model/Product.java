@@ -56,6 +56,11 @@ public class Product {
     @JsonBackReference
     private List<Basket> baskets;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "score_user_product",
+            joinColumns = @JoinColumn(name = "idProduct"),
+            inverseJoinColumns = @JoinColumn(name = "idUser"))
+    private Set<User> users;
 
     // Constructor
 
@@ -171,6 +176,13 @@ public class Product {
         this.baskets = baskets;
     }
 
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     // Override Methods
 

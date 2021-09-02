@@ -16,4 +16,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             , countQuery = "SELECT count(*) FROM product WHERE idBrand = ?1"
             , nativeQuery = true)
     Page<Product> findAllByBrand(Long idBrand, Pageable pageable);
+
+    @Query(value = "SELECT COUNT(idProduct) FROM score_user_product WHERE idProduct = :idProduct",
+        nativeQuery = true)
+    Integer countAllLike(@Param("idProduct") Long idProduct);
 }
