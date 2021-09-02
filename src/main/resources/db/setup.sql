@@ -51,6 +51,7 @@ CREATE TABLE product (
   idTypeProduct INT(10),
   idStatusProduct INT(10),
   description VARCHAR(5000),
+  score INT(10),
   PRIMARY KEY (idProduct),
   FOREIGN KEY (idBrand) REFERENCES brand (idBrand),
   FOREIGN KEY (idTypeProduct) REFERENCES typeProduct (idTypeProduct),
