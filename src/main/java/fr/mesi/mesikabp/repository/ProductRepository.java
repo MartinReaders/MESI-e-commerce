@@ -12,19 +12,13 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByCode(String codeProduit);
-    @Query(value = "SELECT * FROM product WHERE idBrand = ?1 ORDER BY ?#{#pageable}"
-            , countQuery = "SELECT count(*) FROM product WHERE idBrand = ?1"
-            , nativeQuery = true)
+    @Query(value = "SELECT p FROM Product p WHERE idBrand = ?1")
     Page<Product> findAllByBrand(Long idBrand, Pageable pageable);
 
-    @Query(value = "SELECT * FROM product WHERE idTypeProduct = ?1 ORDER BY ?#{#pageable}"
-            , countQuery = "SELECT count(*) FROM product WHERE idTypeProduct = ?1"
-            , nativeQuery = true)
+    @Query(value = "SELECT p FROM Product p WHERE idTypeProduct = ?1")
     Page<Product> findAllByType(Long idType, Pageable pageable);
 
-    @Query(value = "SELECT * FROM product WHERE idTypeProduct = ?1 AND idBrand = ?2 ORDER BY ?#{#pageable}"
-            , countQuery = "SELECT count(*) FROM product WHERE idTypeProduct = ?1 AND idBrand = ?2"
-            , nativeQuery = true)
+    @Query(value = "SELECT p FROM Product p WHERE idTypeProduct = ?1 AND idBrand = ?2")
     Page<Product> findAllByTypeAndBrand(Long idType, Long idBrand, Pageable pageable);
 
 
