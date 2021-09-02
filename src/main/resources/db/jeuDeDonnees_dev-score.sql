@@ -1,7 +1,7 @@
 INSERT INTO user (idUser, login, password, grade, firstName, lastName, image) VALUES
-(1, 'root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1,'un Prenom','un Nom','img.png'),
-(2, 'admin','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',2,'un Prenom2','un Nom2','img.png'),
-(3, 'Aa','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',3,'un Prenom3','un Nom3','img.png');
+(1, 'root','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',1,'Pierre','POCHERON','img.png'),
+(2, 'admin','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',2,'Pierre','POCHERON','img.png'),
+(3, 'Aa','$2a$10$qSA1esFi8Y.1k5urAJcAV.rFPAodh8d2LcItKzeRzuHaJFhLjK1TO',3,'Pierre','POCHERON','img.png');
 
 
 INSERT INTO typeProduct (idTypeProduct, typeProduct, familyProduct) VALUES

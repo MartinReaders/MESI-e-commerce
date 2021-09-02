@@ -30,7 +30,9 @@
                         <!-- Recuperer uniquement une liste d'une 10ene de produits -->
                         <div th:each="product : ${listeBestProduct}" class="product">
                             <div class="text-center">
-                                <img th:src="'/img/' + ${product.image}" style="max-width: 250px; height: 250px;">
+                                <a th:href="'/product/' + ${product.id}">
+                                    <img th:src="'/img/' + ${product.image}" style="max-width: 250px; height: 250px;">
+                                </a>
                             </div>
                             <span th:text="${product.model}"></span>
                             <!-- ?? Probleme -> lors de la recuperation de la marque,
@@ -187,7 +189,9 @@
                     <div class="row sliderComingSoon">
                         <div th:each="product : ${listeSoonProduct}" class="product" style="text-align: -webkit-center;">
 
-                            <img th:src="'/img/' + ${product.image}" style="max-width: 250px; height: 250px;">
+                            <a th:href="'/product/' + ${product.id}">
+                                <img th:src="'/img/' + ${product.image}" style="max-width: 250px; height: 250px;">
+                            </a>
                             <p>
                                 <span th:text="${product.model}"></span>
                                 </br>
