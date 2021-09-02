@@ -58,6 +58,8 @@ public class ProductController {
             Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll());
             try {
                 Page<Product> productPage = productService.getProductByFilter(page, size, brand, type);
+                model.put("brandParam", brand);
+                model.put("typeParam", type);
                 model.put("productList", productPage);
                 model.put("size", size);
                 model.put("pageNumber", page + 1);
