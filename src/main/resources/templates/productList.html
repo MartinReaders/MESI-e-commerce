@@ -4,6 +4,10 @@
 <body>
 <header th:replace="fragments/header :: header"></header>
 
+
+
+
+
 <!-- Container contenant tout les produits -->
 <div id="containerAllProducts" class="container-fluid big-container">
     <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
@@ -92,13 +96,13 @@
 
                 <div>Page <span th:text="${pageNumber}">1</span></div>
 
-                <div th:if="${pageNumber} == nbPageTotal">
+                <div th:if="${pageNumber} == (${nbPageTotal} + 1)">
                     <a href="#">
                         <button class="btn btn-outline-primary" disabled>➡️ </button>️️
                     </a>
                 </div>
 
-                <div th:if="${pageNumber} != ${end} ">
+                <div th:if="${pageNumber} != (${nbPageTotal} + 1)">
                     <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
                         <button class="btn btn-outline-primary">➡️ </button>️
                     </a>
