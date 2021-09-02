@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table('typeProduct')
+@Table(name = "typeProduct")
 public class TypeProduct {
 
     // Column of TypeProduct
