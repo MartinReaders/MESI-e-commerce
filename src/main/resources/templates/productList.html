@@ -4,6 +4,10 @@
 <body>
 <header th:replace="fragments/header :: header"></header>
 
+
+
+
+
 <!-- Container contenant tout les produits -->
 <div id="containerAllProducts" class="container-fluid big-container">
     <div class="container-am" style="padding-top: 30px; padding-bottom: 56px;">
@@ -12,101 +16,103 @@
                 <div class="text-center animate__animated animate__bounce" style="animation-name: flipInX;">
                     <!-- Définir la couleur par defaut rouge + lorsque filtre couleur utilisé, adapter celle-ci -->
                     <h6 class="text-primary title5 pt-5"><strong>En France</strong></h6>
-                    <h2 class="titleSection">Produits disponibles</h2>
+                    <h2 th:if="${nbProductTotal} != 0" th:text="${nbProductTotal} + ' Produits disponibles '" class="titleSection"></h2>
+                    <h2 th:if="${nbProductTotal} == 0" class="titleSection">Aucun produit disponible</h2>
                 </div>
             </div>
         </div>
 
+        <span ></span>
 
-        <div class="row rowNoGutters mt-5">
-            <span>Brand : </span>
-            <select class="form-select" aria-label="Select Brand">
-                <option value="0" selected>All</option>
-                <div th:each="brand : ${listBrand}" class="brand">
-                    <option th:value="brand.idBrand"><span th:text="${brand.libelle}"></span></option>
-                </div>
-            </select>
-
-            <span>Type : </span>
-            <select class="form-select" aria-label="Select Type of Product">
-                <option value="0" selected>All</option>
-                <div th:each="typeProduct : ${listTypeProduct}" class="type">
-                    <option th:value="typeProduct.id"><span th:text="${typeProduct.typeProduct}"></span></option>
-                </div>
-            </select>
-
-        </div>
-
-
-
-        <!-- Affichages de tous les produits dans une ligne -->
-        <div class="row rowNoGutters mt-5" style="text-align: -webkit-center;">
-
-            <div th:each="product : ${productList}" class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
-                <a th:href="'/product/' + ${product.id}" style="color: black; text-decoration: none;">
-
-
-                    <img th:src="'/img/' + ${product.image}" style="width: 350px;">
-                    <div class="text-center m-4 p-5">
-                        <p style="font-weight: bold;" th:text="${product.model}"></p>
-                        <!--<p style="font-weight: bold;" th:text="${product.model} + ' - ' + ${product.color}"></p>-->
-                        <p th:text="${product.brand.libelle}"></p>
-                        <p style="color: #878786;" th:text="${product.price} + ' € '"></p>
-
-                        <!-- Retravailler cette partie une fois la vue fonctionnelle -->
-                        <button class="btn btn-outline-primary">Afficher détails</button>
-
-                        <!-- Replacer par ajouter au panier -->
-                        <!--<form action="/addPanier" method="post">
-                            <input type="text" id="produitCode" style="display:none;" name="produitCode" th:value="product.code">
-                            <button class="btn btn-outline-primary">Afficher détails</button>
-                        </form>-->
+        <div th:if="${nbProductTotal} != 0">
+            <div class="row rowNoGutters mt-5">
+                <span>Brand : </span>
+                <select class="form-select" aria-label="Select Brand">
+                    <option value="0" selected>All</option>
+                    <div th:each="brand : ${listBrand}" class="brand">
+                        <option th:value="brand.idBrand"><span th:text="${brand.libelle}"></span></option>
                     </div>
-                </a>
+                </select>
+
+                <span>Type : </span>
+                <select class="form-select" aria-label="Select Type of Product">
+                    <option value="0" selected>All</option>
+                    <div th:each="typeProduct : ${listTypeProduct}" class="type">
+                        <option th:value="typeProduct.id"><span th:text="${typeProduct.typeProduct}"></span></option>
+                    </div>
+                </select>
+
             </div>
-        </div>
 
 
-<!--        ROW Pagination -->
-        <div class="row" style="text-align: center">
-            <div class="col-lg-12">
-                <p>
-                    Affichage des Article(s) <span th:text="${start}">1</span> à <span th:text="${end}">10</span> sur un total de <span th:text="${nbProductTotal}">275</span>
-                </p>
-            </div>
-        </div>
+
+            <!-- Affichages de tous les produits dans une ligne -->
+            <div class="row rowNoGutters mt-5" style="text-align: -webkit-center;">
+
+                <div th:each="product : ${productList}" class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 mb-xl-5 itemSquare animate__animated animate__flipInX" style="animation-name: zoomIn;">
+                    <a th:href="'/product/' + ${product.id}" style="color: black; text-decoration: none;">
 
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-lg-6 d-flex justify-content-around">
-                <div th:if="${pageNumber} == 1" >
-                    <a href="#">
-                        <button class="btn btn-outline-primary" disabled>️⬅️</button>
-                    </a>
-                </div>
-                <div th:if="${pageNumber} != 1">
-                    <a th:href="@{/product(page=${previousPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
-                        <button class="btn btn-outline-primary">️⬅️</button>
-                    </a>
-                </div>
+                        <img th:src="'/img/' + ${product.image}" style="width: 350px;">
+                        <div class="text-center m-4 p-5">
+                            <p style="font-weight: bold;" th:text="${product.model}"></p>
+                            <!--<p style="font-weight: bold;" th:text="${product.model} + ' - ' + ${product.color}"></p>-->
+                            <p th:text="${product.brand.libelle}"></p>
+                            <p style="color: #878786;" th:text="${product.price} + ' € '"></p>
 
-                <div>Page <span th:text="${pageNumber}">1</span></div>
+                            <!-- Retravailler cette partie une fois la vue fonctionnelle -->
+                            <button class="btn btn-outline-primary">Afficher détails</button>
 
-                <div th:if="${pageNumber} == nbPageTotal">
-                    <a href="#">
-                        <button class="btn btn-outline-primary" disabled>➡️ </button>️️
-                    </a>
-                </div>
-
-                <div th:if="${pageNumber} != ${end} ">
-                    <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
-                        <button class="btn btn-outline-primary">➡️ </button>️
+                            <!-- Replacer par ajouter au panier -->
+                            <!--<form action="/addPanier" method="post">
+                                <input type="text" id="produitCode" style="display:none;" name="produitCode" th:value="product.code">
+                                <button class="btn btn-outline-primary">Afficher détails</button>
+                            </form>-->
+                        </div>
                     </a>
                 </div>
             </div>
+
+
+            <!--        ROW Pagination -->
+            <div class="row" style="text-align: center">
+                <div class="col-lg-12">
+                    <p>
+                        Affichage des Article(s) <span th:text="${start}">1</span> à <span th:text="${end}">10</span> sur un total de <span th:text="${nbProductTotal}">275</span>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 d-flex justify-content-around">
+                    <div th:if="${pageNumber} == 1" >
+                        <a href="#">
+                            <button class="btn btn-outline-primary" disabled>️⬅️</button>
+                        </a>
+                    </div>
+                    <div th:if="${pageNumber} != 1">
+                        <a th:href="@{/product(page=${previousPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
+                            <button class="btn btn-outline-primary">️⬅️</button>
+                        </a>
+                    </div>
+
+                    <div>Page <span th:text="${pageNumber}">1</span></div>
+
+                    <div th:if="${pageNumber} == (${nbPageTotal} + 1)">
+                        <a href="#">
+                            <button class="btn btn-outline-primary" disabled>➡️ </button>️️
+                        </a>
+                    </div>
+
+                    <div th:if="${pageNumber} != (${nbPageTotal} + 1)">
+                        <a th:href="@{/product(page=${nextPage}, size=${size}, sortDirection=${sortDirection}, sortProperty=${sortProperty}, brand=${brandParam}, type=${typeParam})}">
+                            <button class="btn btn-outline-primary">➡️ </button>️
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
     </div>
 </div>
 
