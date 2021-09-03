@@ -50,12 +50,21 @@ public class HomeController {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
 
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
+            Integer nbProductBasket;
+
+            if(basketDao.getProducts() != null) {
+                nbProductBasket = basketDao.getProducts().size();
+            } else {
+                nbProductBasket = 0;
+            }
 
             model.put("products", productService.getProductByFilter(0, 7, 0L, 0L));
             model.put("listeBestProduct", productService.getProductByFilter(2, 10, 0L, 0L));
             model.put("listeSoonProduct", productService.getProductByFilter(1, 5, 0L, 0L));
 
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
+
+
+            Util.putValueForHeader(model, userDto, nbProductBasket, brandRepository.findAll(), typeProductRepository.findAll());
 
             return "home";
         } else {
