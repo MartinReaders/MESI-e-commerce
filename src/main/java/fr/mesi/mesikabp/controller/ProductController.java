@@ -59,7 +59,15 @@ public class ProductController {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
 
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
+            Integer nbProductBasket;
+
+            if(basketDao.getProducts() != null) {
+                nbProductBasket = basketDao.getProducts().size();
+            } else {
+                nbProductBasket = 0;
+            }
+
+            Util.putValueForHeader(model, userDto, nbProductBasket, brandRepository.findAll(), typeProductRepository.findAll());
             try {
                 Page<Product> productPage = productService.getProductByFilter(page, size, brand, type);
                 model.put("brandParam", brand);

@@ -41,7 +41,14 @@ public class ProfilController {
             UserDto userDto = authService.getUserInfoByLogin(((UserDto) request.getSession().getAttribute("user")).getLogin());
             Basket basketDao = basketService.getBasket(modelMapService.convertToDao(userDto));
 
-            Util.putValueForHeader(model, userDto, basketDao.getProducts().size(), brandRepository.findAll(), typeProductRepository.findAll());
+            Integer nbProductBasket;
+
+            if(basketDao.getProducts() != null) {
+                nbProductBasket = basketDao.getProducts().size();
+            } else {
+                nbProductBasket = 0;
+            }
+            Util.putValueForHeader(model, userDto, nbProductBasket, brandRepository.findAll(), typeProductRepository.findAll());
             return "profile";
         } else {
             return REDIRECT_LOGIN;
