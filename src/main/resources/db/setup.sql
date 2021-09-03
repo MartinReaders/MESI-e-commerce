@@ -50,7 +50,7 @@ CREATE TABLE product (
   idBrand INT(10) NOT NULL,
   model VARCHAR(100)NOT NULL,
   price INT(10) NOT NULL,
-  image VARCHAR(150),
+  image VARCHAR(150) NOT NULL,
   quantity INT(10),
   idTypeProduct INT(10),
   idStatusProduct INT(10),
